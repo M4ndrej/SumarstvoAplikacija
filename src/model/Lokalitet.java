@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Objects;
 import model.enumeracija.JedinicaGazdinstva;
 
 /**
@@ -76,8 +77,9 @@ public class Lokalitet {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.id;
+        int hash = 5;
+        hash = 59 * hash + this.id;
+        hash = 59 * hash + Objects.hashCode(this.jedinicaGazdinstva);
         return hash;
     }
 
@@ -93,8 +95,13 @@ public class Lokalitet {
             return false;
         }
         final Lokalitet other = (Lokalitet) obj;
-        return this.id == other.id;
+        if (this.id != other.id) {
+            return false;
+        }
+        return this.jedinicaGazdinstva == other.jedinicaGazdinstva;
     }
+
+    
     
     
     

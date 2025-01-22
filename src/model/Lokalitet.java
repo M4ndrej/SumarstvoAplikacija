@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Date;
 import java.util.Objects;
 import model.enumeracija.JedinicaGazdinstva;
 
@@ -13,29 +14,29 @@ import model.enumeracija.JedinicaGazdinstva;
  */
 public class Lokalitet {
     
-    private int id;
+    private String odsekOdeljenje;
     private String naziv;
     private JedinicaGazdinstva jedinicaGazdinstva;
-    private String odeljenje;
-    private String odsek;
+    private double doznaka;
+    private java.util.Date datumDoznake;
 
     public Lokalitet() {
     }
 
-    public Lokalitet(int id, String naziv, JedinicaGazdinstva jedinicaGazdinstva, String odeljenje, String odsek) {
-        this.id = id;
+    public Lokalitet(String odsekOdeljenje, String naziv, JedinicaGazdinstva jedinicaGazdinstva, double doznaka, Date datumDoznake) {
+        this.odsekOdeljenje = odsekOdeljenje;
         this.naziv = naziv;
         this.jedinicaGazdinstva = jedinicaGazdinstva;
-        this.odeljenje = odeljenje;
-        this.odsek = odsek;
+        this.doznaka = doznaka;
+        this.datumDoznake = datumDoznake;
     }
 
-    public int getId() {
-        return id;
+    public String getOdsekOdeljenje() {
+        return odsekOdeljenje;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOdsekOdeljenje(String odsekOdeljenje) {
+        this.odsekOdeljenje = odsekOdeljenje;
     }
 
     public String getNaziv() {
@@ -54,32 +55,32 @@ public class Lokalitet {
         this.jedinicaGazdinstva = jedinicaGazdinstva;
     }
 
-    public String getOdeljenje() {
-        return odeljenje;
+    public double getDoznaka() {
+        return doznaka;
     }
 
-    public void setOdeljenje(String odeljenje) {
-        this.odeljenje = odeljenje;
+    public void setDoznaka(double doznaka) {
+        this.doznaka = doznaka;
     }
 
-    public String getOdsek() {
-        return odsek;
+    public Date getDatumDoznake() {
+        return datumDoznake;
     }
 
-    public void setOdsek(String odsek) {
-        this.odsek = odsek;
+    public void setDatumDoznake(Date datumDoznake) {
+        this.datumDoznake = datumDoznake;
     }
 
     @Override
     public String toString() {
-        return "Lokalitet: "+naziv;
+        return "Lokalitet: " + naziv;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 59 * hash + this.id;
-        hash = 59 * hash + Objects.hashCode(this.jedinicaGazdinstva);
+        int hash = 7;
+        hash = 47 * hash + Objects.hashCode(this.odsekOdeljenje);
+        hash = 47 * hash + Objects.hashCode(this.naziv);
         return hash;
     }
 
@@ -95,13 +96,12 @@ public class Lokalitet {
             return false;
         }
         final Lokalitet other = (Lokalitet) obj;
-        if (this.id != other.id) {
+        if (!Objects.equals(this.odsekOdeljenje, other.odsekOdeljenje)) {
             return false;
         }
-        return this.jedinicaGazdinstva == other.jedinicaGazdinstva;
+        return Objects.equals(this.naziv, other.naziv);
     }
 
-    
     
     
     

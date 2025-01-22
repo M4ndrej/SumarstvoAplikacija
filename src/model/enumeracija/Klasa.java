@@ -9,5 +9,5 @@ package model.enumeracija;
  * @author Andrej
  */
 public enum Klasa {
-    
+    I
 }

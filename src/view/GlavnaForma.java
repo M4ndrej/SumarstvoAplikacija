@@ -124,7 +124,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel1.setText("Pogledaj otpremnice");
@@ -152,7 +151,6 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 0));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel4.setText("Pogledaj račune");
@@ -180,7 +178,6 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 0));
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel6.setText("Pogledaj kupce");
@@ -208,7 +205,6 @@ public class GlavnaForma extends javax.swing.JFrame {
                 .addGap(31, 31, 31))
         );
 
-        jPanel7.setBackground(new java.awt.Color(0, 102, 0));
         jPanel7.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel7.setText("Pogledaj statistiku");
@@ -275,9 +271,19 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuPodesavanja.add(jMenuItemLokalitet);
 
         jMenuItem2.setText("Tipovi drveta");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenuPodesavanja.add(jMenuItem2);
 
         jMenuItem3.setText("Otpremači");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenuPodesavanja.add(jMenuItem3);
 
         jMenuBar1.add(jMenuPodesavanja);
@@ -334,6 +340,16 @@ public class GlavnaForma extends javax.swing.JFrame {
         ZaposleniForma zf = new ZaposleniForma();
         zf.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        TipoviDrvetaForma tdf = new TipoviDrvetaForma();
+        tdf.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        OtpremaciForma of = new OtpremaciForma();
+        of.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments

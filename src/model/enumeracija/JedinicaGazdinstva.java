@@ -10,6 +10,6 @@ package model.enumeracija;
  */
 public enum JedinicaGazdinstva {
     
-    DG, KV
+    CRNA_REKA, NATALIJINO_I, GOČ_GVOZDAC_A, GOČ_GVOZDAC_B
     
 }

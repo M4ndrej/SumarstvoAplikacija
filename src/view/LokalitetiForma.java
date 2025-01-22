@@ -189,7 +189,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
-        Lokalitet l = new Lokalitet(1, "nesto", JedinicaGazdinstva.DG, "nesto", "nesto");
+        Lokalitet l = new Lokalitet("A1", "nesto", JedinicaGazdinstva.NATALIJINO_I, 15.2, new java.util.Date());
         LokalitetDialog ld = new LokalitetDialog(this, true, l);
         ld.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed

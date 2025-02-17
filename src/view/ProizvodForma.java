@@ -4,23 +4,23 @@
  */
 package view;
 
-import model.TipDrveta;
+import model.Proizvod;
 import model.enumeracija.Klasa;
 import model.enumeracija.MernaJedinica;
 import model.enumeracija.Tip;
 import model.enumeracija.Vrsta;
-import view.dialog.TipDrvetaDialog;
+import view.dialog.ProizvodDialog;
 
 /**
  *
  * @author Andrej
  */
-public class TipoviDrvetaForma extends javax.swing.JFrame {
+public class ProizvodForma extends javax.swing.JFrame {
 
     /**
      * Creates new form TipoviDrvetaForma
      */
-    public TipoviDrvetaForma() {
+    public ProizvodForma() {
         initComponents();
         setTitle("Tipovi drveta");
         setLocationRelativeTo(null);
@@ -201,13 +201,11 @@ public class TipoviDrvetaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
-        TipDrveta td = new TipDrveta(Tip.TRUPAC, Vrsta.HRAST, Klasa.I , "nesto", 120.3, MernaJedinica.m3);
-        TipDrvetaDialog tdd = new TipDrvetaDialog(this,true,td);
-        tdd.setVisible(true);
+        
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
-        TipDrvetaDialog tdd = new TipDrvetaDialog(this, true);
+        ProizvodDialog tdd = new ProizvodDialog(this, true);
         tdd.setVisible(true);
     }//GEN-LAST:event_jButtonKreirajActionPerformed
 
@@ -228,20 +226,21 @@ public class TipoviDrvetaForma extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TipoviDrvetaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TipoviDrvetaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TipoviDrvetaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TipoviDrvetaForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodForma.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TipoviDrvetaForma().setVisible(true);
+                new ProizvodForma().setVisible(true);
             }
         });
     }

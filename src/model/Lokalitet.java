@@ -13,38 +13,30 @@ import model.enumeracija.JedinicaGazdinstva;
  * @author Andrej
  */
 public class Lokalitet {
-    
-    private String odsekOdeljenje;
-    private String naziv;
+
+    private int id;
     private JedinicaGazdinstva jedinicaGazdinstva;
+    private String odsekOdeljenje;
     private double doznaka;
     private java.util.Date datumDoznake;
 
     public Lokalitet() {
     }
 
-    public Lokalitet(String odsekOdeljenje, String naziv, JedinicaGazdinstva jedinicaGazdinstva, double doznaka, Date datumDoznake) {
-        this.odsekOdeljenje = odsekOdeljenje;
-        this.naziv = naziv;
+    public Lokalitet(int id, JedinicaGazdinstva jedinicaGazdinstva, String odsekOdeljenje, double doznaka, Date datumDoznake) {
+        this.id = id;
         this.jedinicaGazdinstva = jedinicaGazdinstva;
+        this.odsekOdeljenje = odsekOdeljenje;
         this.doznaka = doznaka;
         this.datumDoznake = datumDoznake;
     }
 
-    public String getOdsekOdeljenje() {
-        return odsekOdeljenje;
+    public int getId() {
+        return id;
     }
 
-    public void setOdsekOdeljenje(String odsekOdeljenje) {
-        this.odsekOdeljenje = odsekOdeljenje;
-    }
-
-    public String getNaziv() {
-        return naziv;
-    }
-
-    public void setNaziv(String naziv) {
-        this.naziv = naziv;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public JedinicaGazdinstva getJedinicaGazdinstva() {
@@ -53,6 +45,14 @@ public class Lokalitet {
 
     public void setJedinicaGazdinstva(JedinicaGazdinstva jedinicaGazdinstva) {
         this.jedinicaGazdinstva = jedinicaGazdinstva;
+    }
+
+    public String getOdsekOdeljenje() {
+        return odsekOdeljenje;
+    }
+
+    public void setOdsekOdeljenje(String odsekOdeljenje) {
+        this.odsekOdeljenje = odsekOdeljenje;
     }
 
     public double getDoznaka() {
@@ -72,15 +72,9 @@ public class Lokalitet {
     }
 
     @Override
-    public String toString() {
-        return "Lokalitet: " + naziv;
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.odsekOdeljenje);
-        hash = 47 * hash + Objects.hashCode(this.naziv);
+        int hash = 5;
+        hash = 67 * hash + this.id;
         return hash;
     }
 
@@ -96,14 +90,15 @@ public class Lokalitet {
             return false;
         }
         final Lokalitet other = (Lokalitet) obj;
-        if (!Objects.equals(this.odsekOdeljenje, other.odsekOdeljenje)) {
-            return false;
-        }
-        return Objects.equals(this.naziv, other.naziv);
+        return this.id == other.id;
     }
 
+    @Override
+    public String toString() {
+        return "jedinicaGazdinstva=" + jedinicaGazdinstva + ", odsekOdeljenje=" + odsekOdeljenje + '}';
+    }
     
     
-    
+
     
 }

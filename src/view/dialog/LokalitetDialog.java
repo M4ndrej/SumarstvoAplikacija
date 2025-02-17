@@ -54,8 +54,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jComboBoxJG = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jTextFieldDatumDoznake = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jTextFieldNaziv = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
@@ -90,14 +88,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
 
         jTextFieldDatumDoznake.setText("DD.MM.YYYY");
 
-        jLabel5.setText("Naziv");
-
-        jTextFieldNaziv.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldNazivActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -114,16 +104,9 @@ public class LokalitetDialog extends javax.swing.JDialog {
                             .addComponent(jTextFieldDoznaka)
                             .addComponent(jTextFieldDatumDoznake)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(70, 70, 70)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldOdsekOdeljenje)
-                            .addComponent(jTextFieldNaziv, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextFieldOdsekOdeljenje, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -132,12 +115,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextFieldNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxJG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +132,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDatumDoznake, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(22, 22, 22))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -176,14 +155,14 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonObrisi, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(17, 17, 17))
+                        .addComponent(jButtonKreiraj, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(39, 39, 39))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +196,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,10 +216,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
     private void jTextFieldOdsekOdeljenjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOdsekOdeljenjeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldOdsekOdeljenjeActionPerformed
-
-    private void jTextFieldNazivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNazivActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldNazivActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,12 +270,10 @@ public class LokalitetDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldDatumDoznake;
     private javax.swing.JTextField jTextFieldDoznaka;
-    private javax.swing.JTextField jTextFieldNaziv;
     private javax.swing.JTextField jTextFieldOdsekOdeljenje;
     // End of variables declaration//GEN-END:variables
 
@@ -319,7 +292,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
         }
         jButtonKreiraj.setVisible(false);
         jButtonSacuvajIzmene.setEnabled(false);
-        jTextFieldNaziv.setText(lokalitet.getNaziv());
         jComboBoxJG.setSelectedItem(lokalitet.getJedinicaGazdinstva());
         jTextFieldOdsekOdeljenje.setText(lokalitet.getOdsekOdeljenje());
         jTextFieldDoznaka.setText(lokalitet.getDoznaka()+"");        
@@ -330,7 +302,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Pogresan format datuma", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        jTextFieldNaziv.setEnabled(false);
         jTextFieldOdsekOdeljenje.setEnabled(false);
         jTextFieldDatumDoznake.setEnabled(false);
         jTextFieldDoznaka.setEnabled(false);

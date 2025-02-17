@@ -14,8 +14,9 @@ import model.enumeracija.Vrsta;
  *
  * @author Andrej
  */
-public class TipDrveta {
+public class Proizvod {
     
+    private int id;
     private Tip tip;
     private Vrsta vrsta;
     private Klasa klasa;
@@ -23,16 +24,25 @@ public class TipDrveta {
     private double cena;
     private MernaJedinica mernaJedinica;
 
-    public TipDrveta() {
+    public Proizvod() {
     }
 
-    public TipDrveta(Tip tip, Vrsta vrsta, Klasa klasa, String opis, double cena, MernaJedinica mernaJedinica) {
+    public Proizvod(int id, Tip tip, Vrsta vrsta, Klasa klasa, String opis, double cena, MernaJedinica mernaJedinica) {
+        this.id = id;
         this.tip = tip;
         this.vrsta = vrsta;
         this.klasa = klasa;
         this.opis = opis;
         this.cena = cena;
         this.mernaJedinica = mernaJedinica;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Tip getTip() {
@@ -84,16 +94,9 @@ public class TipDrveta {
     }
 
     @Override
-    public String toString() {
-        return "TipDrveta: " + "tip" + tip + ", vrsta: " + vrsta + ", klasa: "  + klasa;
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.tip);
-        hash = 97 * hash + Objects.hashCode(this.vrsta);
-        hash = 97 * hash + Objects.hashCode(this.klasa);
+        int hash = 3;
+        hash = 47 * hash + this.id;
         return hash;
     }
 
@@ -108,15 +111,18 @@ public class TipDrveta {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final TipDrveta other = (TipDrveta) obj;
-        if (this.tip != other.tip) {
-            return false;
-        }
-        if (this.vrsta != other.vrsta) {
-            return false;
-        }
-        return this.klasa == other.klasa;
+        final Proizvod other = (Proizvod) obj;
+        return this.id == other.id;
     }
+
+    @Override
+    public String toString() {
+        return "Proizvod{" + "tip=" + tip + ", vrsta=" + vrsta + ", klasa=" + klasa + '}';
+    }
+
+    
+
+   
     
     
     

@@ -4,7 +4,7 @@
  */
 package view.dialog;
 
-import model.TipDrveta;
+import model.Proizvod;
 import model.enumeracija.Klasa;
 import model.enumeracija.MernaJedinica;
 import model.enumeracija.Tip;
@@ -14,12 +14,12 @@ import model.enumeracija.Vrsta;
  *
  * @author Andrej
  */
-public class TipDrvetaDialog extends javax.swing.JDialog {
+public class ProizvodDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form TipDrvetaDialog
      */
-    public TipDrvetaDialog(java.awt.Frame parent, boolean modal) {
+    public ProizvodDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Kreiraj tip");
@@ -27,7 +27,7 @@ public class TipDrvetaDialog extends javax.swing.JDialog {
         inicijalizuj();
     }
 
-    public TipDrvetaDialog(java.awt.Frame parent, boolean modal, TipDrveta tip) {
+    public ProizvodDialog(java.awt.Frame parent, boolean modal, Proizvod tip) {
         super(parent, modal);
         initComponents();
         setTitle("Izmeni tip");
@@ -252,20 +252,21 @@ public class TipDrvetaDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TipDrvetaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TipDrvetaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TipDrvetaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TipDrvetaDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ProizvodDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                TipDrvetaDialog dialog = new TipDrvetaDialog(new javax.swing.JFrame(), true);
+                ProizvodDialog dialog = new ProizvodDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -307,7 +308,7 @@ public class TipDrvetaDialog extends javax.swing.JDialog {
         jButtonObrisi.setVisible(false);
     }
 
-    private void inicijalizuj(TipDrveta tip) {
+    private void inicijalizuj(Proizvod tip) {
         popuniComboBox();
         jButtonKreiraj.setVisible(false);
         jButtonSacuvaj.setEnabled(false);

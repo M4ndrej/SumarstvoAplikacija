@@ -13,27 +13,37 @@ import java.util.Objects;
  */
 public class Otpremnica {
     
-    private String brojOtpremnice;
-    private Otpremac otpremac;
+    private Kupac kupac;
     private Menadzer menadzer;
+    private Otpremac otpremac;
+    private int brojOtpremnice;
     private java.util.Date datumOtpremnice;
 
     public Otpremnica() {
     }
 
-    public Otpremnica(String brojOtpremnice, Otpremac otpremac, Menadzer menadzer, Date datumOtpremnice) {
-        this.brojOtpremnice = brojOtpremnice;
-        this.otpremac = otpremac;
+    public Otpremnica(Kupac kupac, Menadzer menadzer, Otpremac otpremac, int brojOtpremnice, Date datumOtpremnice) {
+        this.kupac = kupac;
         this.menadzer = menadzer;
+        this.otpremac = otpremac;
+        this.brojOtpremnice = brojOtpremnice;
         this.datumOtpremnice = datumOtpremnice;
     }
 
-    public String getBrojOtpremnice() {
-        return brojOtpremnice;
+    public Kupac getKupac() {
+        return kupac;
     }
 
-    public void setBrojOtpremnice(String brojOtpremnice) {
-        this.brojOtpremnice = brojOtpremnice;
+    public void setKupac(Kupac kupac) {
+        this.kupac = kupac;
+    }
+
+    public Menadzer getMenadzer() {
+        return menadzer;
+    }
+
+    public void setMenadzer(Menadzer menadzer) {
+        this.menadzer = menadzer;
     }
 
     public Otpremac getOtpremac() {
@@ -44,12 +54,12 @@ public class Otpremnica {
         this.otpremac = otpremac;
     }
 
-    public Menadzer getMenadzer() {
-        return menadzer;
+    public int getBrojOtpremnice() {
+        return brojOtpremnice;
     }
 
-    public void setMenadzer(Menadzer menadzer) {
-        this.menadzer = menadzer;
+    public void setBrojOtpremnice(int brojOtpremnice) {
+        this.brojOtpremnice = brojOtpremnice;
     }
 
     public Date getDatumOtpremnice() {
@@ -61,14 +71,9 @@ public class Otpremnica {
     }
 
     @Override
-    public String toString() {
-        return "Otpremnica: " + brojOtpremnice ;
-    }
-
-    @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 71 * hash + Objects.hashCode(this.brojOtpremnice);
+        int hash = 7;
+        hash = 29 * hash + this.brojOtpremnice;
         return hash;
     }
 
@@ -84,10 +89,6 @@ public class Otpremnica {
             return false;
         }
         final Otpremnica other = (Otpremnica) obj;
-        return Objects.equals(this.brojOtpremnice, other.brojOtpremnice);
+        return this.brojOtpremnice == other.brojOtpremnice;
     }
-    
-    
-    
-    
 }

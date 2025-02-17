@@ -4,11 +4,16 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Andrej
  */
-public class Kupac {
+public class Kupac implements OpstiDomenskiObjekat{
     
     private int id;
     private String naziv;
@@ -73,6 +78,25 @@ public class Kupac {
         final Kupac other = (Kupac) obj;
         return this.id == other.id;
     }
+
+    @Override
+    public String vratiImeKlase() {
+        return "kupac";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.naziv = rs.getString("naziv");
+            this.imeVlasnika = rs.getString("imeVlasnika");
+        } catch (SQLException ex) {
+            Logger.getLogger(Kupac.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
     
     
     

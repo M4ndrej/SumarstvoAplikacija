@@ -4,8 +4,10 @@
  */
 package view;
 
+import java.util.ArrayList;
 import model.Lokalitet;
 import model.enumeracija.JedinicaGazdinstva;
+import tabela_model.LokalitetModelTabele;
 import view.dialog.LokalitetDialog;
 
 /**
@@ -23,6 +25,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         popuniComboBox();
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        inicijalizacija();
 
     }
 
@@ -36,7 +39,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableLokaliteti = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -51,7 +54,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableLokaliteti.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -62,7 +65,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableLokaliteti);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -247,7 +250,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableLokaliteti;
     private javax.swing.JTextField jTextFieldOdsekOdeljenje;
     // End of variables declaration//GEN-END:variables
 
@@ -255,5 +258,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
         for(JedinicaGazdinstva jg: JedinicaGazdinstva.values()){
             jComboBoxJG.addItem(jg);
         }    
+    }
+
+    private void inicijalizacija() {
+        LokalitetModelTabele lmt = new LokalitetModelTabele(new ArrayList<Lokalitet>());
+        jTableLokaliteti.setModel(lmt);
     }
 }

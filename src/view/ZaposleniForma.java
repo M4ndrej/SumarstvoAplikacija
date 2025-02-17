@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.util.ArrayList;
+import model.Menadzer;
+import tabela_model.MenadzerModelTabele;
+
 /**
  *
  * @author Andrej
@@ -18,6 +22,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
         setTitle("Zaposleni");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(ZaposleniForma.DISPOSE_ON_CLOSE);
+        inicijalizacija();
     }
 
     /**
@@ -30,7 +35,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableZaposleni = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldImePrezime = new javax.swing.JTextField();
@@ -40,7 +45,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableZaposleni.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -51,7 +56,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableZaposleni);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -168,7 +173,12 @@ public class ZaposleniForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableZaposleni;
     private javax.swing.JTextField jTextFieldImePrezime;
     // End of variables declaration//GEN-END:variables
+
+    private void inicijalizacija() {
+        MenadzerModelTabele mmt = new MenadzerModelTabele(new ArrayList<Menadzer>());
+        jTableZaposleni.setModel(mmt);
+    }
 }

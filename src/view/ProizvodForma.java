@@ -4,11 +4,11 @@
  */
 package view;
 
-import model.Proizvod;
+import java.util.ArrayList;
 import model.enumeracija.Klasa;
-import model.enumeracija.MernaJedinica;
 import model.enumeracija.Tip;
 import model.enumeracija.Vrsta;
+import tabela_model.ProizvodModelTabele;
 import view.dialog.ProizvodDialog;
 
 /**
@@ -26,6 +26,7 @@ public class ProizvodForma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         popuniComboBox();
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        inicijalizacija();
     }
 
     /**
@@ -38,7 +39,7 @@ public class ProizvodForma extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableProizvodi = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxTip = new javax.swing.JComboBox<>();
@@ -58,7 +59,7 @@ public class ProizvodForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProizvodi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -69,7 +70,7 @@ public class ProizvodForma extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableProizvodi);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -261,7 +262,7 @@ public class ProizvodForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableProizvodi;
     private javax.swing.JTextField jTextFieldCenaDo;
     private javax.swing.JTextField jTextFieldCenaOd;
     // End of variables declaration//GEN-END:variables
@@ -276,5 +277,10 @@ public class ProizvodForma extends javax.swing.JFrame {
         for(Vrsta vrsta: Vrsta.values()){
             jComboBoxVrsta.addItem(vrsta);
         }
+    }
+
+    private void inicijalizacija() {
+        ProizvodModelTabele pmt = new ProizvodModelTabele(new ArrayList<>());
+        jTableProizvodi.setModel(pmt);
     }
 }

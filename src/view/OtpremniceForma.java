@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import model.Otpremac;
+import tabela_model.OtpremnicaModelTabele;
 import view.dialog.OtpremniceDialog;
 
 /*
@@ -21,6 +24,7 @@ public class OtpremniceForma extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setTitle("Otpremnice");
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        inicijalizacija();
     }
 
     /**
@@ -33,7 +37,7 @@ public class OtpremniceForma extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableOtpremnice = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -48,7 +52,7 @@ public class OtpremniceForma extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableOtpremnice.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,13 +63,11 @@ public class OtpremniceForma extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableOtpremnice);
 
         jLabel1.setText("Kupac");
 
         jLabel2.setText("Otpremač");
-
-        jComboBoxOtpremac.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel3.setText("Broj otpremnice");
 
@@ -210,14 +212,19 @@ public class OtpremniceForma extends javax.swing.JFrame {
     private javax.swing.JButton jButtonFilter;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonOcistiFilter;
-    private javax.swing.JComboBox<String> jComboBoxOtpremac;
+    private javax.swing.JComboBox<Otpremac> jComboBoxOtpremac;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableOtpremnice;
     private javax.swing.JTextField jTextFieldBrojOtpremnice;
     private javax.swing.JTextField jTextFieldKupac;
     // End of variables declaration//GEN-END:variables
+
+    private void inicijalizacija() {
+        OtpremnicaModelTabele omt = new OtpremnicaModelTabele(new ArrayList<>());
+        jTableOtpremnice.setModel(omt);
+    }
 }

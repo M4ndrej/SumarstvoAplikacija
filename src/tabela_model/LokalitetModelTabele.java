@@ -53,5 +53,9 @@ public class LokalitetModelTabele extends AbstractTableModel{
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    public List<Lokalitet> getLista() {
+         return listaLokaliteta;
+    }
     
 }

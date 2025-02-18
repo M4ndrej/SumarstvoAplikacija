@@ -121,7 +121,7 @@ public class Proizvod implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return tip.toString()+" "+ vrsta.toString()+ " "+ klasa.toString();
+        return tip.toString()+" "+ vrsta.toString()+ " "+ klasa.toString() + " " + mernaJedinica.toString() + " x " + cena;
     }
 
     @Override
@@ -144,6 +144,16 @@ public class Proizvod implements OpstiDomenskiObjekat{
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(id,tip,vrsta,klasa,cena,mernaJedinica,opis)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        return "("+this.id+",'"+this.tip.toString()+"','"+this.vrsta.toString()+"','"+this.klasa.toString()+"',"+this.cena+",'"+this.mernaJedinica+"','"+this.opis+"')";
     }
 
     

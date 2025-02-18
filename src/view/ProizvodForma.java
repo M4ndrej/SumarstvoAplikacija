@@ -293,4 +293,8 @@ public class ProizvodForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu proizvoda", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    public void azurirajTabelu() {
+        inicijalizacija();
+    }
 }

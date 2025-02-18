@@ -13,5 +13,7 @@ public interface OpstiDomenskiObjekat {
     
     public String vratiImeKlase();
     public boolean napuni(ResultSet rs);
+    public String vratiNaziveKolona();
+    public String vratiVrednostiKolona();
     
 }

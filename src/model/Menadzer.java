@@ -55,7 +55,7 @@ public class Menadzer implements OpstiDomenskiObjekat {
 
     @Override
     public String toString() {
-        return "Menadzer: " + imePrezime;
+        return imePrezime;
     }
 
     @Override
@@ -98,6 +98,16 @@ public class Menadzer implements OpstiDomenskiObjekat {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return null;
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        return null;
     }
 
 }

@@ -55,5 +55,19 @@ public class StavkaOtpremniceModelTabele extends AbstractTableModel{
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    public void dodajElement(StavkaOtpremnice so) {
+        listaStavkiOtpremnica.add(so);
+        fireTableDataChanged();
+    }
+
+    public List<StavkaOtpremnice> getLista() {
+        return listaStavkiOtpremnica;
+    }
+
+    public void ukloniStavku(int red) {
+        listaStavkiOtpremnica.remove(red);
+        fireTableDataChanged();
+    }
     
 }

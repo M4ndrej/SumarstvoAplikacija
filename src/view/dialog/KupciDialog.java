@@ -4,15 +4,19 @@
  */
 package view.dialog;
 
+import controller.Controller;
+import javax.swing.JOptionPane;
 import model.Kupac;
+import view.KupciForma;
 
 /**
  *
  * @author Andrej
  */
 public class KupciDialog extends javax.swing.JDialog {
-    
+
     private Kupac kupac;
+    private KupciForma parent;
 
     /**
      * Creates new form KupciDialog
@@ -23,18 +27,18 @@ public class KupciDialog extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         setTitle("Kreiraj kupca");
         inicijalizacija();
+        this.parent = (KupciForma)parent;
     }
 
     public KupciDialog(java.awt.Frame parent, boolean modal, Kupac kupac) {
         super(parent, modal);
         this.kupac = kupac;
         initComponents();
-        setLocationRelativeTo(parent);  
+        setLocationRelativeTo(parent);
         setTitle("Izmeni kupca");
         inicijalizacija(kupac);
+        this.parent = (KupciForma)parent;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +104,11 @@ public class KupciDialog extends javax.swing.JDialog {
         jButtonSacuvajIzmene.setText("Sačuvaj izmene");
 
         jButtonKreiraj.setText("Kreiraj");
+        jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKreirajActionPerformed(evt);
+            }
+        });
 
         jButtonObrisi.setText("Obriši");
 
@@ -161,6 +170,21 @@ public class KupciDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
+        String naziv = jTextFieldNaziv.getText();
+        String imeVlasnika = jTextFieldImeVlasnika.getText();
+        Kupac kupac = new Kupac(0, naziv, imeVlasnika);
+        boolean uspesno = Controller.getInstance().kreirajKupac(kupac);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Kupac uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     /**
      * @param args the command line arguments
@@ -225,7 +249,7 @@ public class KupciDialog extends javax.swing.JDialog {
     }
 
     private void inicijalizacija(Kupac kupac) {
-         jButtonIzmeni.setVisible(true);
+        jButtonIzmeni.setVisible(true);
         jButtonSacuvajIzmene.setVisible(true);
         jButtonKreiraj.setVisible(false);
         jButtonObrisi.setVisible(true);

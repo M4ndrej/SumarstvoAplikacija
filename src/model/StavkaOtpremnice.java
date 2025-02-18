@@ -116,6 +116,16 @@ public class StavkaOtpremnice implements OpstiDomenskiObjekat{
         }
         return true;
     }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(redniBroj,proizvod,otpremnica,kolicina,ukupnaCena)";
+    }
+    
+    @Override
+    public String vratiVrednostiKolona() {
+        return "("+this.redniBroj+","+this.proizvod+","+this.otpremnica+","+this.kolicina+","+this.ukupnaCena+")";
+    }
     
     
 }

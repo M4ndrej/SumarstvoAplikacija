@@ -211,4 +211,8 @@ public class KupciForma extends javax.swing.JFrame {
         }
         
     }
+
+    public void azurirajTabelu() {
+        inicijalizacija();
+    }
 }

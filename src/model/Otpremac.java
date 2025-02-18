@@ -55,7 +55,7 @@ public class Otpremac implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "Otpremac: " + imePrezime +", "+ lokalitet;
+        return imePrezime +" / "+ lokalitet;
     }
 
     @Override
@@ -96,9 +96,14 @@ public class Otpremac implements OpstiDomenskiObjekat{
         }
         return true;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(jmbgOtpremac,imePrezime,lokalitet)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        return "('"+this.jmbg+"','"+this.imePrezime+"',"+this.lokalitet.getId()+")";
+    }
 }

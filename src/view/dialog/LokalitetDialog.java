@@ -4,10 +4,15 @@
  */
 package view.dialog;
 
+import controller.Controller;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Lokalitet;
 import model.enumeracija.JedinicaGazdinstva;
+import view.LokalitetiForma;
 
 /**
  *
@@ -16,16 +21,17 @@ import model.enumeracija.JedinicaGazdinstva;
 public class LokalitetDialog extends javax.swing.JDialog {
 
     private Lokalitet lokalitet;
-    
-    
+    private LokalitetiForma parent;
+
     public LokalitetDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(parent);
         setTitle("Kreiraj lokalitet");
         inicijalizacija();
+        this.parent = (LokalitetiForma) parent;
     }
-    
+
     public LokalitetDialog(java.awt.Frame parent, boolean modal, Lokalitet lokalitet) {
         super(parent, modal);
         this.lokalitet = lokalitet;
@@ -33,6 +39,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         setTitle("Detalji lokaliteta");
         inicijalizacija(lokalitet);
+        this.parent = (LokalitetiForma) parent;
+
     }
 
     /**
@@ -138,6 +146,11 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonSacuvajIzmene.setText("Sačuvaj izmene");
+        jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajIzmeneActionPerformed(evt);
+            }
+        });
 
         jButtonIzmeni.setText("Izmeni");
         jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
@@ -149,6 +162,11 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jButtonObrisi.setText("Obriši");
 
         jButtonKreiraj.setText("Kreiraj");
+        jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKreirajActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,6 +225,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jTextFieldDatumDoznake.setEnabled(false);
         jTextFieldDoznaka.setEnabled(false);
         jComboBoxJG.setEnabled(true);
+        jButtonIzmeni.setEnabled(false);
+        jButtonSacuvajIzmene.setEnabled(true);
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jComboBoxJGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxJGActionPerformed
@@ -216,6 +236,35 @@ public class LokalitetDialog extends javax.swing.JDialog {
     private void jTextFieldOdsekOdeljenjeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldOdsekOdeljenjeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldOdsekOdeljenjeActionPerformed
+
+    private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
+
+    private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
+        JedinicaGazdinstva jg = (JedinicaGazdinstva) jComboBoxJG.getSelectedItem();
+        String oo = jTextFieldOdsekOdeljenje.getText();
+        double doznaka = Double.parseDouble(jTextFieldDoznaka.getText());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+        java.util.Date datum;
+        try {
+            datum = format.parse(jTextFieldDatumDoznake.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(LokalitetDialog.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Pogrešan format datuma", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Lokalitet lokalitet = new Lokalitet(0, jg, oo, doznaka, datum);
+        boolean uspesno = Controller.getInstance().kreirajLokalitet(lokalitet);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Kupac uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,7 +327,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
-        for(JedinicaGazdinstva jg: JedinicaGazdinstva.values()){
+        for (JedinicaGazdinstva jg : JedinicaGazdinstva.values()) {
             jComboBoxJG.addItem(jg);
         }
         jButtonSacuvajIzmene.setVisible(false);
@@ -287,18 +336,19 @@ public class LokalitetDialog extends javax.swing.JDialog {
     }
 
     private void inicijalizacija(Lokalitet lokalitet) {
-        for(JedinicaGazdinstva jg: JedinicaGazdinstva.values()){
+        for (JedinicaGazdinstva jg : JedinicaGazdinstva.values()) {
             jComboBoxJG.addItem(jg);
         }
+        jComboBoxJG.setSelectedItem(lokalitet.getJedinicaGazdinstva().toString());
+        jComboBoxJG.setEnabled(false);
         jButtonKreiraj.setVisible(false);
         jButtonSacuvajIzmene.setEnabled(false);
-        jComboBoxJG.setSelectedItem(lokalitet.getJedinicaGazdinstva());
         jTextFieldOdsekOdeljenje.setText(lokalitet.getOdsekOdeljenje());
-        jTextFieldDoznaka.setText(lokalitet.getDoznaka()+"");        
+        jTextFieldDoznaka.setText(lokalitet.getDoznaka() + "");
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        try{
-            jTextFieldDatumDoznake.setText(format.format(lokalitet.getDatumDoznake())); 
-        }catch(Exception e){
+        try {
+            jTextFieldDatumDoznake.setText(format.format(lokalitet.getDatumDoznake()));
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Pogresan format datuma", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }

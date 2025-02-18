@@ -77,12 +77,12 @@ public class DBBroker {
 
     public boolean readOtpremnicaWithMenadzerOtpremacKupac(List<Otpremnica> lista) {
         try {
-            String upit = "SELECT * FROM otpremnica otp JOIN menadzer m ON otp.menadzer = m.jmbgMenadzer "+
-                    "JOIN otpremac o ON otp.otpremac = o.jmbgOtpremac "+
-                    "JOIN kupac k ON otp.kupac = k.id";
+            String upit = "SELECT * FROM otpremnica otp JOIN menadzer m ON otp.menadzer = m.jmbgMenadzer "
+                    + "JOIN otpremac o ON otp.otpremac = o.jmbgOtpremac "
+                    + "JOIN kupac k ON otp.kupac = k.id";
             statement = konekcija.getConnection().createStatement();
             ResultSet rs = statement.executeQuery(upit);
-            while(rs.next()){
+            while (rs.next()) {
                 Menadzer menadzer = new Menadzer();
                 menadzer.napuni(rs);
                 Otpremac otpremac = new Otpremac();
@@ -104,12 +104,12 @@ public class DBBroker {
     }
 
     public boolean readStavkeOtpremniceForOtpremnica(List<StavkaOtpremnice> lista, Otpremnica otpremnica) {
-        try {  
-            String upit = "SELECT * FROM  otpremnica o JOIN stavka_otpremnice s ON s.otpremnica = o.brojOtpremnice " +
-                    "JOIN proizvod p ON s.proizvod = p.id WHERE o.brojOtpremnice = " + otpremnica.getBrojOtpremnice();
+        try {
+            String upit = "SELECT * FROM  otpremnica o JOIN stavka_otpremnice s ON s.otpremnica = o.brojOtpremnice "
+                    + "JOIN proizvod p ON s.proizvod = p.id WHERE o.brojOtpremnice = " + otpremnica.getBrojOtpremnice();
             statement = konekcija.getConnection().createStatement();
             ResultSet rs = statement.executeQuery(upit);
-            while(rs.next()){
+            while (rs.next()) {
                 Proizvod proizvod = new Proizvod();
                 proizvod.napuni(rs);
                 StavkaOtpremnice stavka = new StavkaOtpremnice();
@@ -125,4 +125,17 @@ public class DBBroker {
         return true;
     }
 
+    public boolean create(OpstiDomenskiObjekat odo) {
+        int affectedRows = 0;
+        try {
+            String upit = "INSERT INTO " + odo.vratiImeKlase() + " " + odo.vratiNaziveKolona() + " VALUES " + odo.vratiVrednostiKolona();
+            statement = konekcija.getConnection().createStatement();
+            affectedRows = statement.executeUpdate(upit);
+            konekcija.getConnection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return (affectedRows > 0);
+    }
 }

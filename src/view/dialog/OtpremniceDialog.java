@@ -5,14 +5,21 @@
 package view.dialog;
 
 import controller.Controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Kupac;
 import model.Menadzer;
 import model.Otpremac;
 import model.Otpremnica;
+import model.Proizvod;
 import model.StavkaOtpremnice;
 import tabela_model.StavkaOtpremniceModelTabele;
+import view.OtpremniceForma;
 
 /**
  *
@@ -20,6 +27,7 @@ import tabela_model.StavkaOtpremniceModelTabele;
  */
 public class OtpremniceDialog extends javax.swing.JDialog {
 
+    private OtpremniceForma parent = new OtpremniceForma();
     Otpremnica otpremnica;
 
     /**
@@ -29,7 +37,9 @@ public class OtpremniceDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         inicijalizacija();
+        popuniComboBox();
         setLocationRelativeTo(parent);
+        this.parent = (OtpremniceForma) parent;
     }
 
     public OtpremniceDialog(java.awt.Frame parent, boolean modal, Otpremnica otpremnica) {
@@ -37,7 +47,9 @@ public class OtpremniceDialog extends javax.swing.JDialog {
         initComponents();
         this.otpremnica = otpremnica;
         inicijalizacija(otpremnica);
+        popuniComboBox();
         setLocationRelativeTo(parent);
+        this.parent = (OtpremniceForma) parent;
     }
 
     /**
@@ -59,6 +71,10 @@ public class OtpremniceDialog extends javax.swing.JDialog {
         jButtonDodajProizvod = new javax.swing.JButton();
         jButtonKreirajOtpremnicu = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jTextFieldMernaJedinica = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextFieldCena = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -69,8 +85,8 @@ public class OtpremniceDialog extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jTextFieldBrojOtpremnice = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBoxOtpremac = new javax.swing.JComboBox<>();
+        jComboBoxMenadzer = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
         jTextFieldDatumOtpremnice = new javax.swing.JTextField();
 
@@ -93,15 +109,38 @@ public class OtpremniceDialog extends javax.swing.JDialog {
 
         jLabel1.setText("Proizvod");
 
-        jComboBoxProizvodi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxProizvodi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxProizvodiActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Kolicina");
 
         jButtonDodajProizvod.setText("Dodaj proizvod");
+        jButtonDodajProizvod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonDodajProizvodActionPerformed(evt);
+            }
+        });
 
         jButtonKreirajOtpremnicu.setText("Kreiraj otpremnicu");
+        jButtonKreirajOtpremnicu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKreirajOtpremnicuActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Obriši proizvod");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Cena");
+
+        jLabel11.setText("din");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,26 +149,36 @@ public class OtpremniceDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxProizvodi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonDodajProizvod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonKreirajOtpremnicu)
+                        .addGap(57, 57, 57))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 549, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jComboBoxProizvodi, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jTextFieldKolicina, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButtonDodajProizvod, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonKreirajOtpremnicu)
-                .addGap(57, 57, 57))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldKolicina, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextFieldMernaJedinica, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,15 +187,22 @@ public class OtpremniceDialog extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBoxProizvodi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(jTextFieldKolicina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldKolicina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldMernaJedinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonDodajProizvod)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonKreirajOtpremnicu, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonDodajProizvod)
+                        .addComponent(jButton1))
+                    .addComponent(jButtonKreirajOtpremnicu, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -188,8 +244,8 @@ public class OtpremniceDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldVlasnik)
-                            .addComponent(jComboBox1, 0, 155, Short.MAX_VALUE)
-                            .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jComboBoxOtpremac, 0, 155, Short.MAX_VALUE)
+                            .addComponent(jComboBoxMenadzer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -220,16 +276,16 @@ public class OtpremniceDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxMenadzer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxOtpremac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jTextFieldDatumOtpremnice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(200, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -255,6 +311,48 @@ public class OtpremniceDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonKreirajOtpremnicuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajOtpremnicuActionPerformed
+         int brojOtpremnice = Integer.parseInt(jTextFieldBrojOtpremnice.getText());
+         Menadzer menadzer = (Menadzer)jComboBoxMenadzer.getSelectedItem();
+         Otpremac otpremac = (Otpremac)jComboBoxOtpremac.getSelectedItem();
+         java.util.Date datum;
+         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+        try {
+             datum = format.parse(jTextFieldDatumOtpremnice.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(OtpremniceDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Kupac kupac = 
+    }//GEN-LAST:event_jButtonKreirajOtpremnicuActionPerformed
+
+    private void jButtonDodajProizvodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajProizvodActionPerformed
+        Proizvod proizvod = (Proizvod) jComboBoxProizvodi.getSelectedItem();
+        double kolicina = Double.parseDouble(jTextFieldKolicina.getText());
+        double ukupnaCena = kolicina * proizvod.getCena();
+
+        StavkaOtpremnice so = new StavkaOtpremnice(null, 1, proizvod, kolicina, ukupnaCena);
+        StavkaOtpremniceModelTabele somt = (StavkaOtpremniceModelTabele) jTableStavkeOtpremnice.getModel();
+        somt.dodajElement(so);
+        azurirajRedneBrojeve();
+    }//GEN-LAST:event_jButtonDodajProizvodActionPerformed
+
+    private void jComboBoxProizvodiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxProizvodiActionPerformed
+        Proizvod proizvod = (Proizvod)jComboBoxProizvodi.getSelectedItem();
+        jTextFieldCena.setText(proizvod.getCena()+"");
+        jTextFieldMernaJedinica.setText(proizvod.getMernaJedinica().toString());
+    }//GEN-LAST:event_jComboBoxProizvodiActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int red = jTableStavkeOtpremnice.getSelectedRow();
+        if(red == -1){
+            JOptionPane.showMessageDialog(this, "Izaberite stavku otpremnice","Obaveštenje",JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        StavkaOtpremniceModelTabele somt = (StavkaOtpremniceModelTabele)jTableStavkeOtpremnice.getModel();
+        somt.ukloniStavku(red);
+        azurirajRedneBrojeve();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -302,10 +400,12 @@ public class OtpremniceDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonDodajProizvod;
     private javax.swing.JButton jButtonKreirajOtpremnicu;
-    private javax.swing.JComboBox<Otpremac> jComboBox1;
-    private javax.swing.JComboBox<Menadzer> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBoxProizvodi;
+    private javax.swing.JComboBox<Menadzer> jComboBoxMenadzer;
+    private javax.swing.JComboBox<Otpremac> jComboBoxOtpremac;
+    private javax.swing.JComboBox<Proizvod> jComboBoxProizvodi;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -319,16 +419,18 @@ public class OtpremniceDialog extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableStavkeOtpremnice;
     private javax.swing.JTextField jTextFieldBrojOtpremnice;
+    private javax.swing.JTextField jTextFieldCena;
     private javax.swing.JTextField jTextFieldDatumOtpremnice;
     private javax.swing.JTextField jTextFieldKolicina;
     private javax.swing.JTextField jTextFieldKupac1;
+    private javax.swing.JTextField jTextFieldMernaJedinica;
     private javax.swing.JTextField jTextFieldVlasnik;
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
         StavkaOtpremniceModelTabele somt = new StavkaOtpremniceModelTabele(new ArrayList<>());
         jTableStavkeOtpremnice.setModel(somt);
-        jButtonKreirajOtpremnicu.setVisible(false);
+        jButtonKreirajOtpremnicu.setVisible(true);
     }
 
     private void inicijalizacija(Otpremnica otpremnica) {
@@ -341,4 +443,38 @@ public class OtpremniceDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremnica", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    private void popuniComboBox() {
+        List<Menadzer> menadzeri = new ArrayList<>();
+        Controller.getInstance().vratiListuZaposlenih(menadzeri);
+        List<Otpremac> otpremaci = new ArrayList<>();
+        Controller.getInstance().vratiListuOtpremaca(otpremaci);
+        List<Proizvod> proizvodi = new ArrayList<>();
+        Controller.getInstance().vratiListuProizvoda(proizvodi);
+        
+        for(Menadzer m:menadzeri){
+            jComboBoxMenadzer.addItem(m);
+        }
+        for(Otpremac o:otpremaci){
+            jComboBoxOtpremac.addItem(o);
+        }
+        for(Proizvod p:proizvodi){
+            jComboBoxProizvodi.addItem(p);
+        }
+    }
+    
+    private void azurirajRedneBrojeve() {
+
+        StavkaOtpremniceModelTabele somt=(StavkaOtpremniceModelTabele) jTableStavkeOtpremnice.getModel();
+
+        List<StavkaOtpremnice> stavke=somt.getLista();
+
+        for (int i = 0; i < stavke.size(); i++) {
+
+            stavke.get(i).setRedniBroj(i + 1);
+
+        }
+
+    }
+ 
 }

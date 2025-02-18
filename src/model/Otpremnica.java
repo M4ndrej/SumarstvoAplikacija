@@ -112,4 +112,15 @@ public class Otpremnica implements OpstiDomenskiObjekat{
         }
         return true;
     }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(brojOtpremnice,menadzer,otpremac,datumOtpremnice,kupac)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        java.sql.Date datum = new java.sql.Date(this.getDatumOtpremnice().getTime());
+        return "("+this.brojOtpremnice+",'"+this.menadzer.getJmbg()+"','"+this.otpremac.getJmbg()+"',"+datum+","+this.kupac.getId()+")";
+    }
 }

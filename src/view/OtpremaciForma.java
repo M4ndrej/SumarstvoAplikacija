@@ -24,6 +24,7 @@ public class OtpremaciForma extends javax.swing.JFrame {
      */
     public OtpremaciForma() {
         initComponents();
+        setTitle("Otpremači");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         inicijalizacija();
@@ -227,5 +228,9 @@ public class OtpremaciForma extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void azurirajTabelu() {
+        inicijalizacija();
     }
 }

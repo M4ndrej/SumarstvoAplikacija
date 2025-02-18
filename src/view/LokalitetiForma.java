@@ -51,7 +51,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
         jButtonFilter = new javax.swing.JButton();
         jButtonFilterOcistiFilter = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButtonDetalji = new javax.swing.JButton();
+        jButtonIzmeni = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonDodajLokalitet1 = new javax.swing.JButton();
 
@@ -122,10 +122,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonDetalji.setText("Detalji");
-        jButtonDetalji.addActionListener(new java.awt.event.ActionListener() {
+        jButtonIzmeni.setText("Izmeni");
+        jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDetaljiActionPerformed(evt);
+                jButtonIzmeniActionPerformed(evt);
             }
         });
 
@@ -147,7 +147,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
                         .addComponent(jSeparator1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButtonDetalji, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -159,7 +159,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
-                .addComponent(jButtonDetalji)
+                .addComponent(jButtonIzmeni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,9 +196,17 @@ public class LokalitetiForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
-        
-    }//GEN-LAST:event_jButtonDetaljiActionPerformed
+    private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
+        int red = jTableLokaliteti.getSelectedRow();
+        if (red == -1) {
+            JOptionPane.showMessageDialog(this, "Odaberite lokalitet", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        LokalitetModelTabele lmt = (LokalitetModelTabele)jTableLokaliteti.getModel();
+        Lokalitet lokalitet = lmt.getLista().get(red);
+        LokalitetDialog ld = new LokalitetDialog(this, true,lokalitet);
+        ld.setVisible(true);
+    }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonDodajLokalitet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajLokalitet1ActionPerformed
         // TODO add your handling code here:
@@ -242,10 +250,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonDodajLokalitet1;
     private javax.swing.JButton jButtonFilter;
     private javax.swing.JButton jButtonFilterOcistiFilter;
+    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JComboBox<JedinicaGazdinstva> jComboBoxJG;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
@@ -258,19 +266,23 @@ public class LokalitetiForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void popuniComboBox() {
-        for(JedinicaGazdinstva jg: JedinicaGazdinstva.values()){
+        for (JedinicaGazdinstva jg : JedinicaGazdinstva.values()) {
             jComboBoxJG.addItem(jg);
-        }    
+        }
     }
 
     private void inicijalizacija() {
         List<Lokalitet> lista = new ArrayList<>();
         boolean uspesno = Controller.getInstance().vratiListuLokalitet(lista);
-        if(uspesno){
+        if (uspesno) {
             LokalitetModelTabele lmt = new LokalitetModelTabele(lista);
             jTableLokaliteti.setModel(lmt);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    public void azurirajTabelu() {
+        inicijalizacija();
     }
 }

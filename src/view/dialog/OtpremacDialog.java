@@ -4,14 +4,21 @@
  */
 package view.dialog;
 
+import controller.Controller;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Lokalitet;
 import model.Otpremac;
+import view.OtpremaciForma;
 
 /**
  *
  * @author Andrej
  */
 public class OtpremacDialog extends javax.swing.JDialog {
+
+    OtpremaciForma parent = new OtpremaciForma();
 
     /**
      * Creates new form OtpremacDialog
@@ -22,6 +29,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
         setTitle("Kreiraj otpremača");
         inicijalizuj();
         setLocationRelativeTo(parent);
+        this.parent = (OtpremaciForma) parent;
     }
 
     public OtpremacDialog(java.awt.Frame parent, boolean modal, Otpremac otpremac) {
@@ -30,6 +38,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
         setTitle("Izmeni otpremača");
         inicijalizuj(otpremac);
         setLocationRelativeTo(parent);
+        this.parent = (OtpremaciForma) parent;
     }
 
     /**
@@ -118,6 +127,11 @@ public class OtpremacDialog extends javax.swing.JDialog {
         jButtonObrisi.setText("Obriši");
 
         jButtonKreiraj.setText("Kreiraj");
+        jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKreirajActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -182,6 +196,21 @@ public class OtpremacDialog extends javax.swing.JDialog {
         jTextFieldImePrezime.setEnabled(true);
         jComboBoxLokalitet.setEnabled(true);
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
+
+    private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
+        String jmbg = jTextFieldJMBG.getText();
+        String imePrezime = jTextFieldImePrezime.getText();
+        Lokalitet lokalitet = (Lokalitet)jComboBoxLokalitet.getSelectedItem();
+        Otpremac otpremac = new Otpremac(jmbg, imePrezime, lokalitet);
+        boolean uspesno = Controller.getInstance().kreirajOtpremac(otpremac);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Otpremač uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     /**
      * @param args the command line arguments
@@ -260,5 +289,14 @@ public class OtpremacDialog extends javax.swing.JDialog {
     }
 
     private void popuniComboBox() {
+        List<Lokalitet> lokaliteti = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuLokalitet(lokaliteti);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu lokaliteta","Greška",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for(Lokalitet l: lokaliteti){
+            jComboBoxLokalitet.addItem(l);
+        }
     }
 }

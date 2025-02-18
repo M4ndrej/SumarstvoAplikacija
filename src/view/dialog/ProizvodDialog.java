@@ -4,17 +4,22 @@
  */
 package view.dialog;
 
+import controller.Controller;
+import javax.swing.JOptionPane;
 import model.Proizvod;
 import model.enumeracija.Klasa;
 import model.enumeracija.MernaJedinica;
 import model.enumeracija.Tip;
 import model.enumeracija.Vrsta;
+import view.ProizvodForma;
 
 /**
  *
  * @author Andrej
  */
 public class ProizvodDialog extends javax.swing.JDialog {
+
+    ProizvodForma parent = new ProizvodForma();
 
     /**
      * Creates new form TipDrvetaDialog
@@ -25,6 +30,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
         setTitle("Kreiraj tip");
         setLocationRelativeTo(parent);
         inicijalizuj();
+        this.parent = (ProizvodForma) parent;
     }
 
     public ProizvodDialog(java.awt.Frame parent, boolean modal, Proizvod tip) {
@@ -33,6 +39,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
         setTitle("Izmeni tip");
         setLocationRelativeTo(parent);
         inicijalizuj(tip);
+        this.parent = (ProizvodForma) parent;
     }
 
     /**
@@ -163,6 +170,11 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jButtonSacuvaj.setText("Sačuvaj");
 
         jButtonKreiraj.setText("Kreiraj");
+        jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonKreirajActionPerformed(evt);
+            }
+        });
 
         jButtonObrisi.setText("Obriši");
 
@@ -232,8 +244,26 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jTextFieldCena.setEnabled(true);
         jButtonObrisi.setEnabled(false);
         jButtonSacuvaj.setEnabled(true);
-        
+
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
+
+    private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
+        Tip tip = (Tip)jComboBoxTip.getSelectedItem();
+        Vrsta vrsta = (Vrsta)jComboBoxVrsta.getSelectedItem();
+        Klasa klasa = (Klasa)jComboBoxKlasa.getSelectedItem();
+        double cena = Double.parseDouble(jTextFieldCena.getText());
+        MernaJedinica mj = (MernaJedinica)jComboBoxMernaJedinica.getSelectedItem();
+        String opis = jTextAreaOpis.getText();
+        Proizvod proizvod = new Proizvod(0,tip, vrsta, klasa, opis, cena, mj);
+        boolean uspesno = Controller.getInstance().kreirajProizvod(proizvod);
+         if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Kupac uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     /**
      * @param args the command line arguments
@@ -314,17 +344,17 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jButtonSacuvaj.setEnabled(false);
         jComboBoxTip.setSelectedItem(tip.getTip());
         jComboBoxVrsta.setSelectedItem(tip.getVrsta());
-        jComboBoxKlasa.setSelectedItem(tip.getKlasa()); 
+        jComboBoxKlasa.setSelectedItem(tip.getKlasa());
         jComboBoxMernaJedinica.setSelectedItem(tip.getMernaJedinica());
         jTextAreaOpis.setText(tip.getOpis());
-        jTextFieldCena.setText(tip.getCena()+"");
+        jTextFieldCena.setText(tip.getCena() + "");
         jComboBoxTip.setEnabled(false);
         jComboBoxVrsta.setEnabled(false);
         jComboBoxKlasa.setEnabled(false);
         jComboBoxMernaJedinica.setEnabled(false);
         jTextAreaOpis.setEnabled(false);
         jTextFieldCena.setEnabled(false);
-        
+
     }
 
     private void popuniComboBox() {

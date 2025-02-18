@@ -59,5 +59,7 @@ public class OtpremnicaModelTabele extends AbstractTableModel{
     public List<Otpremnica> getLista() {
         return listaOtprmenica;
     }
+
+ 
     
 }

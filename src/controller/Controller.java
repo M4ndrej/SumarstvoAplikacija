@@ -88,4 +88,20 @@ public class Controller {
         return dbb.readStavkeOtpremniceForOtpremnica(lista, otpremnica);
     }
 
+    public boolean kreirajKupac(Kupac kupac) {
+        return dbb.create(kupac);
+    }
+
+    public boolean kreirajLokalitet(Lokalitet lokalitet) {
+        return dbb.create(lokalitet);
+    }
+
+    public boolean kreirajOtpremac(Otpremac otpremac) {
+        return dbb.create(otpremac);
+    }
+
+    public boolean kreirajProizvod(Proizvod proizvod) {
+        return dbb.create(proizvod);
+    }
+
 }

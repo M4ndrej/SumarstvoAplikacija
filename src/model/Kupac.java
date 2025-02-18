@@ -96,9 +96,14 @@ public class Kupac implements OpstiDomenskiObjekat{
         }
         return true;
     }
-    
-    
-    
-    
-    
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(naziv, imeVlasnika)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        return "('"+this.naziv+"','"+this.imeVlasnika+"')";
+    }
 }

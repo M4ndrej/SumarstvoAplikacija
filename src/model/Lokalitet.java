@@ -99,7 +99,7 @@ public class Lokalitet implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "jedinicaGazdinstva=" + jedinicaGazdinstva + ", odsekOdeljenje=" + odsekOdeljenje + '}';
+        return this.jedinicaGazdinstva.toString()+" "+this.odsekOdeljenje;
     }
 
     @Override
@@ -121,8 +121,15 @@ public class Lokalitet implements OpstiDomenskiObjekat{
         }
         return true;
     }
-    
-    
 
-    
+    @Override
+    public String vratiNaziveKolona() {
+        return "(jedinicaGazdinstva,odsekOdeljenje,doznaka,datumDoznake)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        java.sql.Date datum = new java.sql.Date(this.datumDoznake.getTime());
+        return "('"+this.jedinicaGazdinstva.toString()+"','"+this.odsekOdeljenje.toString()+"',"+this.doznaka+",'"+datum+"')";
+    }
 }

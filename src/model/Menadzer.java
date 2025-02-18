@@ -4,14 +4,18 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Andrej
  */
-public class Menadzer {
-    
+public class Menadzer implements OpstiDomenskiObjekat {
+
     private String jmbg;
     private String imePrezime;
     private String kontakt;
@@ -51,7 +55,7 @@ public class Menadzer {
 
     @Override
     public String toString() {
-        return "Menadzer: "+imePrezime;
+        return "Menadzer: " + imePrezime;
     }
 
     @Override
@@ -75,6 +79,25 @@ public class Menadzer {
         final Menadzer other = (Menadzer) obj;
         return Objects.equals(this.jmbg, other.jmbg);
     }
-    
-    
+
+    @Override
+    public String vratiImeKlase() {
+        return "menadzer";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.jmbg = rs.getString("jmbgMenadzer");
+            this.imePrezime = rs.getString("imePrezime");
+            this.kontakt = rs.getString("kontakt");
+            this.email = rs.getString("email");
+            this.lozinka = rs.getString("lozinka");
+        } catch (SQLException ex) {
+            Logger.getLogger(Menadzer.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -4,10 +4,14 @@
  */
 package view.dialog;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Menadzer;
 import model.Otpremac;
 import model.Otpremnica;
+import model.StavkaOtpremnice;
 import tabela_model.StavkaOtpremniceModelTabele;
 
 /**
@@ -17,6 +21,7 @@ import tabela_model.StavkaOtpremniceModelTabele;
 public class OtpremniceDialog extends javax.swing.JDialog {
 
     Otpremnica otpremnica;
+
     /**
      * Creates new form OtpremniceDialog
      */
@@ -34,8 +39,6 @@ public class OtpremniceDialog extends javax.swing.JDialog {
         inicijalizacija(otpremnica);
         setLocationRelativeTo(parent);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -329,8 +332,13 @@ public class OtpremniceDialog extends javax.swing.JDialog {
     }
 
     private void inicijalizacija(Otpremnica otpremnica) {
-        StavkaOtpremniceModelTabele somt = new StavkaOtpremniceModelTabele(new ArrayList<>());
-        jTableStavkeOtpremnice.setModel(somt);
-        jButtonKreirajOtpremnicu.setVisible(true);
+        List<StavkaOtpremnice> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuStavkiOtpremnica(lista, otpremnica);
+        if (uspesno) {
+            StavkaOtpremniceModelTabele somt = new StavkaOtpremniceModelTabele(lista);
+            jTableStavkeOtpremnice.setModel(somt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremnica", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

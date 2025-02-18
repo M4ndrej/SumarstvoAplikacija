@@ -4,13 +4,17 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Andrej
  */
-public class StavkaOtpremnice {
+public class StavkaOtpremnice implements OpstiDomenskiObjekat{
     
     private Otpremnica otpremnica;
     private int redniBroj;
@@ -93,6 +97,24 @@ public class StavkaOtpremnice {
             return false;
         }
         return Objects.equals(this.otpremnica, other.otpremnica);
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "stavka_otpremnice";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.redniBroj = rs.getInt("redniBroj");
+            this.kolicina = rs.getDouble("kolicina");
+            this.ukupnaCena = rs.getDouble("ukupnaCena");
+        } catch (SQLException ex) {
+            Logger.getLogger(StavkaOtpremnice.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
     
     

@@ -4,6 +4,10 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Menadzer;
+
 /**
  *
  * @author Andrej
@@ -269,5 +273,6 @@ public class NalogForma extends javax.swing.JFrame {
         jTextFieldEmail.setEnabled(false);
         jTextFieldKontakt.setEnabled(false);
         jButtonSacuvajIzmene.setEnabled(false);
+        
     }
 }

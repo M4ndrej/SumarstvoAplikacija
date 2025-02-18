@@ -4,13 +4,17 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Andrej
  */
-public class Otpremac {
+public class Otpremac implements OpstiDomenskiObjekat{
     
     private String jmbg;
     private String imePrezime;
@@ -74,6 +78,23 @@ public class Otpremac {
         }
         final Otpremac other = (Otpremac) obj;
         return Objects.equals(this.jmbg, other.jmbg);
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "otpremac";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.jmbg = rs.getString("jmbgOtpremac");
+            this.imePrezime = rs.getString("imePrezime");
+        } catch (SQLException ex) {
+            Logger.getLogger(Otpremac.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
     
     

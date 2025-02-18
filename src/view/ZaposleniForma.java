@@ -4,7 +4,10 @@
  */
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Menadzer;
 import tabela_model.MenadzerModelTabele;
 
@@ -178,7 +181,13 @@ public class ZaposleniForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
-        MenadzerModelTabele mmt = new MenadzerModelTabele(new ArrayList<Menadzer>());
-        jTableZaposleni.setModel(mmt);
+        List<Menadzer> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuZaposlenih(lista);
+        if(uspesno){
+            MenadzerModelTabele mmt = new MenadzerModelTabele(lista);
+            jTableZaposleni.setModel(mmt);
+        }else{
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu zaposlenih", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

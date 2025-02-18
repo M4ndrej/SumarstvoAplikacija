@@ -250,6 +250,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         jMenuPodesavanja.setText("Podesavanja");
 
         jMenuItemLokalitet.setText("Lokaliteti");
+        jMenuItemLokalitet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLokalitetActionPerformed(evt);
+            }
+        });
         jMenuPodesavanja.add(jMenuItemLokalitet);
 
         jMenuItem2.setText("Proizvodi");
@@ -339,6 +344,11 @@ public class GlavnaForma extends javax.swing.JFrame {
         KupciForma kf = new KupciForma();
         kf.setVisible(true);
     }//GEN-LAST:event_jButtonKupciActionPerformed
+
+    private void jMenuItemLokalitetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLokalitetActionPerformed
+        LokalitetiForma lf = new LokalitetiForma();
+        lf.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLokalitetActionPerformed
 
     /**
      * @param args the command line arguments

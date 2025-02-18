@@ -1,7 +1,11 @@
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Otpremac;
+import model.Otpremnica;
 import tabela_model.OtpremnicaModelTabele;
 import view.dialog.OtpremniceDialog;
 
@@ -164,7 +168,16 @@ public class OtpremniceForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
+        int red = jTableOtpremnice.getSelectedRow();
+        if(red == -1){
+            JOptionPane.showMessageDialog(this, "Odaberite otpremnicu", "Greska", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        OtpremnicaModelTabele omt = (OtpremnicaModelTabele)jTableOtpremnice.getModel();
+        Otpremnica otpremnica = omt.getLista().get(red);
         
+        OtpremniceDialog od = new OtpremniceDialog(this,true,otpremnica);
+        od.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
@@ -224,7 +237,13 @@ public class OtpremniceForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
-        OtpremnicaModelTabele omt = new OtpremnicaModelTabele(new ArrayList<>());
-        jTableOtpremnice.setModel(omt);
+        List<Otpremnica> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuOtpremnica(lista);
+        if(uspesno){
+            OtpremnicaModelTabele omt = new OtpremnicaModelTabele(lista);
+            jTableOtpremnice.setModel(omt);
+        }else{
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremnica", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

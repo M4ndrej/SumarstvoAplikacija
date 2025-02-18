@@ -4,7 +4,11 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.enumeracija.Klasa;
 import model.enumeracija.MernaJedinica;
 import model.enumeracija.Tip;
@@ -14,7 +18,7 @@ import model.enumeracija.Vrsta;
  *
  * @author Andrej
  */
-public class Proizvod {
+public class Proizvod implements OpstiDomenskiObjekat{
     
     private int id;
     private Tip tip;
@@ -117,7 +121,29 @@ public class Proizvod {
 
     @Override
     public String toString() {
-        return "Proizvod{" + "tip=" + tip + ", vrsta=" + vrsta + ", klasa=" + klasa + '}';
+        return tip.toString()+" "+ vrsta.toString()+ " "+ klasa.toString();
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "proizvod";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.tip = Tip.valueOf(rs.getString("tip"));
+            this.vrsta = Vrsta.valueOf(rs.getString("vrsta"));
+            this.klasa = Klasa.valueOf(rs.getString("klasa"));
+            this.cena = rs.getDouble("cena");
+            this.mernaJedinica = MernaJedinica.valueOf(rs.getString("mernaJedinica"));
+            this.opis = rs.getString("opis");
+        } catch (SQLException ex) {
+            Logger.getLogger(Proizvod.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 
     

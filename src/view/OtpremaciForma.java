@@ -4,7 +4,10 @@
  */
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Lokalitet;
 import model.Otpremac;
 import tabela_model.OtpremacModelTabele;
@@ -216,7 +219,13 @@ public class OtpremaciForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
-        OtpremacModelTabele omt = new OtpremacModelTabele(new ArrayList<>());
-        jTableOtpremaci.setModel(omt);
+        List<Otpremac> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuOtpremaca(lista);
+        if(uspesno){
+            OtpremacModelTabele omt = new OtpremacModelTabele(lista);
+            jTableOtpremaci.setModel(omt);
+        }else{
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

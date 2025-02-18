@@ -4,15 +4,19 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.enumeracija.JedinicaGazdinstva;
 
 /**
  *
  * @author Andrej
  */
-public class Lokalitet {
+public class Lokalitet implements OpstiDomenskiObjekat{
 
     private int id;
     private JedinicaGazdinstva jedinicaGazdinstva;
@@ -96,6 +100,26 @@ public class Lokalitet {
     @Override
     public String toString() {
         return "jedinicaGazdinstva=" + jedinicaGazdinstva + ", odsekOdeljenje=" + odsekOdeljenje + '}';
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "lokalitet";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.jedinicaGazdinstva = JedinicaGazdinstva.valueOf(rs.getString("jedinicaGazdinstva"));
+            this.odsekOdeljenje = rs.getString("odsekOdeljenje");
+            this.doznaka = rs.getDouble("doznaka");
+            this.datumDoznake = rs.getDate("datumDoznake");
+        } catch (SQLException ex) {
+            Logger.getLogger(Lokalitet.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
     
     

@@ -4,14 +4,18 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Andrej
  */
-public class Otpremnica {
+public class Otpremnica implements OpstiDomenskiObjekat{
     
     private Kupac kupac;
     private Menadzer menadzer;
@@ -90,5 +94,22 @@ public class Otpremnica {
         }
         final Otpremnica other = (Otpremnica) obj;
         return this.brojOtpremnice == other.brojOtpremnice;
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "otpremnica";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.brojOtpremnice = rs.getInt("brojOtpremnice");
+            this.datumOtpremnice = rs.getDate("datumOtpremnice");
+        } catch (SQLException ex) {
+            Logger.getLogger(Otpremnica.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
     }
 }

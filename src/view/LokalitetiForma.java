@@ -4,7 +4,10 @@
  */
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import model.Lokalitet;
 import model.enumeracija.JedinicaGazdinstva;
 import tabela_model.LokalitetModelTabele;
@@ -261,7 +264,13 @@ public class LokalitetiForma extends javax.swing.JFrame {
     }
 
     private void inicijalizacija() {
-        LokalitetModelTabele lmt = new LokalitetModelTabele(new ArrayList<Lokalitet>());
-        jTableLokaliteti.setModel(lmt);
+        List<Lokalitet> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuLokalitet(lista);
+        if(uspesno){
+            LokalitetModelTabele lmt = new LokalitetModelTabele(lista);
+            jTableLokaliteti.setModel(lmt);
+        }else{
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

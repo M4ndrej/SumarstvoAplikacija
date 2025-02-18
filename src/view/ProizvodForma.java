@@ -4,7 +4,11 @@
  */
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import model.Proizvod;
 import model.enumeracija.Klasa;
 import model.enumeracija.Tip;
 import model.enumeracija.Vrsta;
@@ -25,8 +29,8 @@ public class ProizvodForma extends javax.swing.JFrame {
         setTitle("Tipovi drveta");
         setLocationRelativeTo(null);
         popuniComboBox();
-        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         inicijalizacija();
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -202,7 +206,7 @@ public class ProizvodForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
-        
+
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
@@ -268,19 +272,25 @@ public class ProizvodForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void popuniComboBox() {
-        for(Tip tip: Tip.values()){
+        for (Tip tip : Tip.values()) {
             jComboBoxTip.addItem(tip);
         }
-        for(Klasa klasa: Klasa.values()){
+        for (Klasa klasa : Klasa.values()) {
             jComboBoxKlasa.addItem(klasa);
         }
-        for(Vrsta vrsta: Vrsta.values()){
+        for (Vrsta vrsta : Vrsta.values()) {
             jComboBoxVrsta.addItem(vrsta);
         }
     }
 
     private void inicijalizacija() {
-        ProizvodModelTabele pmt = new ProizvodModelTabele(new ArrayList<>());
-        jTableProizvodi.setModel(pmt);
+        List<Proizvod> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuProizvoda(lista);
+        if (uspesno) {
+            ProizvodModelTabele pmt = new ProizvodModelTabele(lista);
+            jTableProizvodi.setModel(pmt);
+        } else {
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu proizvoda", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }
 }

@@ -8,8 +8,10 @@ import controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import model.Kupac;
 import model.Lokalitet;
 import model.enumeracija.JedinicaGazdinstva;
+import tabela_model.KupacModelTabele;
 import tabela_model.LokalitetModelTabele;
 import view.dialog.LokalitetDialog;
 
@@ -51,7 +53,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
         jButtonFilter = new javax.swing.JButton();
         jButtonFilterOcistiFilter = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButtonIzmeni = new javax.swing.JButton();
+        jButtonDetalji = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonDodajLokalitet1 = new javax.swing.JButton();
 
@@ -77,8 +79,18 @@ public class LokalitetiForma extends javax.swing.JFrame {
         jLabel3.setText("Jedinica gazdinstva");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonFilterOcistiFilter.setText("Očisti filter");
+        jButtonFilterOcistiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterOcistiFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -122,10 +134,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonIzmeni.setText("Izmeni");
-        jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDetalji.setText("Detalji");
+        jButtonDetalji.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIzmeniActionPerformed(evt);
+                jButtonDetaljiActionPerformed(evt);
             }
         });
 
@@ -147,7 +159,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
                         .addComponent(jSeparator1))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
-                        .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonDetalji, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -159,7 +171,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(63, Short.MAX_VALUE)
-                .addComponent(jButtonIzmeni)
+                .addComponent(jButtonDetalji)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -196,7 +208,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
+    private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
         int red = jTableLokaliteti.getSelectedRow();
         if (red == -1) {
             JOptionPane.showMessageDialog(this, "Odaberite lokalitet", "Greska", JOptionPane.ERROR_MESSAGE);
@@ -206,13 +218,37 @@ public class LokalitetiForma extends javax.swing.JFrame {
         Lokalitet lokalitet = lmt.getLista().get(red);
         LokalitetDialog ld = new LokalitetDialog(this, true,lokalitet);
         ld.setVisible(true);
-    }//GEN-LAST:event_jButtonIzmeniActionPerformed
+    }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
     private void jButtonDodajLokalitet1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDodajLokalitet1ActionPerformed
         // TODO add your handling code here:
         LokalitetDialog ld = new LokalitetDialog(this, true);
         ld.setVisible(true);
     }//GEN-LAST:event_jButtonDodajLokalitet1ActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        if (jTextFieldOdsekOdeljenje.getText().isEmpty() && jComboBoxJG.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JedinicaGazdinstva jg = (JedinicaGazdinstva)jComboBoxJG.getSelectedItem();
+        String odsekOdeljenje = jTextFieldOdsekOdeljenje.getText();
+        Lokalitet lokalitet = new Lokalitet();
+        lokalitet.setJedinicaGazdinstva(jg);
+        lokalitet.setOdsekOdeljenje(odsekOdeljenje);
+        List<Lokalitet> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuSviLokalitet(lokalitet, lista);
+        if (uspesno) {
+            LokalitetModelTabele kmt = new LokalitetModelTabele(lista);
+            jTableLokaliteti.setModel(kmt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonFilterOcistiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterOcistiFilterActionPerformed
+        jTextFieldOdsekOdeljenje.setText("");
+        jComboBoxJG.setSelectedItem(null);
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonFilterOcistiFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,10 +286,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonDodajLokalitet1;
     private javax.swing.JButton jButtonFilter;
     private javax.swing.JButton jButtonFilterOcistiFilter;
-    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JComboBox<JedinicaGazdinstva> jComboBoxJG;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

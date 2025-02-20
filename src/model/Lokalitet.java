@@ -132,4 +132,20 @@ public class Lokalitet implements OpstiDomenskiObjekat{
         java.sql.Date datum = new java.sql.Date(this.datumDoznake.getTime());
         return "('"+this.jedinicaGazdinstva.toString()+"','"+this.odsekOdeljenje.toString()+"',"+this.doznaka+",'"+datum+"')";
     }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "id="+this.getId();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        if(this.jedinicaGazdinstva == null && this.odsekOdeljenje != null){
+            return "odsekOdeljenje LIKE LOWER('"+this.getOdsekOdeljenje().toLowerCase()+"%')";
+        }else if(this.jedinicaGazdinstva != null && this.odsekOdeljenje == null){
+            return "jedinicaGazdinstva LIKE LOWER('"+this.getJedinicaGazdinstva().toString().toLowerCase()+"')";
+        }else{
+            return "odsekOdeljenje LIKE LOWER('"+this.getOdsekOdeljenje().toLowerCase()+"%') AND "+ "jedinicaGazdinstva LIKE LOWER('"+this.getJedinicaGazdinstva().toString().toLowerCase()+"')";
+        }
+    }
 }

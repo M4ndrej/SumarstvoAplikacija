@@ -54,7 +54,7 @@ public class Kupac implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return "Kupac: " + imeVlasnika;
+        return imeVlasnika;
     }
 
     @Override
@@ -99,11 +99,21 @@ public class Kupac implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiNaziveKolona() {
-        return "(naziv, imeVlasnika)";
+        return "(naziv,imeVlasnika)";
     }
 
     @Override
     public String vratiVrednostiKolona() {
         return "('"+this.naziv+"','"+this.imeVlasnika+"')";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "id="+this.getId();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return "naziv LIKE LOWER ('"+this.getNaziv().toLowerCase()+"%')";
     }
 }

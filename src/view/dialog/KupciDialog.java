@@ -27,7 +27,7 @@ public class KupciDialog extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         setTitle("Kreiraj kupca");
         inicijalizacija();
-        this.parent = (KupciForma)parent;
+        this.parent = (KupciForma) parent;
     }
 
     public KupciDialog(java.awt.Frame parent, boolean modal, Kupac kupac) {
@@ -37,7 +37,7 @@ public class KupciDialog extends javax.swing.JDialog {
         setLocationRelativeTo(parent);
         setTitle("Izmeni kupca");
         inicijalizacija(kupac);
-        this.parent = (KupciForma)parent;
+        this.parent = (KupciForma) parent;
     }
 
     /**
@@ -100,8 +100,18 @@ public class KupciDialog extends javax.swing.JDialog {
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jButtonIzmeni.setText("Izmeni");
+        jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIzmeniActionPerformed(evt);
+            }
+        });
 
         jButtonSacuvajIzmene.setText("Sačuvaj izmene");
+        jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajIzmeneActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +121,11 @@ public class KupciDialog extends javax.swing.JDialog {
         });
 
         jButtonObrisi.setText("Obriši");
+        jButtonObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonObrisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -186,6 +201,40 @@ public class KupciDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButtonKreirajActionPerformed
 
+    private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
+        jButtonSacuvajIzmene.setEnabled(true);
+        jTextFieldNaziv.setEnabled(true);
+        jTextFieldImeVlasnika.setEnabled(true);
+    }//GEN-LAST:event_jButtonIzmeniActionPerformed
+
+    private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        String naziv = jTextFieldNaziv.getText();
+        String imeVlasnika = jTextFieldImeVlasnika.getText();
+        this.kupac.setNaziv(naziv);
+        this.kupac.setImeVlasnika(imeVlasnika);
+        boolean uspesno = Controller.getInstance().izmeniKupca(kupac);
+        if (!uspesno) {
+            JOptionPane.showMessageDialog(this, "Greška prilikom izmene kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Uspešno izmenjen kupac", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
+
+    private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete kupca?","Potvrda",JOptionPane.YES_NO_OPTION);
+        if(odgovor == JOptionPane.YES_OPTION){
+            boolean uspesno = Controller.getInstance().obrisiKupca(kupac);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja kupca","Greška",JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Uspešno obrisan kupac","Uspešno",JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        }
+        }
+        return;
+    }//GEN-LAST:event_jButtonObrisiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -249,8 +298,13 @@ public class KupciDialog extends javax.swing.JDialog {
     }
 
     private void inicijalizacija(Kupac kupac) {
+        jTextFieldNaziv.setText(kupac.getNaziv());
+        jTextFieldImeVlasnika.setText(kupac.getImeVlasnika());
+        jTextFieldNaziv.setEnabled(false);
+        jTextFieldImeVlasnika.setEnabled(false);
         jButtonIzmeni.setVisible(true);
         jButtonSacuvajIzmene.setVisible(true);
+        jButtonSacuvajIzmene.setEnabled(false);
         jButtonKreiraj.setVisible(false);
         jButtonObrisi.setVisible(true);
     }

@@ -124,7 +124,12 @@ public class StavkaOtpremnice implements OpstiDomenskiObjekat{
     
     @Override
     public String vratiVrednostiKolona() {
-        return "("+this.redniBroj+","+this.proizvod+","+this.otpremnica+","+this.kolicina+","+this.ukupnaCena+")";
+        return "("+this.redniBroj+","+this.proizvod.getId()+","+this.otpremnica.getBrojOtpremnice()+","+this.kolicina+","+this.ukupnaCena+")";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "redniBroj="+this.getRedniBroj();
     }
     
     

@@ -138,4 +138,67 @@ public class DBBroker {
         }
         return (affectedRows > 0);
     }
+
+    public boolean update(OpstiDomenskiObjekat odo) {
+        int affectedRows = 0;
+        try {
+            String naziviKolona = odo.vratiNaziveKolona().replace("(", "").replace(")", "");
+            String nazivVrednosti = odo.vratiVrednostiKolona().replace("(", "").replace(")", "");
+            String[] kolone = naziviKolona.split(",");
+            String[] vrednosti = nazivVrednosti.split(",");
+
+            StringBuilder set = new StringBuilder();
+            for (int i = 0; i < kolone.length; i++) {
+                set.append(kolone[i]).append(" = ").append(vrednosti[i]).append(", ");
+            }
+            set.setLength(set.length() - 2);
+
+            String upit = "UPDATE " + odo.vratiImeKlase() + " SET " + set + " WHERE " + odo.vratiUslovNadjiSlog();
+            statement = konekcija.getConnection().createStatement();
+            affectedRows = statement.executeUpdate(upit);
+            konekcija.getConnection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return (affectedRows > 0);
+    }
+
+    public boolean delete(OpstiDomenskiObjekat odo) {
+        int affectedRows = 0;
+        try {
+            String upit = "DELETE FROM " + odo.vratiImeKlase() + " WHERE " + odo.vratiUslovNadjiSlog();
+            statement = konekcija.getConnection().createStatement();
+            affectedRows = statement.executeUpdate(upit);
+            konekcija.getConnection().commit();
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return (affectedRows > 0);
+    }
+
+    public List<OpstiDomenskiObjekat> readWithCondition(OpstiDomenskiObjekat odo) {
+        List<OpstiDomenskiObjekat> lista = new ArrayList<>();
+        try {
+            statement = konekcija.getConnection().createStatement();
+            String upit = "SELECT * FROM " + odo.vratiImeKlase() + " WHERE " + odo.vratiUslovNadjiSlogove();
+            ResultSet rs = statement.executeQuery(upit);
+            while (rs.next()) {
+                OpstiDomenskiObjekat noviObjekat;
+                try {
+                    noviObjekat = odo.getClass().getDeclaredConstructor().newInstance();
+                    if (noviObjekat.napuni(rs)) {
+                        lista.add(noviObjekat);
+                    }
+                } catch (Exception ex) {
+                    Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return lista;
+    }
 }

@@ -4,8 +4,10 @@
  */
 package view;
 
+import controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Menadzer;
 
 /**
@@ -60,7 +62,6 @@ public class NalogForma extends javax.swing.JFrame {
 
         jLabel2.setText("JMBG");
 
-        jTextFieldJMBG.setText("1234567891234");
         jTextFieldJMBG.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldJMBGActionPerformed(evt);
@@ -139,6 +140,11 @@ public class NalogForma extends javax.swing.JFrame {
         });
 
         jButtonSacuvajIzmene.setText("Sacuvaj izmene");
+        jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajIzmeneActionPerformed(evt);
+            }
+        });
 
         jButtonUgasiNalog.setText("Ugasi nalog");
 
@@ -206,6 +212,24 @@ public class NalogForma extends javax.swing.JFrame {
     private void jTextFieldJMBGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldJMBGActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldJMBGActionPerformed
+
+    private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        String jmbg = jTextFieldJMBG.getText();
+        String imePrezime = jTextFieldImePrezime.getText();
+        String kontakt = jTextFieldKontakt.getText();
+        char[] staraLozinka = jPasswordFieldStaraLozinka.getPassword();
+        char[] novaLozinka = jPasswordFieldNovaLozinka.getPassword();
+        String email = jTextFieldEmail.getText();
+        
+        Menadzer menadzer = new Menadzer(jmbg, imePrezime, kontakt, String.valueOf(novaLozinka), email);
+        boolean uspesno = Controller.getInstance().izmeniMenadzera(menadzer);
+        if (!uspesno) {
+            JOptionPane.showMessageDialog(this, "Greška prilikom izmene naloga", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Uspešno izmenjen nalog", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     /**
      * @param args the command line arguments

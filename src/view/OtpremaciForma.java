@@ -73,8 +73,18 @@ public class OtpremaciForma extends javax.swing.JFrame {
         jLabel2.setText("Lokalitet");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonOcistiFilter.setText("Očisti filter");
+        jButtonOcistiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOcistiFilterActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -160,8 +170,14 @@ public class OtpremaciForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
-        Otpremac o = new Otpremac("0202003773622", "Kristina Maksimovic", new Lokalitet());
-        OtpremacDialog od = new OtpremacDialog(this, true , o);
+        int red = jTableOtpremaci.getSelectedRow();
+        if (red == -1) {
+            JOptionPane.showMessageDialog(this, "Izaberite otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        OtpremacModelTabele omt = (OtpremacModelTabele)jTableOtpremaci.getModel();
+        Otpremac otpremac = omt.getLista().get(red);
+        OtpremacDialog od = new OtpremacDialog(this, true, otpremac);
         od.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
@@ -169,6 +185,30 @@ public class OtpremaciForma extends javax.swing.JFrame {
         OtpremacDialog od = new OtpremacDialog(this, true);
         od.setVisible(true);
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        if (jTextFieldImePrezime.getText().isEmpty() && jComboBoxLokalitet.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Lokalitet lokalitet = (Lokalitet)jComboBoxLokalitet.getSelectedItem();
+        String imePrezime = jTextFieldImePrezime.getText();
+        Otpremac otpremac = new Otpremac();
+        otpremac.setImePrezime(imePrezime);
+        otpremac.setLokalitet(lokalitet);
+        List<Otpremac> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuSviOtpremac(otpremac, lista);
+        if (uspesno) {
+            OtpremacModelTabele omt = new OtpremacModelTabele(lista);
+            jTableOtpremaci.setModel(omt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonOcistiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcistiFilterActionPerformed
+        jComboBoxLokalitet.setSelectedItem(null);
+        jTextFieldImePrezime.setText("");
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonOcistiFilterActionPerformed
 
     /**
      * @param args the command line arguments

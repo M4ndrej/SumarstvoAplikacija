@@ -156,6 +156,11 @@ public class Proizvod implements OpstiDomenskiObjekat{
         return "("+this.id+",'"+this.tip.toString()+"','"+this.vrsta.toString()+"','"+this.klasa.toString()+"',"+this.cena+",'"+this.mernaJedinica+"','"+this.opis+"')";
     }
 
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "id="+this.getId();
+    }
+
     
 
    

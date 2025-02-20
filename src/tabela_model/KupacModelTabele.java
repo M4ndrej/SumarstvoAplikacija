@@ -49,5 +49,9 @@ public class KupacModelTabele extends AbstractTableModel{
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    public List<Kupac> getList() {
+        return listaKupaca;
+    }
     
 }

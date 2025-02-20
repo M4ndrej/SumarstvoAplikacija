@@ -58,5 +58,9 @@ public class ProizvodModelTabele extends AbstractTableModel{
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    public List<Proizvod> getLista() {
+        return listaProizvoda;
+    }
     
 }

@@ -246,4 +246,8 @@ public class OtpremniceForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremnica", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    public void azurirajTabelu() {
+        inicijalizacija();
+    }
 }

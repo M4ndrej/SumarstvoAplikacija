@@ -104,4 +104,92 @@ public class Controller {
         return dbb.create(proizvod);
     }
 
+    public boolean kreirajOtpremnicu(Otpremnica otpremnica) {
+        return dbb.create(otpremnica);
+    }
+
+    public boolean kreirajStavkuOtpremnice(StavkaOtpremnice stavkaOtpremnice) {
+        return dbb.create(stavkaOtpremnice);
+    }
+
+    public boolean izmeniKupca(Kupac kupac) {
+        return dbb.update(kupac);
+    }
+
+    public boolean izmeniLokalitet(Lokalitet lokalitet) {
+        return dbb.update(lokalitet);
+    }
+
+    public boolean izmeniMenadzera(Menadzer menadzer) {
+        return dbb.update(menadzer);
+    }
+
+    public boolean izmeniProizvod(Proizvod proizvod) {
+        return dbb.update(proizvod);
+    }
+
+    public boolean izmeniOtpremaca(Otpremac otpremac) {
+        return dbb.update(otpremac);
+    }
+
+    public boolean obrisiKupca(Kupac kupac) {
+        return dbb.delete(kupac);
+    }
+
+    public boolean obrisiLokalitet(Lokalitet lokalitet) {
+        return dbb.delete(lokalitet);
+    }
+
+    public boolean obrisiOtpremaca(Otpremac otpremac) {
+        return dbb.delete(otpremac);
+    }
+
+    public boolean orbisiProizvod(Proizvod proizvod) {
+        return dbb.delete(proizvod);
+    }
+
+    public boolean vratiListuSviKupac(Kupac kupac, List<Kupac> lista) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(kupac);
+        if (listaOdo == null) {
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            lista.add((Kupac) o);
+        }
+        return true;
+    }
+
+    public boolean vratiListuSviLokalitet(Lokalitet lokalitet, List<Lokalitet> lista) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(lokalitet);
+        if (listaOdo == null) {
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            lista.add((Lokalitet) o);
+        }
+        return true;
+    }
+
+    public boolean vratiListuSviMenadzer(Menadzer menadzer, List<Menadzer> lista) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(menadzer);
+        if(listaOdo == null){
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            lista.add((Menadzer) o);
+        }
+        return true;
+    }
+
+    public boolean vratiListuSviOtpremac(Otpremac otpremac, List<Otpremac> lista) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(otpremac);
+        if (listaOdo == null) {
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            lista.add((Otpremac) o);
+        }
+        return true;
+    }
+
 }

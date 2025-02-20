@@ -50,5 +50,9 @@ public class OtpremacModelTabele extends AbstractTableModel{
     public String getColumnName(int column) {
         return kolone[column];
     }
+
+    public List<Otpremac> getLista() {
+        return listaOtpremaca;
+    }
     
 }

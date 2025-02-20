@@ -66,8 +66,18 @@ public class KupciForma extends javax.swing.JFrame {
         jLabel1.setText("Naziv");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonObrisiFilter.setText("Obriši filter");
+        jButtonObrisiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonObrisiFilterActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -143,8 +153,14 @@ public class KupciForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
-        Kupac k = new Kupac(1, "Nesto", "Nesto");
-        KupciDialog kd = new KupciDialog(this, true, k);
+        int red = jTableKupci.getSelectedRow();
+        if (red == -1) {
+            JOptionPane.showMessageDialog(this, "Izaberite kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        KupacModelTabele kmt = (KupacModelTabele) jTableKupci.getModel();
+        Kupac kupac = kmt.getList().get(red);
+        KupciDialog kd = new KupciDialog(this, true, kupac);
         kd.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
@@ -152,6 +168,27 @@ public class KupciForma extends javax.swing.JFrame {
         KupciDialog kd = new KupciDialog(this, true);
         kd.setVisible(true);
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        if (jTextFieldNaziv.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String naziv = jTextFieldNaziv.getText();
+        Kupac kupac = new Kupac();
+        kupac.setNaziv(naziv);
+        List<Kupac> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuSviKupac(kupac, lista);
+        if (uspesno) {
+            KupacModelTabele kmt = new KupacModelTabele(lista);
+            jTableKupci.setModel(kmt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonObrisiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiFilterActionPerformed
+        jTextFieldNaziv.setText("");
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonObrisiFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,13 +240,13 @@ public class KupciForma extends javax.swing.JFrame {
     private void inicijalizacija() {
         List<Kupac> lista = new ArrayList<>();
         boolean uspesno = Controller.getInstance().vratiListuKupac(lista);
-        if(uspesno){
+        if (uspesno) {
             KupacModelTabele kmt = new KupacModelTabele(lista);
             jTableKupci.setModel(kmt);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu kupaca", "Greška", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
 
     public void azurirajTabelu() {

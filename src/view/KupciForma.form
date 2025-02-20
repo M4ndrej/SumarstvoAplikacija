@@ -123,11 +123,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Filtriraj"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFilterActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonObrisiFilter">
           <Properties>
             <Property name="text" type="java.lang.String" value="Obri&#x161;i filter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonObrisiFilterActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonKreiraj">
           <Properties>

@@ -95,6 +95,11 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jLabel4.setText("Datum doznake");
 
         jTextFieldDatumDoznake.setText("DD.MM.YYYY");
+        jTextFieldDatumDoznake.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldDatumDoznakeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,6 +165,11 @@ public class LokalitetDialog extends javax.swing.JDialog {
         });
 
         jButtonObrisi.setText("Obriši");
+        jButtonObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonObrisiActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +248,28 @@ public class LokalitetDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldOdsekOdeljenjeActionPerformed
 
     private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
-        // TODO add your handling code here:
+        JedinicaGazdinstva jg = (JedinicaGazdinstva)jComboBoxJG.getSelectedItem();
+        String odsekOdeljenje = jTextFieldOdsekOdeljenje.getText();
+        double doznaka = Double.parseDouble(jTextFieldDoznaka.getText());
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+        java.util.Date datum = null;
+        try {
+            datum = format.parse(jTextFieldDatumDoznake.getText());
+        } catch (ParseException ex) {
+            Logger.getLogger(LokalitetDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.lokalitet.setJedinicaGazdinstva(jg);
+        this.lokalitet.setOdsekOdeljenje(odsekOdeljenje);
+        this.lokalitet.setDoznaka(doznaka);
+        this.lokalitet.setDatumDoznake(datum);
+        
+        boolean uspesno = Controller.getInstance().izmeniLokalitet(lokalitet);
+        if (!uspesno) {
+            JOptionPane.showMessageDialog(this, "Greška prilikom izmene lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Uspešno izmenjen lokalitet", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
@@ -265,6 +296,25 @@ public class LokalitetDialog extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jTextFieldDatumDoznakeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDatumDoznakeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldDatumDoznakeActionPerformed
+
+    private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete lokalitet?","Potvrda",JOptionPane.YES_NO_OPTION);
+        if(odgovor == JOptionPane.YES_OPTION){
+            boolean uspesno = Controller.getInstance().obrisiLokalitet(lokalitet);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja lokaliteta","Greška",JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Uspešno obrisan lokalitet","Uspešno",JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        }
+        }
+        return;
+    }//GEN-LAST:event_jButtonObrisiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,7 +395,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jButtonSacuvajIzmene.setEnabled(false);
         jTextFieldOdsekOdeljenje.setText(lokalitet.getOdsekOdeljenje());
         jTextFieldDoznaka.setText(lokalitet.getDoznaka() + "");
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         try {
             jTextFieldDatumDoznake.setText(format.format(lokalitet.getDatumDoznake()));
         } catch (Exception e) {

@@ -29,8 +29,8 @@ public class ProizvodForma extends javax.swing.JFrame {
         setTitle("Tipovi drveta");
         setLocationRelativeTo(null);
         popuniComboBox();
-        inicijalizacija();
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        inicijalizacija();
     }
 
     /**
@@ -58,7 +58,7 @@ public class ProizvodForma extends javax.swing.JFrame {
         jButtonFilter = new javax.swing.JButton();
         jButtonOcistiFilter = new javax.swing.JButton();
         jButtonKreiraj = new javax.swing.JButton();
-        jButtonIzmeni = new javax.swing.JButton();
+        jButtonDetalji = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,10 +99,10 @@ public class ProizvodForma extends javax.swing.JFrame {
             }
         });
 
-        jButtonIzmeni.setText("Izmeni");
-        jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDetalji.setText("Detalji");
+        jButtonDetalji.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonIzmeniActionPerformed(evt);
+                jButtonDetaljiActionPerformed(evt);
             }
         });
 
@@ -142,7 +142,7 @@ public class ProizvodForma extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButtonDetalji, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jButtonKreiraj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap())))
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -177,7 +177,7 @@ public class ProizvodForma extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(jButtonKreiraj)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonIzmeni)
+                .addComponent(jButtonDetalji)
                 .addContainerGap())
         );
 
@@ -205,9 +205,17 @@ public class ProizvodForma extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonIzmeniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIzmeniActionPerformed
-
-    }//GEN-LAST:event_jButtonIzmeniActionPerformed
+    private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
+        int red = jTableProizvodi.getSelectedRow();
+        if (red == -1) {
+            JOptionPane.showMessageDialog(this, "Izaberite proizvod", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        ProizvodModelTabele pmt = (ProizvodModelTabele) jTableProizvodi.getModel();
+        Proizvod proizvod = pmt.getLista().get(red);
+        ProizvodDialog pd = new ProizvodDialog(this, true, proizvod);
+        pd.setVisible(true);
+    }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
         ProizvodDialog tdd = new ProizvodDialog(this, true);
@@ -251,8 +259,8 @@ public class ProizvodForma extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonDetalji;
     private javax.swing.JButton jButtonFilter;
-    private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonOcistiFilter;
     private javax.swing.JComboBox<Klasa> jComboBoxKlasa;

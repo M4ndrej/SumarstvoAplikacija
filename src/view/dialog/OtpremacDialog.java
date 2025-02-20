@@ -19,6 +19,7 @@ import view.OtpremaciForma;
 public class OtpremacDialog extends javax.swing.JDialog {
 
     OtpremaciForma parent = new OtpremaciForma();
+    Otpremac otpremac;
 
     /**
      * Creates new form OtpremacDialog
@@ -58,7 +59,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
         jTextFieldImePrezime = new javax.swing.JTextField();
         jComboBoxLokalitet = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
-        jButtonSacuvaj = new javax.swing.JButton();
+        jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButtonObrisi = new javax.swing.JButton();
@@ -115,7 +116,12 @@ public class OtpremacDialog extends javax.swing.JDialog {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButtonSacuvaj.setText("Sačuvaj");
+        jButtonSacuvajIzmene.setText("Sačuvaj izmene");
+        jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajIzmeneActionPerformed(evt);
+            }
+        });
 
         jButtonIzmeni.setText("Izmeni");
         jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
@@ -125,6 +131,11 @@ public class OtpremacDialog extends javax.swing.JDialog {
         });
 
         jButtonObrisi.setText("Obriši");
+        jButtonObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonObrisiActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -143,8 +154,8 @@ public class OtpremacDialog extends javax.swing.JDialog {
                     .addComponent(jSeparator1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonIzmeni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                        .addComponent(jButtonSacuvaj))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSacuvajIzmene))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jButtonKreiraj)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,7 +168,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonIzmeni)
-                    .addComponent(jButtonSacuvaj))
+                    .addComponent(jButtonSacuvajIzmene))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
@@ -212,6 +223,38 @@ public class OtpremacDialog extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButtonKreirajActionPerformed
 
+    private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        String jmbg = jTextFieldJMBG.getText();
+        String imePrezime = jTextFieldImePrezime.getText();
+        Lokalitet lokalitet = (Lokalitet)jComboBoxLokalitet.getSelectedItem();
+        otpremac.setJmbg(jmbg);
+        otpremac.setImePrezime(imePrezime);
+        otpremac.setLokalitet(lokalitet);
+        boolean uspesno = Controller.getInstance().izmeniOtpremaca(otpremac);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Otpremač uspešno izmenjen", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom izmene otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
+
+    private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete otpremača?","Potvrda",JOptionPane.YES_NO_OPTION);
+        if(odgovor == JOptionPane.YES_OPTION){
+            boolean uspesno = Controller.getInstance().obrisiOtpremaca(otpremac);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja otpremača","Greška",JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Uspešno obrisan otpremač","Uspešno",JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        }
+        }
+        return;
+    }//GEN-LAST:event_jButtonObrisiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -258,7 +301,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonObrisi;
-    private javax.swing.JButton jButtonSacuvaj;
+    private javax.swing.JButton jButtonSacuvajIzmene;
     private javax.swing.JComboBox<Lokalitet> jComboBoxLokalitet;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -272,7 +315,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
 
     private void inicijalizuj() {
         popuniComboBox();
-        jButtonSacuvaj.setVisible(false);
+        jButtonSacuvajIzmene.setVisible(false);
         jButtonObrisi.setVisible(false);
         jButtonIzmeni.setVisible(false);
     }
@@ -286,6 +329,8 @@ public class OtpremacDialog extends javax.swing.JDialog {
         jTextFieldImePrezime.setEnabled(false);
         jComboBoxLokalitet.setEnabled(false);
         jButtonKreiraj.setVisible(false);
+        jButtonObrisi.setEnabled(false);
+        this.otpremac = otpremac;
     }
 
     private void popuniComboBox() {

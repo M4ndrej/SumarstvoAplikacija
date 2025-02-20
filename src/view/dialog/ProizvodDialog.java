@@ -20,6 +20,7 @@ import view.ProizvodForma;
 public class ProizvodDialog extends javax.swing.JDialog {
 
     ProizvodForma parent = new ProizvodForma();
+    Proizvod proizvod;
 
     /**
      * Creates new form TipDrvetaDialog
@@ -33,12 +34,12 @@ public class ProizvodDialog extends javax.swing.JDialog {
         this.parent = (ProizvodForma) parent;
     }
 
-    public ProizvodDialog(java.awt.Frame parent, boolean modal, Proizvod tip) {
+    public ProizvodDialog(java.awt.Frame parent, boolean modal, Proizvod proizvod) {
         super(parent, modal);
         initComponents();
         setTitle("Izmeni tip");
         setLocationRelativeTo(parent);
-        inicijalizuj(tip);
+        inicijalizuj(proizvod);
         this.parent = (ProizvodForma) parent;
     }
 
@@ -67,7 +68,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jComboBoxMernaJedinica = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jButtonIzmeni = new javax.swing.JButton();
-        jButtonSacuvaj = new javax.swing.JButton();
+        jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonKreiraj = new javax.swing.JButton();
         jButtonObrisi = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -167,7 +168,12 @@ public class ProizvodDialog extends javax.swing.JDialog {
             }
         });
 
-        jButtonSacuvaj.setText("Sačuvaj");
+        jButtonSacuvajIzmene.setText("Sačuvaj izmene");
+        jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSacuvajIzmeneActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +183,11 @@ public class ProizvodDialog extends javax.swing.JDialog {
         });
 
         jButtonObrisi.setText("Obriši");
+        jButtonObrisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonObrisiActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -186,10 +197,10 @@ public class ProizvodDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 76, Short.MAX_VALUE)
+                        .addGap(0, 74, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                            .addComponent(jButtonSacuvaj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonKreiraj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonObrisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jSeparator1))
@@ -201,7 +212,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jButtonIzmeni)
                 .addGap(18, 18, 18)
-                .addComponent(jButtonSacuvaj)
+                .addComponent(jButtonSacuvajIzmene)
                 .addGap(59, 59, 59)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -243,7 +254,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jTextAreaOpis.setEnabled(true);
         jTextFieldCena.setEnabled(true);
         jButtonObrisi.setEnabled(false);
-        jButtonSacuvaj.setEnabled(true);
+        jButtonSacuvajIzmene.setEnabled(true);
 
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
@@ -257,13 +268,51 @@ public class ProizvodDialog extends javax.swing.JDialog {
         Proizvod proizvod = new Proizvod(0,tip, vrsta, klasa, opis, cena, mj);
         boolean uspesno = Controller.getInstance().kreirajProizvod(proizvod);
          if (uspesno) {
-            JOptionPane.showMessageDialog(this, "Kupac uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Proizvod uspešno izmenjen", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
             parent.azurirajTabelu();
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Greška prilikom izmene proizvoda", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        Tip tip = (Tip)jComboBoxTip.getSelectedItem();
+        Vrsta vrsta = (Vrsta)jComboBoxVrsta.getSelectedItem();
+        Klasa klasa = (Klasa)jComboBoxKlasa.getSelectedItem();
+        MernaJedinica mj = (MernaJedinica)jComboBoxMernaJedinica.getSelectedItem();
+        String opis = jTextAreaOpis.getText();
+        double cena = Double.parseDouble(jTextFieldCena.getText());
+        proizvod.setTip(tip);
+        proizvod.setVrsta(vrsta);
+        proizvod.setKlasa(klasa);
+        proizvod.setMernaJedinica(mj);
+        proizvod.setOpis(opis);
+        proizvod.setCena(cena);
+        boolean uspesno = Controller.getInstance().izmeniProizvod(proizvod);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Proizvod uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja proizvoda", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
+
+    private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete proizvod?","Potvrda",JOptionPane.YES_NO_OPTION);
+        if(odgovor == JOptionPane.YES_OPTION){
+            boolean uspesno = Controller.getInstance().orbisiProizvod(proizvod);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja proizvoda","Greška",JOptionPane.ERROR_MESSAGE);
+        }else{
+            JOptionPane.showMessageDialog(this, "Uspešno obrisan proizvod","Uspešno",JOptionPane.INFORMATION_MESSAGE);
+            parent.azurirajTabelu();
+            this.dispose();
+        }
+        }
+        return;
+    }//GEN-LAST:event_jButtonObrisiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -312,7 +361,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonIzmeni;
     private javax.swing.JButton jButtonKreiraj;
     private javax.swing.JButton jButtonObrisi;
-    private javax.swing.JButton jButtonSacuvaj;
+    private javax.swing.JButton jButtonSacuvajIzmene;
     private javax.swing.JComboBox<Klasa> jComboBoxKlasa;
     private javax.swing.JComboBox<MernaJedinica> jComboBoxMernaJedinica;
     private javax.swing.JComboBox<Tip> jComboBoxTip;
@@ -333,28 +382,28 @@ public class ProizvodDialog extends javax.swing.JDialog {
 
     private void inicijalizuj() {
         popuniComboBox();
-        jButtonSacuvaj.setVisible(false);
+        jButtonSacuvajIzmene.setVisible(false);
         jButtonIzmeni.setVisible(false);
         jButtonObrisi.setVisible(false);
     }
 
-    private void inicijalizuj(Proizvod tip) {
+    private void inicijalizuj(Proizvod proizvod) {
         popuniComboBox();
         jButtonKreiraj.setVisible(false);
-        jButtonSacuvaj.setEnabled(false);
-        jComboBoxTip.setSelectedItem(tip.getTip());
-        jComboBoxVrsta.setSelectedItem(tip.getVrsta());
-        jComboBoxKlasa.setSelectedItem(tip.getKlasa());
-        jComboBoxMernaJedinica.setSelectedItem(tip.getMernaJedinica());
-        jTextAreaOpis.setText(tip.getOpis());
-        jTextFieldCena.setText(tip.getCena() + "");
+        jButtonSacuvajIzmene.setEnabled(false);
+        jComboBoxTip.setSelectedItem(proizvod.getTip());
+        jComboBoxVrsta.setSelectedItem(proizvod.getVrsta());
+        jComboBoxKlasa.setSelectedItem(proizvod.getKlasa());
+        jComboBoxMernaJedinica.setSelectedItem(proizvod.getMernaJedinica());
+        jTextAreaOpis.setText(proizvod.getOpis());
+        jTextFieldCena.setText(proizvod.getCena() + "");
         jComboBoxTip.setEnabled(false);
         jComboBoxVrsta.setEnabled(false);
         jComboBoxKlasa.setEnabled(false);
         jComboBoxMernaJedinica.setEnabled(false);
         jTextAreaOpis.setEnabled(false);
         jTextFieldCena.setEnabled(false);
-
+        this.proizvod = proizvod;
     }
 
     private void popuniComboBox() {

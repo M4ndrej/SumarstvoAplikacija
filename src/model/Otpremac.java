@@ -106,4 +106,20 @@ public class Otpremac implements OpstiDomenskiObjekat{
     public String vratiVrednostiKolona() {
         return "('"+this.jmbg+"','"+this.imePrezime+"',"+this.lokalitet.getId()+")";
     }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "jmbgOtpremac="+this.getJmbg();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        if(this.imePrezime == null && this.lokalitet != null){
+            return "lokalitet = "+this.getLokalitet().getId();
+        }else if(this.imePrezime != null && this.lokalitet == null){
+            return "imePrezime LIKE LOWER('"+this.getImePrezime().toLowerCase()+"')";
+        }else{
+            return "lokalitet = "+this.getLokalitet().getId()+" AND "+ "imePrezime LIKE LOWER('"+this.getImePrezime().toLowerCase()+"')";
+        }
+    }
 }

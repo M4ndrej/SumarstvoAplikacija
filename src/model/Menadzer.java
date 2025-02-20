@@ -53,6 +53,28 @@ public class Menadzer implements OpstiDomenskiObjekat {
         return email;
     }
 
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
+    }
+
+    public void setImePrezime(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
+
+    public void setKontakt(String kontakt) {
+        this.kontakt = kontakt;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+    
+
     @Override
     public String toString() {
         return imePrezime;
@@ -102,12 +124,22 @@ public class Menadzer implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiNaziveKolona() {
-        return null;
+        return "(jmbgMenadzer,imePrezime,kontakt,lozinka,email)";
     }
 
     @Override
     public String vratiVrednostiKolona() {
-        return null;
+        return "('"+this.jmbg+"','"+this.imePrezime+"','"+this.kontakt+"','"+this.lozinka+"','"+this.email+"')";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "jmbgMenadzer="+this.getJmbg();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return "imePrezime LIKE LOWER ('"+this.getImePrezime()+"%')";
     }
 
 }

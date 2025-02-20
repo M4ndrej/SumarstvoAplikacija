@@ -167,11 +167,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Izmeni"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIzmeniActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSacuvajIzmene">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sa&#x10d;uvaj izmene"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSacuvajIzmeneActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonKreiraj">
           <Properties>
@@ -185,6 +191,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonObrisiActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

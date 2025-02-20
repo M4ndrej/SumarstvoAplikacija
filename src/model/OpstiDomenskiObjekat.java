@@ -15,5 +15,6 @@ public interface OpstiDomenskiObjekat {
     public boolean napuni(ResultSet rs);
     public String vratiNaziveKolona();
     public String vratiVrednostiKolona();
-    
+    public String vratiUslovNadjiSlog();
+    public String vratiUslovNadjiSlogove();
 }

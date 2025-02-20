@@ -127,11 +127,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Filtriraj"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFilterActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonO&#x10d;istiFilter">
           <Properties>
             <Property name="text" type="java.lang.String" value="O&#x10d;isti filter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonO&#x10d;istiFilterActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

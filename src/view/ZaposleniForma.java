@@ -72,8 +72,18 @@ public class ZaposleniForma extends javax.swing.JFrame {
         });
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonOčistiFilter.setText("Očisti filter");
+        jButtonOčistiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOčistiFilterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,6 +143,27 @@ public class ZaposleniForma extends javax.swing.JFrame {
     private void jTextFieldImePrezimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldImePrezimeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldImePrezimeActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+       if (jTextFieldImePrezime.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String imePrezime = jTextFieldImePrezime.getText();
+        Menadzer menadzer = new Menadzer();
+        menadzer.setImePrezime(imePrezime);
+        List<Menadzer> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuSviMenadzer(menadzer, lista);
+        if (uspesno) {
+            MenadzerModelTabele mmt = new MenadzerModelTabele(lista);
+            jTableZaposleni.setModel(mmt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonOčistiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOčistiFilterActionPerformed
+        jTextFieldImePrezime.setText("");
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonOčistiFilterActionPerformed
 
     /**
      * @param args the command line arguments

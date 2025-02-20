@@ -161,11 +161,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Filtriraj"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFilterActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonFilterOcistiFilter">
           <Properties>
             <Property name="text" type="java.lang.String" value="O&#x10d;isti filter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonFilterOcistiFilterActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -189,7 +195,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
-                          <Component id="jButtonIzmeni" min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="jButtonDetalji" min="-2" pref="104" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -206,7 +212,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace pref="63" max="32767" attributes="0"/>
-                  <Component id="jButtonIzmeni" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonDetalji" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -217,12 +223,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButtonIzmeni">
+        <Component class="javax.swing.JButton" name="jButtonDetalji">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Izmeni"/>
+            <Property name="text" type="java.lang.String" value="Detalji"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonIzmeniActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonDetaljiActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">

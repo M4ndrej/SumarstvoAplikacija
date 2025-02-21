@@ -17,7 +17,7 @@ import model.Proizvod;
  */
 public class OtpremnicaModelTabele extends AbstractTableModel{
     
-    private String[] kolone = {"Broj otpremnice","Menadzer", "Otpremač", "Datum otpremnice"};
+    private String[] kolone = {"Broj otpremnice","Menadzer", "Otpremač", "Kupac", "Datum otpremnice"};
     private List<Otpremnica> listaOtprmenica = new ArrayList<>();
 
     public OtpremnicaModelTabele(List<Otpremnica> lista) {
@@ -45,6 +45,8 @@ public class OtpremnicaModelTabele extends AbstractTableModel{
         case 2:
             return otpremnica.getOtpremac().getImePrezime();
         case 3:
+            return otpremnica.getKupac().getNaziv();
+        case 4:
             return otpremnica.getDatumOtpremnice();
         default:
             return "";

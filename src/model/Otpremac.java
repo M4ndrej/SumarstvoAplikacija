@@ -114,12 +114,12 @@ public class Otpremac implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiUslovNadjiSlogove() {
-        if(this.imePrezime == null && this.lokalitet != null){
-            return "lokalitet = "+this.getLokalitet().getId();
-        }else if(this.imePrezime != null && this.lokalitet == null){
+        if(this.imePrezime.isEmpty() && this.lokalitet != null){
+            return "lokalitet = "+this.lokalitet.getId();
+        }else if(!this.imePrezime.isEmpty() && this.lokalitet == null){
             return "imePrezime LIKE LOWER('"+this.getImePrezime().toLowerCase()+"')";
         }else{
-            return "lokalitet = "+this.getLokalitet().getId()+" AND "+ "imePrezime LIKE LOWER('"+this.getImePrezime().toLowerCase()+"')";
+            return "lokalitet = "+this.lokalitet.getId()+" AND "+ "imePrezime LIKE LOWER('"+this.getImePrezime().toLowerCase()+"')";
         }
     }
 }

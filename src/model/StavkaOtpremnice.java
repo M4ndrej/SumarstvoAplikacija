@@ -131,6 +131,11 @@ public class StavkaOtpremnice implements OpstiDomenskiObjekat{
     public String vratiUslovNadjiSlog() {
         return "redniBroj="+this.getRedniBroj();
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return null;
+    }
     
     
 }

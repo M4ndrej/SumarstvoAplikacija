@@ -3,7 +3,9 @@ package view;
 import controller.Controller;
 import java.util.ArrayList;
 import java.util.List;
+import javax.crypto.AEADBadTagException;
 import javax.swing.JOptionPane;
+import model.Kupac;
 import model.Otpremac;
 import model.Otpremnica;
 import tabela_model.OtpremnicaModelTabele;
@@ -13,7 +15,6 @@ import view.dialog.OtpremniceDialog;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Andrej
@@ -76,8 +77,18 @@ public class OtpremniceForma extends javax.swing.JFrame {
         jLabel3.setText("Broj otpremnice");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonOcistiFilter.setText("Očisti filter");
+        jButtonOcistiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOcistiFilterActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -99,24 +110,24 @@ public class OtpremniceForma extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(jTextFieldBrojOtpremnice))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(46, 46, 46)
-                        .addComponent(jComboBoxOtpremac, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldKupac, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
+                        .addComponent(jTextFieldBrojOtpremnice, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldKupac, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxOtpremac, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonFilter)
                     .addComponent(jButtonOcistiFilter))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonKreiraj, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonDetalji, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -128,14 +139,14 @@ public class OtpremniceForma extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldKupac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonFilter)
-                    .addComponent(jButtonDetalji))
+                    .addComponent(jButtonDetalji)
+                    .addComponent(jTextFieldBrojOtpremnice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldBrojOtpremnice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(28, 28, 28)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldKupac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxOtpremac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,7 +172,7 @@ public class OtpremniceForma extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
         );
 
         pack();
@@ -169,14 +180,14 @@ public class OtpremniceForma extends javax.swing.JFrame {
 
     private void jButtonDetaljiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDetaljiActionPerformed
         int red = jTableOtpremnice.getSelectedRow();
-        if(red == -1){
+        if (red == -1) {
             JOptionPane.showMessageDialog(this, "Odaberite otpremnicu", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        OtpremnicaModelTabele omt = (OtpremnicaModelTabele)jTableOtpremnice.getModel();
+        OtpremnicaModelTabele omt = (OtpremnicaModelTabele) jTableOtpremnice.getModel();
         Otpremnica otpremnica = omt.getLista().get(red);
-        
-        OtpremniceDialog od = new OtpremniceDialog(this,true,otpremnica);
+
+        OtpremniceDialog od = new OtpremniceDialog(this, true, otpremnica);
         od.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
@@ -184,6 +195,36 @@ public class OtpremniceForma extends javax.swing.JFrame {
         OtpremniceDialog od = new OtpremniceDialog(this, true);
         od.setVisible(true);
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        
+        int brojOtpremnice = -1;
+        if (!jTextFieldBrojOtpremnice.getText().isEmpty()) {
+            brojOtpremnice = Integer.parseInt(jTextFieldBrojOtpremnice.getText());
+        }
+        String nazivKupca = jTextFieldKupac.getText();
+        Kupac kupac = new Kupac();
+        kupac.setNaziv(nazivKupca);
+        Otpremac otpremac = (Otpremac) jComboBoxOtpremac.getSelectedItem();
+        Otpremnica otpremnica = new Otpremnica();
+        otpremnica.setBrojOtpremnice(brojOtpremnice);
+        otpremnica.setKupac(kupac);
+        otpremnica.setOtpremac(otpremac);
+        List<Otpremnica> lista = new ArrayList<>();
+        
+        boolean uspesno = Controller.getInstance().vratiListuSviOtpremnica(otpremnica,lista);
+         if (uspesno) {
+            OtpremnicaModelTabele omt = new OtpremnicaModelTabele(lista);
+            jTableOtpremnice.setModel(omt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonOcistiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcistiFilterActionPerformed
+        jTextFieldBrojOtpremnice.setText("");
+        jTextFieldKupac.setText("");
+        jComboBoxOtpremac.setSelectedItem(null);
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonOcistiFilterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,15 +280,24 @@ public class OtpremniceForma extends javax.swing.JFrame {
     private void inicijalizacija() {
         List<Otpremnica> lista = new ArrayList<>();
         boolean uspesno = Controller.getInstance().vratiListuOtpremnica(lista);
-        if(uspesno){
+        if (uspesno) {
             OtpremnicaModelTabele omt = new OtpremnicaModelTabele(lista);
             jTableOtpremnice.setModel(omt);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremnica", "Greška", JOptionPane.ERROR_MESSAGE);
         }
+        popuniComboBox();
     }
 
     public void azurirajTabelu() {
         inicijalizacija();
+    }
+
+    private void popuniComboBox() {
+        List<Otpremac> otpremaci = new ArrayList<>();
+        Controller.getInstance().vratiListuOtpremaca(otpremaci);
+        for(Otpremac o: otpremaci){
+            jComboBoxOtpremac.addItem(o);
+        }
     }
 }

@@ -5,6 +5,7 @@
 package controller;
 
 import database.DBBroker;
+import java.util.ArrayList;
 import java.util.List;
 import model.Kupac;
 import model.Lokalitet;
@@ -22,8 +23,22 @@ import model.StavkaOtpremnice;
 public class Controller {
 
     private static Controller instance;
+    private List<Menadzer> menadzeri = new ArrayList<>();
+    private Menadzer ulogovani;
     private DBBroker dbb = new DBBroker();
 
+    private Controller(){
+        
+    }
+    
+    public Menadzer getUlovovani(){
+        return ulogovani;
+    }
+
+    public void setUlogovani(Menadzer ulogovani) {
+        this.ulogovani = ulogovani;
+    }
+    
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();
@@ -182,14 +197,44 @@ public class Controller {
     }
 
     public boolean vratiListuSviOtpremac(Otpremac otpremac, List<Otpremac> lista) {
-        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(otpremac);
+        return dbb.readWithConditionOtpremacLokalitet(otpremac,lista);
+    }
+
+    public boolean vratiListuSviProizvod(Proizvod proizvod, List<Proizvod> lista) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(proizvod);
         if (listaOdo == null) {
             return false;
         }
         for (OpstiDomenskiObjekat o : listaOdo) {
-            lista.add((Otpremac) o);
+            lista.add((Proizvod) o);
         }
         return true;
+    }
+
+    public boolean vratiListuSviOtpremnica(Otpremnica otpremnica, List<Otpremnica> lista) {
+        return dbb.readWithConditionOtpremnicaKupacOtpremac(otpremnica,lista);
+    }
+
+    public boolean prijaviMenadzer(String jmbg, String lozinka) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.read(new Menadzer());
+        if (listaOdo == null) {
+            menadzeri = null;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            menadzeri.add((Menadzer) o);
+        }
+        
+        for(Menadzer m: menadzeri){
+            if(m.getJmbg().equals(jmbg) && m.getLozinka().equals(lozinka)){
+                ulogovani = m;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean kreirajMenadzer(Menadzer menadzer) {
+        return dbb.create(menadzer);
     }
 
 }

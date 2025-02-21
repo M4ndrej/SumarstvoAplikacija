@@ -201,4 +201,49 @@ public class DBBroker {
         }
         return lista;
     }
+
+    public boolean readWithConditionOtpremacLokalitet(Otpremac otpremac, List<Otpremac> lista) {
+        try {
+            statement = konekcija.getConnection().createStatement();
+            String upit = "SELECT * FROM otpremac o JOIN lokalitet l ON o.lokalitet = l.id WHERE " + otpremac.vratiUslovNadjiSlogove();
+            ResultSet rs = statement.executeQuery(upit);
+            while (rs.next()) {
+                Otpremac o = new Otpremac();
+                Lokalitet l = new Lokalitet();
+                if (o.napuni(rs) && l.napuni(rs)) {
+                    o.setLokalitet(l);
+                    lista.add(o);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    public boolean readWithConditionOtpremnicaKupacOtpremac(Otpremnica otpremnica, List<Otpremnica> lista) {
+        try {
+            statement = konekcija.getConnection().createStatement();
+            String upit = "SELECT * FROM otpremnica o JOIN kupac k ON o.kupac = k.id JOIN otpremac otp ON o.otpremac = otp.jmbgOtpremac JOIN menadzer m ON o.menadzer = m.jmbgMenadzer WHERE " + otpremnica.vratiUslovNadjiSlogove();
+            ResultSet rs = statement.executeQuery(upit);
+            System.out.println(upit);
+            while (rs.next()) {
+                Otpremac otp = new Otpremac();
+                Kupac k = new Kupac();
+                Menadzer m = new Menadzer();
+                Otpremnica o = new Otpremnica();
+                if (otp.napuni(rs) && k.napuni(rs) && o.napuni(rs) && m.napuni(rs)) {
+                    o.setOtpremac(otp);
+                    o.setKupac(k);
+                    o.setMenadzer(m);
+                    lista.add(o);
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
 }

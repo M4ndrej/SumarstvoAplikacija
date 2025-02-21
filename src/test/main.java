@@ -4,25 +4,26 @@
  */
 package test;
 
-import database.DBBroker;
-import model.Otpremnica;
-import model.Proizvod;
-import model.StavkaOtpremnice;
-import model.enumeracija.Klasa;
-import model.enumeracija.MernaJedinica;
-import model.enumeracija.Tip;
-import model.enumeracija.Vrsta;
+import com.formdev.flatlaf.FlatLightLaf;
+import java.awt.Color;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import view.PrijavaForma;
 
 /**
  *
  * @author Andrej
  */
 public class main {
+
     public static void main(String[] args) {
-               
-        
-        
-        
+
+        AppStyles.setLookAndFeel();
+
+        SwingUtilities.invokeLater(() -> {
+            new PrijavaForma().setVisible(true); // Pokretanje tvoje forme
+        });
+
     }
-   
+
 }

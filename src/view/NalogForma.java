@@ -16,6 +16,8 @@ import model.Menadzer;
  */
 public class NalogForma extends javax.swing.JFrame {
 
+    private Menadzer menadzer = Controller.getInstance().getUlovovani();
+
     /**
      * Creates new form Nalog
      */
@@ -36,6 +38,7 @@ public class NalogForma extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabelKontaktError2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jTextFieldKontakt = new javax.swing.JTextField();
@@ -49,14 +52,23 @@ public class NalogForma extends javax.swing.JFrame {
         jPasswordFieldStaraLozinka = new javax.swing.JPasswordField();
         jLabelNovaLozinka = new javax.swing.JLabel();
         jPasswordFieldNovaLozinka = new javax.swing.JPasswordField();
+        jLabelImePrezimeError = new javax.swing.JLabel();
+        jLabelJmbgError = new javax.swing.JLabel();
+        jLabelEmailError = new javax.swing.JLabel();
+        jLabelKontaktError = new javax.swing.JLabel();
+        jLabelStaraLozinkaError = new javax.swing.JLabel();
+        jLabelNovaLozinkaError = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonIzmeniPodatke = new javax.swing.JButton();
         jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonUgasiNalog = new javax.swing.JButton();
 
+        jLabelKontaktError2.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelKontaktError2.setText("jLabel1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel5.setText("Kontakt");
 
@@ -76,6 +88,30 @@ public class NalogForma extends javax.swing.JFrame {
 
         jLabelNovaLozinka.setText("Nova lozinka");
 
+        jLabelImePrezimeError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelImePrezimeError.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelImePrezimeError.setText("jLabel1");
+
+        jLabelJmbgError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelJmbgError.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelJmbgError.setText("jLabel1");
+
+        jLabelEmailError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelEmailError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelEmailError.setText("jLabel1");
+
+        jLabelKontaktError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelKontaktError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelKontaktError.setText("jLabel1");
+
+        jLabelStaraLozinkaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelStaraLozinkaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelStaraLozinkaError.setText("jLabel1");
+
+        jLabelNovaLozinkaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNovaLozinkaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelNovaLozinkaError.setText("jLabel1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -83,54 +119,83 @@ public class NalogForma extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabelStaraLozinka, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelNovaLozinka, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextFieldKontakt, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addComponent(jPasswordFieldStaraLozinka)
-                    .addComponent(jPasswordFieldNovaLozinka))
-                .addContainerGap(61, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelStaraLozinka, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelNovaLozinka, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(45, 45, 45)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldKontakt, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPasswordFieldStaraLozinka)
+                            .addComponent(jPasswordFieldNovaLozinka)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jLabelImePrezimeError, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40))
+                            .addComponent(jLabelEmailError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelKontaktError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelStaraLozinkaError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelNovaLozinkaError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldImePrezime))
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(81, 81, 81)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabelJmbgError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(43, 43, 43))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldJMBG)
+                                .addContainerGap())))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelJmbgError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelImePrezimeError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelEmailError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelKontaktError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelStaraLozinka)
                     .addComponent(jPasswordFieldStaraLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelStaraLozinkaError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNovaLozinka)
                     .addComponent(jPasswordFieldNovaLozinka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNovaLozinkaError)
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButtonIzmeniPodatke.setText("Izmeni podatke");
         jButtonIzmeniPodatke.addActionListener(new java.awt.event.ActionListener() {
@@ -139,7 +204,7 @@ public class NalogForma extends javax.swing.JFrame {
             }
         });
 
-        jButtonSacuvajIzmene.setText("Sacuvaj izmene");
+        jButtonSacuvajIzmene.setText("Sačuvaj izmene");
         jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSacuvajIzmeneActionPerformed(evt);
@@ -154,17 +219,17 @@ public class NalogForma extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButtonIzmeniPodatke, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonIzmeniPodatke, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                     .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonUgasiNalog, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jButtonIzmeniPodatke, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonIzmeniPodatke)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSacuvajIzmene)
                 .addGap(18, 18, 18)
@@ -179,18 +244,18 @@ public class NalogForma extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -217,18 +282,35 @@ public class NalogForma extends javax.swing.JFrame {
         String jmbg = jTextFieldJMBG.getText();
         String imePrezime = jTextFieldImePrezime.getText();
         String kontakt = jTextFieldKontakt.getText();
-        char[] staraLozinka = jPasswordFieldStaraLozinka.getPassword();
-        char[] novaLozinka = jPasswordFieldNovaLozinka.getPassword();
+        String staraLozinka = new String(jPasswordFieldStaraLozinka.getPassword());
+        String novaLozinka = new String(jPasswordFieldNovaLozinka.getPassword());
         String email = jTextFieldEmail.getText();
-        
-        Menadzer menadzer = new Menadzer(jmbg, imePrezime, kontakt, String.valueOf(novaLozinka), email);
-        boolean uspesno = Controller.getInstance().izmeniMenadzera(menadzer);
+
+        if (jmbg.isEmpty() || imePrezime.isEmpty() || kontakt.isEmpty() || staraLozinka.isEmpty() || novaLozinka.isEmpty() || email.isEmpty()) {
+            jLabelJmbgError.setText(jmbg.isEmpty() ? "Unesite JMBG" : "");  // Greška za JMBG
+            jLabelImePrezimeError.setText(imePrezime.isEmpty() ? "Unesite ime i prezime" : "");  // Greška za ime i prezime
+            jLabelKontaktError.setText(kontakt.isEmpty() ? "Unesite kontakt" : "");  // Greška za kontakt
+            jLabelStaraLozinkaError.setText(staraLozinka.isEmpty() ? "Unesite staru lozinku" : "");  // Greška za staru lozinku
+            jLabelNovaLozinkaError.setText(novaLozinka.isEmpty() ? "Unesite novu lozinku" : "");  // Greška za novu lozinku
+            jLabelEmailError.setText(email.isEmpty() ? "Unesite email" : "");
+            return;
+        }
+
+        Menadzer ulogovani = this.menadzer;
+        if (!staraLozinka.equals(ulogovani.getLozinka())) {
+            JOptionPane.showMessageDialog(this, "Pogrešna lozinka", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Menadzer noviMenadzer = new Menadzer(jmbg, imePrezime, kontakt, novaLozinka, email);
+        boolean uspesno = Controller.getInstance().izmeniMenadzera(noviMenadzer);
         if (!uspesno) {
             JOptionPane.showMessageDialog(this, "Greška prilikom izmene naloga", "Greška", JOptionPane.ERROR_MESSAGE);
         } else {
+            Controller.getInstance().setUlogovani(noviMenadzer);
             JOptionPane.showMessageDialog(this, "Uspešno izmenjen nalog", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
         }
-        
+
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     /**
@@ -275,8 +357,15 @@ public class NalogForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelEmailError;
+    private javax.swing.JLabel jLabelImePrezimeError;
+    private javax.swing.JLabel jLabelJmbgError;
+    private javax.swing.JLabel jLabelKontaktError;
+    private javax.swing.JLabel jLabelKontaktError2;
     private javax.swing.JLabel jLabelNovaLozinka;
+    private javax.swing.JLabel jLabelNovaLozinkaError;
     private javax.swing.JLabel jLabelStaraLozinka;
+    private javax.swing.JLabel jLabelStaraLozinkaError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPasswordField jPasswordFieldNovaLozinka;
@@ -297,6 +386,17 @@ public class NalogForma extends javax.swing.JFrame {
         jTextFieldEmail.setEnabled(false);
         jTextFieldKontakt.setEnabled(false);
         jButtonSacuvajIzmene.setEnabled(false);
+
+        jTextFieldEmail.setText(menadzer.getEmail());
+        jTextFieldImePrezime.setText(menadzer.getImePrezime());
+        jTextFieldJMBG.setText(menadzer.getJmbg());
+        jTextFieldKontakt.setText(menadzer.getKontakt());
         
+        jLabelJmbgError.setText("");
+        jLabelImePrezimeError.setText("");
+        jLabelEmailError.setText("");
+        jLabelKontaktError.setText("");
+        jLabelStaraLozinkaError.setText("");
+        jLabelNovaLozinkaError.setText("");
     }
 }

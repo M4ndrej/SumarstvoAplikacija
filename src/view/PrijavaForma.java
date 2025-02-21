@@ -4,6 +4,13 @@
  */
 package view;
 
+import controller.Controller;
+import hashing.Hash;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Andrej
@@ -16,6 +23,8 @@ public class PrijavaForma extends javax.swing.JFrame {
     public PrijavaForma() {
         initComponents();
         setTitle("Prijava");
+        setSize(400,250);
+        setResizable(false);
         setLocationRelativeTo(null);
     }
 
@@ -40,7 +49,17 @@ public class PrijavaForma extends javax.swing.JFrame {
 
         jLabel1.setText("JMBG:");
 
+        jTextFieldJMBG.setText("3101003788417");
+        jTextFieldJMBG.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldJMBGActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Lozinka: ");
+
+        jPasswordField.setText("kika");
+        jPasswordField.setMinimumSize(new java.awt.Dimension(68, 25));
 
         jButtonRegistracija.setText("Registruj se");
         jButtonRegistracija.addActionListener(new java.awt.event.ActionListener() {
@@ -64,22 +83,21 @@ public class PrijavaForma extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonPrijava)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRegistracija))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jPasswordField))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(31, 31, 31)
-                            .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(31, 31, 31)
+                        .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonRegistracija, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonPrijava, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,18 +105,18 @@ public class PrijavaForma extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonPrijava, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonPrijava)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRegistracija)
-                    .addComponent(jLabel3))
-                .addGap(19, 19, 19))
+                    .addComponent(jLabel3)
+                    .addComponent(jButtonRegistracija))
+                .addGap(33, 33, 33))
         );
 
         pack();
@@ -108,13 +126,30 @@ public class PrijavaForma extends javax.swing.JFrame {
         RegistracijaForma rf = new RegistracijaForma();
         rf.setVisible(true);
         this.dispose();
-        
+
     }//GEN-LAST:event_jButtonRegistracijaActionPerformed
 
     private void jButtonPrijavaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrijavaActionPerformed
-        GlavnaForma gf = new GlavnaForma();
-        gf.setVisible(true);
+        String jmbg = jTextFieldJMBG.getText().trim();
+        String lozinka = new String(jPasswordField.getPassword());
+        String kriptovana = "";
+        try {
+            kriptovana = Hash.kriptuj(lozinka);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(PrijavaForma.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        boolean uspesno = Controller.getInstance().prijaviMenadzer(jmbg, kriptovana);
+        if (uspesno) {
+            GlavnaForma gf = new GlavnaForma();
+            gf.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Pogrešni kredencijali", "Greška", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonPrijavaActionPerformed
+
+    private void jTextFieldJMBGActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldJMBGActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldJMBGActionPerformed
 
     /**
      * @param args the command line arguments

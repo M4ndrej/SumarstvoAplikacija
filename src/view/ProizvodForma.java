@@ -89,8 +89,18 @@ public class ProizvodForma extends javax.swing.JFrame {
         jLabel5.setText("do:");
 
         jButtonFilter.setText("Filtriraj");
+        jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonFilterActionPerformed(evt);
+            }
+        });
 
         jButtonOcistiFilter.setText("Očisti filter");
+        jButtonOcistiFilter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOcistiFilterActionPerformed(evt);
+            }
+        });
 
         jButtonKreiraj.setText("Kreiraj");
         jButtonKreiraj.addActionListener(new java.awt.event.ActionListener() {
@@ -221,6 +231,40 @@ public class ProizvodForma extends javax.swing.JFrame {
         ProizvodDialog tdd = new ProizvodDialog(this, true);
         tdd.setVisible(true);
     }//GEN-LAST:event_jButtonKreirajActionPerformed
+
+    private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
+        Tip tip = (Tip) jComboBoxTip.getSelectedItem();
+        Vrsta vrsta = (Vrsta) jComboBoxVrsta.getSelectedItem();
+        Klasa klasa = (Klasa) jComboBoxKlasa.getSelectedItem();
+        double cenaOd = -1;
+        double cenaDo = -1;
+        Proizvod proizvod = new Proizvod();
+        if (!jTextFieldCenaOd.getText().isEmpty()) {
+             cenaOd = Double.parseDouble(jTextFieldCenaOd.getText());
+        }
+        if (!jTextFieldCenaDo.getText().isEmpty()) {
+             cenaDo = Double.parseDouble(jTextFieldCenaDo.getText());
+        }
+        proizvod.setTip(tip);
+        proizvod.setVrsta(vrsta);
+        proizvod.setKlasa(klasa);
+        proizvod.filterCena(cenaOd, cenaDo);
+        List<Proizvod> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuSviProizvod(proizvod, lista);
+        if (uspesno) {
+            ProizvodModelTabele pmt = new ProizvodModelTabele(lista);
+            jTableProizvodi.setModel(pmt);
+        }
+    }//GEN-LAST:event_jButtonFilterActionPerformed
+
+    private void jButtonOcistiFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOcistiFilterActionPerformed
+        jComboBoxKlasa.setSelectedItem(null);
+        jComboBoxTip.setSelectedItem(null);
+        jComboBoxVrsta.setSelectedItem(null);
+        jTextFieldCenaOd.setText("");
+        jTextFieldCenaDo.setText("");
+        inicijalizacija();
+    }//GEN-LAST:event_jButtonOcistiFilterActionPerformed
 
     /**
      * @param args the command line arguments

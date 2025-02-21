@@ -54,6 +54,8 @@ public class KupciDialog extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jTextFieldImeVlasnika = new javax.swing.JTextField();
         jTextFieldNaziv = new javax.swing.JTextField();
+        jLabelImeVlasnikaError = new javax.swing.JLabel();
+        jLabelNazivError = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonIzmeni = new javax.swing.JButton();
         jButtonSacuvajIzmene = new javax.swing.JButton();
@@ -62,11 +64,19 @@ public class KupciDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Naziv");
 
         jLabel2.setText("Ime vlasnika");
+
+        jLabelImeVlasnikaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelImeVlasnikaError.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelImeVlasnikaError.setText("jLabel3");
+
+        jLabelNazivError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelNazivError.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelNazivError.setText("jLabel3");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,9 +89,11 @@ public class KupciDialog extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldImeVlasnika, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextFieldNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(jTextFieldImeVlasnika, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(jLabelImeVlasnikaError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelNazivError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextFieldNaziv))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,14 +102,18 @@ public class KupciDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldNaziv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelNazivError)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextFieldImeVlasnika, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelImeVlasnikaError)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButtonIzmeni.setText("Izmeni");
         jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
@@ -134,31 +150,23 @@ public class KupciDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonSacuvajIzmene)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonObrisi))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jButtonIzmeni)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                                .addComponent(jButtonKreiraj)))
-                        .addGap(15, 15, 15))))
+                    .addComponent(jButtonKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIzmeni)
-                    .addComponent(jButtonKreiraj))
-                .addGap(18, 18, 18)
-                .addComponent(jButtonObrisi)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(jButtonIzmeni)
+                .addGap(4, 4, 4)
+                .addComponent(jButtonKreiraj)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSacuvajIzmene)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonObrisi)
                 .addContainerGap())
         );
 
@@ -189,6 +197,12 @@ public class KupciDialog extends javax.swing.JDialog {
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
         String naziv = jTextFieldNaziv.getText();
         String imeVlasnika = jTextFieldImeVlasnika.getText();
+        
+        if (naziv.isEmpty() || imeVlasnika.isEmpty()) {
+            jLabelNazivError.setText(naziv.isEmpty() ? "Unesite naziv" : "");
+            jLabelImeVlasnikaError.setText(imeVlasnika.isEmpty() ? "Unesite ime vlasnika" : "");
+            return;
+        }
         Kupac kupac = new Kupac(0, naziv, imeVlasnika);
         boolean uspesno = Controller.getInstance().kreirajKupac(kupac);
         if (uspesno) {
@@ -210,6 +224,13 @@ public class KupciDialog extends javax.swing.JDialog {
     private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
         String naziv = jTextFieldNaziv.getText();
         String imeVlasnika = jTextFieldImeVlasnika.getText();
+        
+        if (naziv.isEmpty() || imeVlasnika.isEmpty()) {
+            jLabelNazivError.setText(naziv.isEmpty() ? "Unesite naziv" : "");
+            jLabelImeVlasnikaError.setText(imeVlasnika.isEmpty() ? "Unesite ime vlasnika" : "");
+            return;
+        }
+
         this.kupac.setNaziv(naziv);
         this.kupac.setImeVlasnika(imeVlasnika);
         boolean uspesno = Controller.getInstance().izmeniKupca(kupac);
@@ -221,16 +242,16 @@ public class KupciDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
-        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete kupca?","Potvrda",JOptionPane.YES_NO_OPTION);
-        if(odgovor == JOptionPane.YES_OPTION){
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete kupca?", "Potvrda", JOptionPane.YES_NO_OPTION);
+        if (odgovor == JOptionPane.YES_OPTION) {
             boolean uspesno = Controller.getInstance().obrisiKupca(kupac);
-        if(!uspesno){
-            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja kupca","Greška",JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Uspešno obrisan kupac","Uspešno",JOptionPane.INFORMATION_MESSAGE);
-            parent.azurirajTabelu();
-            this.dispose();
-        }
+            if (!uspesno) {
+                JOptionPane.showMessageDialog(this, "Greška prilikom brisanja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Uspešno obrisan kupac", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                parent.azurirajTabelu();
+                this.dispose();
+            }
         }
         return;
     }//GEN-LAST:event_jButtonObrisiActionPerformed
@@ -284,6 +305,8 @@ public class KupciDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButtonSacuvajIzmene;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabelImeVlasnikaError;
+    private javax.swing.JLabel jLabelNazivError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextFieldImeVlasnika;
@@ -295,6 +318,8 @@ public class KupciDialog extends javax.swing.JDialog {
         jButtonSacuvajIzmene.setVisible(false);
         jButtonKreiraj.setVisible(true);
         jButtonObrisi.setVisible(false);
+        jLabelNazivError.setText("");
+        jLabelImeVlasnikaError.setText("");
     }
 
     private void inicijalizacija(Kupac kupac) {
@@ -307,5 +332,7 @@ public class KupciDialog extends javax.swing.JDialog {
         jButtonSacuvajIzmene.setEnabled(false);
         jButtonKreiraj.setVisible(false);
         jButtonObrisi.setVisible(true);
+        jLabelNazivError.setText("");
+        jLabelImeVlasnikaError.setText("");
     }
 }

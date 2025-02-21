@@ -18,8 +18,8 @@ import model.enumeracija.Vrsta;
  *
  * @author Andrej
  */
-public class Proizvod implements OpstiDomenskiObjekat{
-    
+public class Proizvod implements OpstiDomenskiObjekat {
+
     private int id;
     private Tip tip;
     private Vrsta vrsta;
@@ -121,7 +121,7 @@ public class Proizvod implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return tip.toString()+" "+ vrsta.toString()+ " "+ klasa.toString() + " " + mernaJedinica.toString() + " x " + cena;
+        return tip.toString() + " " + vrsta.toString() + " " + klasa.toString() + " " + mernaJedinica.toString() + " x " + cena;
     }
 
     @Override
@@ -153,20 +153,61 @@ public class Proizvod implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiVrednostiKolona() {
-        return "("+this.id+",'"+this.tip.toString()+"','"+this.vrsta.toString()+"','"+this.klasa.toString()+"',"+this.cena+",'"+this.mernaJedinica+"','"+this.opis+"')";
+        return "(" + this.id + ",'" + this.tip.toString() + "','" + this.vrsta.toString() + "','" + this.klasa.toString() + "'," + this.cena + ",'" + this.mernaJedinica + "','" + this.opis + "')";
     }
 
     @Override
     public String vratiUslovNadjiSlog() {
-        return "id="+this.getId();
+        return "id=" + this.getId();
     }
 
-    
+    private double cenaOd = -1;
+    private double cenaDo = -1;
 
-   
-    
-    
-    
-    
-    
+    public void filterCena(double cenaOd, double cenaDo) {
+        this.cenaOd = cenaOd;
+        this.cenaDo = cenaDo;
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("");
+        boolean prev = false;
+        if (this.tip != null) {
+            sb.append("tip LIKE LOWER ('" + this.tip.toString().toLowerCase() + "') ");
+            prev = true;
+        }
+        if (this.vrsta != null) {
+            if (prev == true) {
+                sb.append(" AND ");
+            }
+            sb.append("vrsta LIKE LOWER ('" + this.vrsta.toString().toLowerCase() + "') ");
+            prev = true;
+        }
+        if (this.klasa != null) {
+            if (prev == true) {
+                sb.append(" AND ");
+            }
+            sb.append("klasa LIKE LOWER ('" + this.klasa.toString().toLowerCase() + "') ");
+            prev = true;
+        }
+        if (cenaOd > -1) {
+            if (prev == true) {
+                sb.append(" AND ");
+            }
+            sb.append("cena > " + this.cenaOd);
+            prev = true;
+        }
+        if (cenaDo > -1) {
+            if (prev == true) {
+                sb.append(" AND ");
+            }
+            sb.append("cena < " + this.cenaDo);
+            prev = true;
+        }
+        
+        return sb.toString();
+    }
+
 }

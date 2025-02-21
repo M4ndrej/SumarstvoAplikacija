@@ -128,4 +128,29 @@ public class Otpremnica implements OpstiDomenskiObjekat{
     public String vratiUslovNadjiSlog() {
         return "brojOtpremnice="+this.getBrojOtpremnice();
     }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("");
+        boolean prev = false;
+        if(this.brojOtpremnice > -1){
+            sb.append("brojOtpremnice = "+this.brojOtpremnice);
+            prev = true;
+        }
+        if(!this.kupac.getNaziv().isEmpty()){
+            if(prev){
+                sb.append(" AND ");
+            }
+            sb.append(" naziv LIKE LOWER ('"+this.kupac.getNaziv().toLowerCase()+"%') ");
+            prev = true;
+        }
+        if(this.otpremac != null){
+            if(prev){
+                sb.append(" AND ");
+            }
+            sb.append(" otpremac LIKE ('"+this.otpremac.getJmbg()+"')");
+        }
+        return sb.toString();
+    }
 }

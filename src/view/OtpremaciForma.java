@@ -268,9 +268,23 @@ public class OtpremaciForma extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
         }
+        popuniComboBox();
     }
 
     public void azurirajTabelu() {
         inicijalizacija();
+    }
+
+    private void popuniComboBox() {
+        
+        List<Lokalitet> lista = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuLokalitet(lista);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom učitavanja lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for(Lokalitet l: lista){
+            jComboBoxLokalitet.addItem(l);
+        }
     }
 }

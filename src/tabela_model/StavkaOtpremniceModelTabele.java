@@ -19,6 +19,7 @@ public class StavkaOtpremniceModelTabele extends AbstractTableModel{
     
     private String[] kolone = {"Redni broj", "Proizvod", "Količina", "Ukupna cena"};
     private List<StavkaOtpremnice> listaStavkiOtpremnica = new ArrayList<>();
+    
 
     public StavkaOtpremniceModelTabele(List<StavkaOtpremnice> lista) {
         listaStavkiOtpremnica = lista;

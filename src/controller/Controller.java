@@ -7,6 +7,7 @@ package controller;
 import database.DBBroker;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import model.Kupac;
 import model.Lokalitet;
 import model.Menadzer;
@@ -237,4 +238,11 @@ public class Controller {
         return dbb.create(menadzer);
     }
 
+    public boolean vratiListuDoznakaOtprema(List<Object[]> podaci) {
+        return dbb.readWithConditionDoznakaOtprema(podaci);
+    }
+
+    public boolean analiziraj(StavkaOtpremnice so, String prosekUkupno, String cenaKolicina, List<Object[]> lista) {
+        return dbb.analize(so,prosekUkupno,cenaKolicina,lista);
+    }
 }

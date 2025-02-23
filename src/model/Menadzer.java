@@ -21,16 +21,18 @@ public class Menadzer implements OpstiDomenskiObjekat {
     private String kontakt;
     private String lozinka;
     private String email;
+    private boolean prviLog;
 
     public Menadzer() {
     }
 
-    public Menadzer(String jmbg, String imePrezime, String kontakt, String lozinka, String email) {
+    public Menadzer(String jmbg, String imePrezime, String kontakt, String lozinka, String email, boolean prviLog) {
         this.jmbg = jmbg;
         this.imePrezime = imePrezime;
         this.kontakt = kontakt;
         this.lozinka = lozinka;
         this.email = email;
+        this.prviLog = prviLog;
     }
 
     public String getJmbg() {
@@ -71,6 +73,14 @@ public class Menadzer implements OpstiDomenskiObjekat {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isPrviLog() {
+        return prviLog;
+    }
+
+    public void setPrviLog(boolean prviLog) {
+        this.prviLog = prviLog;
     }
     
     
@@ -115,6 +125,7 @@ public class Menadzer implements OpstiDomenskiObjekat {
             this.kontakt = rs.getString("kontakt");
             this.email = rs.getString("email");
             this.lozinka = rs.getString("lozinka");
+            this.prviLog = rs.getBoolean("prviLog");
         } catch (SQLException ex) {
             Logger.getLogger(Menadzer.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -124,12 +135,12 @@ public class Menadzer implements OpstiDomenskiObjekat {
 
     @Override
     public String vratiNaziveKolona() {
-        return "(jmbgMenadzer,imePrezime,kontakt,lozinka,email)";
+        return "(jmbgMenadzer,imePrezime,kontakt,lozinka,email,prviLog)";
     }
 
     @Override
     public String vratiVrednostiKolona() {
-        return "('"+this.jmbg+"','"+this.imePrezime+"','"+this.kontakt+"','"+this.lozinka+"','"+this.email+"')";
+        return "('"+this.jmbg+"','"+this.imePrezime+"','"+this.kontakt+"','"+this.lozinka+"','"+this.email+"',"+this.prviLog+")";
     }
 
     @Override

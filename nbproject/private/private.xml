@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/LokalitetDialog.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/KupciDialog.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/PrijavaForma.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/AppStyles.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/OtpremniceDialog.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/StatistikaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/HistogramExample.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/database/DBBroker.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/main.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/controller/Controller.java</file>
         </group>
     </open-files>

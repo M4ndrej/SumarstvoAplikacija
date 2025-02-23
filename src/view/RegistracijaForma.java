@@ -5,12 +5,15 @@
 package view;
 
 import controller.Controller;
+import email.Email;
 import hashing.Hash;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import model.Menadzer;
 
@@ -56,8 +59,6 @@ public class RegistracijaForma extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldKontakt = new javax.swing.JTextField();
         jButtonRegistracija = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        jPasswordField = new javax.swing.JPasswordField();
 
         jLabel4.setText("Email");
 
@@ -78,8 +79,6 @@ public class RegistracijaForma extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Lozinka");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,15 +97,13 @@ public class RegistracijaForma extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextFieldKontakt)
                             .addComponent(jTextFieldEmail)
                             .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
-                            .addComponent(jPasswordField, javax.swing.GroupLayout.Alignment.LEADING))))
+                            .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))))
                 .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -128,11 +125,7 @@ public class RegistracijaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
                 .addComponent(jButtonRegistracija)
                 .addGap(25, 25, 25))
         );
@@ -145,20 +138,30 @@ public class RegistracijaForma extends javax.swing.JFrame {
         String imePrezime = jTextFieldImePrezime.getText();
         String email = jTextFieldEmail.getText();
         String kontakt = jTextFieldKontakt.getText();
-        String password = new String(jPasswordField.getPassword());
         String kriptovana = "";
+
+        Random random = new Random();
+        int kod = 10000 + random.nextInt(90000);
         try {
-             kriptovana = Hash.kriptuj(password);
+            Email.autentifikacija(email, String.valueOf(kod));
+        } catch (MessagingException ex) {
+            System.out.println("Greska u slanju koda za autentifikaciju");
+            return;
+        }
+
+        try {
+            kriptovana = Hash.kriptuj(String.valueOf(kod));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(RegistracijaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        Menadzer menadzer = new Menadzer(jmbg, imePrezime, kontakt, kriptovana, email);
+
+        Menadzer menadzer = new Menadzer(jmbg, imePrezime, kontakt, kriptovana, email,true);
         boolean uspesno = Controller.getInstance().kreirajMenadzer(menadzer);
-        if(uspesno){
-            JOptionPane.showMessageDialog(this, "Uspešna registracija na sistem","Uspešno",JOptionPane.INFORMATION_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Greška prilikom registracije na sistem","Greška",JOptionPane.ERROR_MESSAGE);
+        if (uspesno) {
+            JOptionPane.showMessageDialog(this, "Dobili ste jednokratnu lozinku na mail "+email, "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Greška prilikom registracije na sistem", "Greška", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRegistracijaActionPerformed
 
@@ -204,8 +207,6 @@ public class RegistracijaForma extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldImePrezime;
     private javax.swing.JTextField jTextFieldJMBG;

@@ -15,7 +15,7 @@ import model.Lokalitet;
  */
 public class LokalitetModelTabele extends AbstractTableModel{
     
-    private String[] kolone = {"Jedinica gazdinstva","Odsek i odeljenje","Doznaka", "Datum doznake"};
+    private String[] kolone = {"Gazdinska jedinica","Odsek i odeljenje","Doznaka", "Datum doznake"};
     private List<Lokalitet> listaLokaliteta = new ArrayList<>();
 
     public LokalitetModelTabele(List<Lokalitet> lista) {

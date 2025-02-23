@@ -121,7 +121,7 @@ public class Proizvod implements OpstiDomenskiObjekat {
 
     @Override
     public String toString() {
-        return tip.toString() + " " + vrsta.toString() + " " + klasa.toString() + " " + mernaJedinica.toString() + " x " + cena;
+        return tip.toString() + " " + vrsta.toString() + " " + klasa.toString() + " " + mernaJedinica.toString() + " x " + cena + "€";
     }
 
     @Override

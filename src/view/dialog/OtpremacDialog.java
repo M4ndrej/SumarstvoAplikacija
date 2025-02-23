@@ -28,6 +28,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Kreiraj otpremača");
+        setSize(500, 200);
         inicijalizuj();
         setLocationRelativeTo(parent);
         this.parent = (OtpremaciForma) parent;
@@ -58,6 +59,9 @@ public class OtpremacDialog extends javax.swing.JDialog {
         jTextFieldJMBG = new javax.swing.JTextField();
         jTextFieldImePrezime = new javax.swing.JTextField();
         jComboBoxLokalitet = new javax.swing.JComboBox<>();
+        jLabelImePrezimeError = new javax.swing.JLabel();
+        jLabelJmbgError = new javax.swing.JLabel();
+        jLabelLokaliterError = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
@@ -67,7 +71,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("JMBG");
 
@@ -75,46 +79,74 @@ public class OtpremacDialog extends javax.swing.JDialog {
 
         jLabel3.setText("Ime i prezime");
 
+        jLabelImePrezimeError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelImePrezimeError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelImePrezimeError.setText("jLabel4");
+
+        jLabelJmbgError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelJmbgError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelJmbgError.setText("jLabel4");
+
+        jLabelLokaliterError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelLokaliterError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelLokaliterError.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
-                        .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jComboBoxLokalitet, 0, 130, Short.MAX_VALUE)
-                            .addComponent(jTextFieldImePrezime))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                                .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBoxLokalitet, 0, 130, Short.MAX_VALUE)
+                                    .addComponent(jTextFieldImePrezime)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelImePrezimeError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelJmbgError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabelLokaliterError, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(4, 4, 4)
+                .addComponent(jLabelJmbgError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelImePrezimeError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxLokalitet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelLokaliterError)
+                .addGap(10, 10, 10))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButtonSacuvajIzmene.setText("Sačuvaj izmene");
         jButtonSacuvajIzmene.addActionListener(new java.awt.event.ActionListener() {
@@ -151,31 +183,27 @@ public class OtpremacDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonKreiraj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonIzmeni)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonSacuvajIzmene))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonKreiraj)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonObrisi)))
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonIzmeni)
-                    .addComponent(jButtonSacuvajIzmene))
+                .addContainerGap()
+                .addComponent(jButtonIzmeni)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonSacuvajIzmene)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonObrisi)
-                    .addComponent(jButtonKreiraj))
-                .addGap(16, 16, 16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonKreiraj)
+                .addGap(3, 3, 3)
+                .addComponent(jButtonObrisi)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -193,10 +221,10 @@ public class OtpremacDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -209,9 +237,18 @@ public class OtpremacDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
+        if (jTextFieldJMBG.getText().isEmpty() 
+                || !jTextFieldJMBG.getText().matches("^[1-9]\\d{12}$")
+                || jTextFieldImePrezime.getText().isEmpty() 
+                || jComboBoxLokalitet.getSelectedItem() == null) {
+            jLabelJmbgError.setText(jTextFieldJMBG.getText().isEmpty() ? "Unesite JMBG" : !jTextFieldJMBG.getText().matches("^[1-9]\\d{12}$") ? "Pogrešan format JMBG-a":"");
+            jLabelImePrezimeError.setText(jTextFieldImePrezime.getText().isEmpty() ? "Unesite ime i prezime" : "");
+            jLabelLokaliterError.setText(jComboBoxLokalitet.getSelectedItem() == null ? "Unesite lokalitet" : "");
+            return;
+        }
         String jmbg = jTextFieldJMBG.getText();
         String imePrezime = jTextFieldImePrezime.getText();
-        Lokalitet lokalitet = (Lokalitet)jComboBoxLokalitet.getSelectedItem();
+        Lokalitet lokalitet = (Lokalitet) jComboBoxLokalitet.getSelectedItem();
         Otpremac otpremac = new Otpremac(jmbg, imePrezime, lokalitet);
         boolean uspesno = Controller.getInstance().kreirajOtpremac(otpremac);
         if (uspesno) {
@@ -224,9 +261,18 @@ public class OtpremacDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
+        if (jTextFieldJMBG.getText().isEmpty() 
+                || !jTextFieldJMBG.getText().matches("^[1-9]\\d{12}$")
+                || jTextFieldImePrezime.getText().isEmpty() 
+                || jComboBoxLokalitet.getSelectedItem() == null) {
+            jLabelJmbgError.setText(jTextFieldJMBG.getText().isEmpty() ? "Unesite JMBG" : !jTextFieldJMBG.getText().matches("^[1-9]\\d{12}$") ? "Pogrešan format JMBG-a":"");
+            jLabelImePrezimeError.setText(jTextFieldImePrezime.getText().isEmpty() ? "Unesite ime i prezime" : "");
+            jLabelLokaliterError.setText(jComboBoxLokalitet.getSelectedItem() == null ? "Unesite lokalitet" : "");
+            return;
+        }
         String jmbg = jTextFieldJMBG.getText();
         String imePrezime = jTextFieldImePrezime.getText();
-        Lokalitet lokalitet = (Lokalitet)jComboBoxLokalitet.getSelectedItem();
+        Lokalitet lokalitet = (Lokalitet) jComboBoxLokalitet.getSelectedItem();
         otpremac.setJmbg(jmbg);
         otpremac.setImePrezime(imePrezime);
         otpremac.setLokalitet(lokalitet);
@@ -241,16 +287,16 @@ public class OtpremacDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
-        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete otpremača?","Potvrda",JOptionPane.YES_NO_OPTION);
-        if(odgovor == JOptionPane.YES_OPTION){
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete otpremača?", "Potvrda", JOptionPane.YES_NO_OPTION);
+        if (odgovor == JOptionPane.YES_OPTION) {
             boolean uspesno = Controller.getInstance().obrisiOtpremaca(otpremac);
-        if(!uspesno){
-            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja otpremača","Greška",JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Uspešno obrisan otpremač","Uspešno",JOptionPane.INFORMATION_MESSAGE);
-            parent.azurirajTabelu();
-            this.dispose();
-        }
+            if (!uspesno) {
+                JOptionPane.showMessageDialog(this, "Greška prilikom brisanja otpremača", "Greška", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Uspešno obrisan otpremač", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                parent.azurirajTabelu();
+                this.dispose();
+            }
         }
         return;
     }//GEN-LAST:event_jButtonObrisiActionPerformed
@@ -306,6 +352,9 @@ public class OtpremacDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabelImePrezimeError;
+    private javax.swing.JLabel jLabelJmbgError;
+    private javax.swing.JLabel jLabelLokaliterError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -314,6 +363,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizuj() {
+        this.setValidationLabels();
         popuniComboBox();
         jButtonSacuvajIzmene.setVisible(false);
         jButtonObrisi.setVisible(false);
@@ -321,6 +371,7 @@ public class OtpremacDialog extends javax.swing.JDialog {
     }
 
     private void inicijalizuj(Otpremac otpremac) {
+        this.setValidationLabels();
         popuniComboBox();
         jTextFieldJMBG.setText(otpremac.getJmbg());
         jTextFieldImePrezime.setText(otpremac.getImePrezime());
@@ -336,12 +387,19 @@ public class OtpremacDialog extends javax.swing.JDialog {
     private void popuniComboBox() {
         List<Lokalitet> lokaliteti = new ArrayList<>();
         boolean uspesno = Controller.getInstance().vratiListuLokalitet(lokaliteti);
-        if(!uspesno){
-            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu lokaliteta","Greška",JOptionPane.ERROR_MESSAGE);
+        if (!uspesno) {
+            JOptionPane.showMessageDialog(this, "Sistem ne može da učita listu lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        for(Lokalitet l: lokaliteti){
+        for (Lokalitet l : lokaliteti) {
             jComboBoxLokalitet.addItem(l);
         }
+        jComboBoxLokalitet.setSelectedItem(null);
+    }
+
+    private void setValidationLabels() {
+        jLabelImePrezimeError.setText("");
+        jLabelJmbgError.setText("");
+        jLabelLokaliterError.setText("");
     }
 }

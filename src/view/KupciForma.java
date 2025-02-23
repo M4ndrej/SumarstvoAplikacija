@@ -220,7 +220,7 @@ public class KupciForma extends javax.swing.JFrame {
 
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
         if (jTextFieldNaziv.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unesite kriterijum pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
         String naziv = jTextFieldNaziv.getText();

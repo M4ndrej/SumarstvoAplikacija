@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import model.Menadzer;
 
 /**
  *
@@ -23,7 +24,7 @@ public class PrijavaForma extends javax.swing.JFrame {
     public PrijavaForma() {
         initComponents();
         setTitle("Prijava");
-        setSize(400,250);
+        setSize(400, 250);
         setResizable(false);
         setLocationRelativeTo(null);
     }
@@ -139,9 +140,15 @@ public class PrijavaForma extends javax.swing.JFrame {
             Logger.getLogger(PrijavaForma.class.getName()).log(Level.SEVERE, null, ex);
         }
         boolean uspesno = Controller.getInstance().prijaviMenadzer(jmbg, kriptovana);
+        Menadzer menadzer = Controller.getInstance().getUlovovani();
         if (uspesno) {
-            GlavnaForma gf = new GlavnaForma();
-            gf.setVisible(true);
+            if (menadzer.isPrviLog()) {
+                NalogForma nf = new NalogForma();
+                nf.setVisible(true);
+            } else {
+                GlavnaForma gf = new GlavnaForma();
+                gf.setVisible(true);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Pogrešni kredencijali", "Greška", JOptionPane.ERROR_MESSAGE);
         }

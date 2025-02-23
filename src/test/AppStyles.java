@@ -4,14 +4,22 @@
  */
 package test;
 
-import com.formdev.flatlaf.FlatLaf;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.GraphicsEnvironment;
-import java.io.InputStream;
+import java.awt.GradientPaint;
 import javax.swing.BorderFactory;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.labels.ItemLabelAnchor;
+import org.jfree.chart.labels.ItemLabelPosition;
+import org.jfree.chart.labels.StandardCategoryItemLabelGenerator;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.chart.title.TextTitle;
+import org.jfree.chart.ui.HorizontalAlignment;
+import org.jfree.chart.ui.TextAnchor;
+
 /**
  *
  * @author Andrej
@@ -33,8 +41,6 @@ public class AppStyles {
             e.printStackTrace();
         }
     }
-    
- 
 
     // Metoda za postavljanje modernog fonta
     public static void setModernFont() {
@@ -48,8 +54,8 @@ public class AppStyles {
 
     // Stil za dugmadi (savetuje se svetlo zelena sa odsjajem)
     private static void setButtonStyle() {
-        
-        UIManager.put("Button.font", new Font("Arial",Font.PLAIN, 14));
+
+        UIManager.put("Button.font", new Font("Arial", Font.PLAIN, 14));
         UIManager.put("Button.arc", 15);  // Za zaobljene ivi Font.BOLDce
         UIManager.put("Button.shadow", new Color(50, 50, 50, 50));  // Odsjaj
         UIManager.put("Button.select", new Color(135, 206, 250));
@@ -62,7 +68,7 @@ public class AppStyles {
         UIManager.put("TextField.foreground", Color.BLACK);  // Tekst boja
         UIManager.put("TextField.font", new Font("Arial", Font.PLAIN, 14));
         UIManager.put("TextField.border", BorderFactory.createLineBorder(new Color(200, 200, 200)));  // Ivica
-        
+
     }
 
     // Stil za ComboBox (blaga prozirnost)
@@ -81,4 +87,37 @@ public class AppStyles {
         UIManager.put("Table.selectionBackground", new Color(144, 238, 144));  // Selektovana ćelija pozadina
         UIManager.put("Table.selectionForeground", Color.BLACK);  // Selektovana ćelija tekst boja
     }
+
+    public static void setChartStyles(JFreeChart chart) {
+
+        Font font = new Font("Segoe UI", Font.PLAIN, 12);
+
+        TextTitle title = chart.getTitle();
+        title.setFont(new Font("Segoe UI", Font.BOLD, 16));  
+        title.setPaint(new GradientPaint(0, 0, new Color(0x1E88E5), 0, 100, new Color(0x1976D2))); 
+        title.setHorizontalAlignment(HorizontalAlignment.CENTER);
+
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.getDomainAxis().setLabelFont(font);
+        plot.getRangeAxis().setLabelFont(font);
+
+        plot.getDomainAxis().setTickLabelFont(font);
+        plot.getRangeAxis().setTickLabelFont(font);
+
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setItemMargin(0.10); 
+        renderer.setDefaultItemLabelGenerator(new StandardCategoryItemLabelGenerator());
+        renderer.setDefaultItemLabelsVisible(false);
+        renderer.setDefaultPositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.BOTTOM_CENTER));
+        renderer.setSeriesPaint(0, new Color(0x29B6F6));  
+
+        
+
+        plot.setBackgroundPaint(new GradientPaint(0, 0, new Color(240, 240, 240), 0, 1, new Color(255, 255, 255)));
+        chart.setBackgroundPaint(new Color(250, 250, 250)); 
+
+        plot.getDomainAxis().setAxisLinePaint(new Color(200, 200, 200));
+        plot.getRangeAxis().setAxisLinePaint(new Color(200, 200, 200));
+    }
+
 }

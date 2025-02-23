@@ -28,7 +28,6 @@ public class LokalitetiForma extends javax.swing.JFrame {
         initComponents();
         setTitle("Lokaliteti");
         setLocationRelativeTo(null);
-        popuniComboBox();
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         inicijalizacija();
 
@@ -76,7 +75,7 @@ public class LokalitetiForma extends javax.swing.JFrame {
 
         jLabel1.setText("Odsek i odeljenje");
 
-        jLabel3.setText("Jedinica gazdinstva");
+        jLabel3.setText("Gazdinska jedinica");
 
         jButtonFilter.setText("Filtriraj");
         jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
@@ -188,12 +187,12 @@ public class LokalitetiForma extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
@@ -202,16 +201,16 @@ public class LokalitetiForma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -223,9 +222,9 @@ public class LokalitetiForma extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Odaberite lokalitet", "Greska", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        LokalitetModelTabele lmt = (LokalitetModelTabele)jTableLokaliteti.getModel();
+        LokalitetModelTabele lmt = (LokalitetModelTabele) jTableLokaliteti.getModel();
         Lokalitet lokalitet = lmt.getLista().get(red);
-        LokalitetDialog ld = new LokalitetDialog(this, true,lokalitet);
+        LokalitetDialog ld = new LokalitetDialog(this, true, lokalitet);
         ld.setVisible(true);
     }//GEN-LAST:event_jButtonDetaljiActionPerformed
 
@@ -237,10 +236,10 @@ public class LokalitetiForma extends javax.swing.JFrame {
 
     private void jButtonFilterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonFilterActionPerformed
         if (jTextFieldOdsekOdeljenje.getText().isEmpty() && jComboBoxJG.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(this, "Unesite parametar pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Unesite kriterijum pretrage", "Greška", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        JedinicaGazdinstva jg = (JedinicaGazdinstva)jComboBoxJG.getSelectedItem();
+        JedinicaGazdinstva jg = (JedinicaGazdinstva) jComboBoxJG.getSelectedItem();
         String odsekOdeljenje = jTextFieldOdsekOdeljenje.getText();
         Lokalitet lokalitet = new Lokalitet();
         lokalitet.setJedinicaGazdinstva(jg);
@@ -311,12 +310,15 @@ public class LokalitetiForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void popuniComboBox() {
+        jComboBoxJG.removeAllItems();
         for (JedinicaGazdinstva jg : JedinicaGazdinstva.values()) {
             jComboBoxJG.addItem(jg);
         }
+        jComboBoxJG.setSelectedItem(null);
     }
 
     private void inicijalizacija() {
+        popuniComboBox();
         List<Lokalitet> lista = new ArrayList<>();
         boolean uspesno = Controller.getInstance().vratiListuLokalitet(lista);
         if (uspesno) {

@@ -66,6 +66,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jLabelOOError = new javax.swing.JLabel();
         jLabelDoznakaError = new javax.swing.JLabel();
         jLabelDatumDoznakeError = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonSacuvajIzmene = new javax.swing.JButton();
         jButtonIzmeni = new javax.swing.JButton();
@@ -86,7 +88,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
             }
         });
 
-        jLabel2.setText("Jedinica Gazdinstva");
+        jLabel2.setText("Gazdinska jedinica");
 
         jLabel3.setText("Doznaka");
 
@@ -98,7 +100,6 @@ public class LokalitetDialog extends javax.swing.JDialog {
 
         jLabel4.setText("Datum doznake");
 
-        jTextFieldDatumDoznake.setText("DD.MM.YYYY");
         jTextFieldDatumDoznake.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDatumDoznakeActionPerformed(evt);
@@ -121,6 +122,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jLabelDatumDoznakeError.setForeground(new java.awt.Color(255, 0, 51));
         jLabelDatumDoznakeError.setText("jLabel5");
 
+        jLabel6.setText("m3");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -128,28 +131,33 @@ public class LokalitetDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelOOError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldOdsekOdeljenje)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelDatumDoznakeError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelDoznakaError, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldDoznaka)
-                            .addComponent(jTextFieldDatumDoznake)))
+                            .addComponent(jTextFieldDatumDoznake, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelDoznakaError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelDatumDoznakeError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTextFieldDoznaka, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelJGError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxJG, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBoxJG, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelOOError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldOdsekOdeljenje))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,9 +167,9 @@ public class LokalitetDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxJG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabelJGError)
                 .addGap(4, 4, 4)
+                .addComponent(jLabelJGError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldOdsekOdeljenje, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -170,7 +178,9 @@ public class LokalitetDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDoznaka, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelDoznakaError)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
@@ -220,7 +230,7 @@ public class LokalitetDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonIzmeni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                    .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addComponent(jButtonKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButtonObrisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -281,19 +291,24 @@ public class LokalitetDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldOdsekOdeljenjeActionPerformed
 
     private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
-        if(jComboBoxJG.getSelectedItem() == null || jTextFieldOdsekOdeljenje.getText().isEmpty() || jTextFieldDoznaka.getText().isEmpty() || jTextFieldDatumDoznake.getText().isEmpty()){
+        this.setValidationLabels();
+        if (jComboBoxJG.getSelectedItem() == null 
+                || jTextFieldOdsekOdeljenje.getText().isEmpty() 
+                || jTextFieldDoznaka.getText().isEmpty() 
+                || !jTextFieldDoznaka.getText().matches("\\d+(\\.\\d+)?")
+                || jTextFieldDatumDoznake.getText().isEmpty()) {
             jLabelJGError.setText(jComboBoxJG.getSelectedItem() == null ? "Unesite jedinicu gazdinstva" : "");
             jLabelOOError.setText(jTextFieldOdsekOdeljenje.getText().isEmpty() ? "Unesite odsek i odeljenje" : "");
             jLabelDoznakaError.setText(jTextFieldDoznaka.getText().isEmpty() ? "Unesite doznaku" : "");
             return;
         }
-        
-        JedinicaGazdinstva jg = (JedinicaGazdinstva)jComboBoxJG.getSelectedItem();
+
+        JedinicaGazdinstva jg = (JedinicaGazdinstva) jComboBoxJG.getSelectedItem();
         String odsekOdeljenje = jTextFieldOdsekOdeljenje.getText();
         double doznaka = Double.parseDouble(jTextFieldDoznaka.getText());
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         java.util.Date datum = null;
-        
+
         try {
             datum = format.parse(jTextFieldDatumDoznake.getText());
         } catch (ParseException ex) {
@@ -303,30 +318,35 @@ public class LokalitetDialog extends javax.swing.JDialog {
         this.lokalitet.setOdsekOdeljenje(odsekOdeljenje);
         this.lokalitet.setDoznaka(doznaka);
         this.lokalitet.setDatumDoznake(datum);
-        
+
         boolean uspesno = Controller.getInstance().izmeniLokalitet(lokalitet);
         if (!uspesno) {
             JOptionPane.showMessageDialog(this, "Greška prilikom izmene lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this, "Uspešno izmenjen lokalitet", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
-        if(jComboBoxJG.getSelectedItem() == null || jTextFieldOdsekOdeljenje.getText().isEmpty() || jTextFieldDoznaka.getText().isEmpty() || jTextFieldDatumDoznake.getText().isEmpty()){
+        this.setValidationLabels();
+        if (jComboBoxJG.getSelectedItem() == null || jTextFieldOdsekOdeljenje.getText().isEmpty() 
+                || jTextFieldDoznaka.getText().isEmpty() 
+                || !jTextFieldDoznaka.getText().matches("\\d+(\\.\\d+)?") 
+                || jTextFieldDatumDoznake.getText().isEmpty()) {
             jLabelJGError.setText(jComboBoxJG.getSelectedItem() == null ? "Unesite jedinicu gazdinstva" : "");
             jLabelOOError.setText(jTextFieldOdsekOdeljenje.getText().isEmpty() ? "Unesite odsek i odeljenje" : "");
-            jLabelDoznakaError.setText(jTextFieldDoznaka.getText().isEmpty() ? "Unesite doznaku" : "");
+            jLabelDoznakaError.setText(jTextFieldDoznaka.getText().isEmpty() ? "Unesite doznaku"
+                    : !jTextFieldDoznaka.getText().matches("\\d+(\\.\\d+)?") ? "Unesite broj" : "");
             return;
         }
-        
+
         JedinicaGazdinstva jg = (JedinicaGazdinstva) jComboBoxJG.getSelectedItem();
         String oo = jTextFieldOdsekOdeljenje.getText();
         double doznaka = Double.parseDouble(jTextFieldDoznaka.getText());
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
         java.util.Date datum;
-        
+
         try {
             datum = format.parse(jTextFieldDatumDoznake.getText());
         } catch (ParseException ex) {
@@ -337,11 +357,11 @@ public class LokalitetDialog extends javax.swing.JDialog {
         Lokalitet lokalitet = new Lokalitet(0, jg, oo, doznaka, datum);
         boolean uspesno = Controller.getInstance().kreirajLokalitet(lokalitet);
         if (uspesno) {
-            JOptionPane.showMessageDialog(this, "Kupac uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Lokalitet uspešno kreiran", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
             parent.azurirajTabelu();
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja kupca", "Greška", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Greška prilikom kreiranja lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonKreirajActionPerformed
@@ -351,16 +371,16 @@ public class LokalitetDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextFieldDatumDoznakeActionPerformed
 
     private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
-        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete lokalitet?","Potvrda",JOptionPane.YES_NO_OPTION);
-        if(odgovor == JOptionPane.YES_OPTION){
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete lokalitet?", "Potvrda", JOptionPane.YES_NO_OPTION);
+        if (odgovor == JOptionPane.YES_OPTION) {
             boolean uspesno = Controller.getInstance().obrisiLokalitet(lokalitet);
-        if(!uspesno){
-            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja lokaliteta","Greška",JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Uspešno obrisan lokalitet","Uspešno",JOptionPane.INFORMATION_MESSAGE);
-            parent.azurirajTabelu();
-            this.dispose();
-        }
+            if (!uspesno) {
+                JOptionPane.showMessageDialog(this, "Greška prilikom brisanja lokaliteta", "Greška", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Uspešno obrisan lokalitet", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                parent.azurirajTabelu();
+                this.dispose();
+            }
         }
         return;
     }//GEN-LAST:event_jButtonObrisiActionPerformed
@@ -418,6 +438,8 @@ public class LokalitetDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelDatumDoznakeError;
     private javax.swing.JLabel jLabelDoznakaError;
     private javax.swing.JLabel jLabelJGError;
@@ -433,14 +455,18 @@ public class LokalitetDialog extends javax.swing.JDialog {
         for (JedinicaGazdinstva jg : JedinicaGazdinstva.values()) {
             jComboBoxJG.addItem(jg);
         }
+        jComboBoxJG.setSelectedItem(null);
         jButtonSacuvajIzmene.setVisible(false);
         jButtonIzmeni.setVisible(false);
         jButtonObrisi.setVisible(false);
-        
-        jLabelJGError.setText("");
-        jLabelOOError.setText("");
-        jLabelDoznakaError.setText("");
-        jLabelDatumDoznakeError.setText("");
+        java.util.Date datum = new java.util.Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy.");
+        String datumString = format.format(datum);
+        jTextFieldDatumDoznake.setText(datumString);
+        jTextFieldDatumDoznake.setEnabled(false);
+
+        this.setValidationLabels();
+
     }
 
     private void inicijalizacija(Lokalitet lokalitet) {
@@ -464,7 +490,12 @@ public class LokalitetDialog extends javax.swing.JDialog {
         jTextFieldDatumDoznake.setEnabled(false);
         jTextFieldDoznaka.setEnabled(false);
         jComboBoxJG.setEnabled(false);
-        
+
+        this.setValidationLabels();
+
+    }
+
+    private void setValidationLabels() {
         jLabelJGError.setText("");
         jLabelOOError.setText("");
         jLabelDoznakaError.setText("");

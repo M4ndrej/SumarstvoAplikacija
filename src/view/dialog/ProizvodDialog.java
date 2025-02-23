@@ -29,6 +29,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Kreiraj tip");
+        setSize(500, 400);
         setLocationRelativeTo(parent);
         inicijalizuj();
         this.parent = (ProizvodForma) parent;
@@ -66,6 +67,13 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jTextFieldCena = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxMernaJedinica = new javax.swing.JComboBox<>();
+        jLabelTipError = new javax.swing.JLabel();
+        jLabelVrstaError = new javax.swing.JLabel();
+        jLabelOpisError = new javax.swing.JLabel();
+        jLabelKlasaError = new javax.swing.JLabel();
+        jLabelCenaError = new javax.swing.JLabel();
+        jLabelMernaJedinicaError = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButtonIzmeni = new javax.swing.JButton();
         jButtonSacuvajIzmene = new javax.swing.JButton();
@@ -75,7 +83,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setText("Tip");
 
@@ -93,6 +101,32 @@ public class ProizvodDialog extends javax.swing.JDialog {
 
         jLabel6.setText("Merna jedinica");
 
+        jLabelTipError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelTipError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelTipError.setText("jLabel7");
+
+        jLabelVrstaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelVrstaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelVrstaError.setText("jLabel7");
+
+        jLabelOpisError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelOpisError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelOpisError.setText("jLabel7");
+
+        jLabelKlasaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelKlasaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelKlasaError.setText("jLabel7");
+
+        jLabelCenaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelCenaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelCenaError.setText("jLabel7");
+
+        jLabelMernaJedinicaError.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        jLabelMernaJedinicaError.setForeground(new java.awt.Color(255, 0, 51));
+        jLabelMernaJedinicaError.setText("jLabel7");
+
+        jLabel7.setText("€");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,28 +136,49 @@ public class ProizvodDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1)
+                                    .addComponent(jLabelOpisError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jLabelKlasaError, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jComboBoxKlasa, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxTip, javax.swing.GroupLayout.Alignment.TRAILING, 0, 171, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxVrsta, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBoxKlasa, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)))
+                                    .addComponent(jComboBoxVrsta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jComboBoxTip, 0, 160, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelTipError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jLabelVrstaError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jComboBoxMernaJedinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMernaJedinicaError, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabelCenaError, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBoxMernaJedinica, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,34 +187,44 @@ public class ProizvodDialog extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jComboBoxTip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(2, 2, 2)
+                .addComponent(jLabelTipError)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jComboBoxVrsta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelVrstaError, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jComboBoxKlasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelKlasaError, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(3, 3, 3)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
+                        .addComponent(jLabelOpisError, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jComboBoxMernaJedinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(12, 12, 12))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(jTextFieldCena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7)))
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabelCenaError, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBoxMernaJedinica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jLabelMernaJedinicaError, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jButtonIzmeni.setText("Izmeni");
         jButtonIzmeni.addActionListener(new java.awt.event.ActionListener() {
@@ -196,14 +261,11 @@ public class ProizvodDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 74, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonIzmeni, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonKreiraj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonObrisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jSeparator1))
+                    .addComponent(jSeparator1)
+                    .addComponent(jButtonIzmeni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonSacuvajIzmene, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 159, Short.MAX_VALUE)
+                    .addComponent(jButtonKreiraj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonObrisi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -213,8 +275,8 @@ public class ProizvodDialog extends javax.swing.JDialog {
                 .addComponent(jButtonIzmeni)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonSacuvajIzmene)
-                .addGap(59, 59, 59)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonKreiraj)
                 .addGap(18, 18, 18)
@@ -229,7 +291,7 @@ public class ProizvodDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -237,10 +299,10 @@ public class ProizvodDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -259,15 +321,29 @@ public class ProizvodDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonIzmeniActionPerformed
 
     private void jButtonKreirajActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonKreirajActionPerformed
-        Tip tip = (Tip)jComboBoxTip.getSelectedItem();
-        Vrsta vrsta = (Vrsta)jComboBoxVrsta.getSelectedItem();
-        Klasa klasa = (Klasa)jComboBoxKlasa.getSelectedItem();
+        if (jComboBoxTip.getSelectedItem() == null
+                || jComboBoxVrsta.getSelectedItem() == null
+                || jComboBoxKlasa.getSelectedItem() == null
+                || jTextFieldCena.getText().isEmpty() 
+                || !jTextFieldCena.getText().matches("\\d+(\\.\\d+)?") 
+                || jTextAreaOpis.getText().isEmpty()) {
+            jLabelTipError.setText(jComboBoxTip.getSelectedItem() == null ? "Unesite tip" : "");
+            jLabelVrstaError.setText(jComboBoxVrsta.getSelectedItem() == null ? "Unesite vrstu" : "");
+            jLabelKlasaError.setText(jComboBoxKlasa.getSelectedItem() == null ? "Unesite klasu" : "");
+            jLabelCenaError.setText(jTextFieldCena.getText().isEmpty() ? "Unesite cenu" : !jTextFieldCena.getText().matches("\\d+(\\.\\d+)?") ? "Unesite broj" : "");
+            jLabelOpisError.setText(jTextAreaOpis.getText().isEmpty() ? "Unesite opis" : "");
+            jLabelMernaJedinicaError.setText(jComboBoxMernaJedinica.getSelectedItem() == null ? "Unesite mernu jedinicu" : "");
+            return;
+        }
+        Tip tip = (Tip) jComboBoxTip.getSelectedItem();
+        Vrsta vrsta = (Vrsta) jComboBoxVrsta.getSelectedItem();
+        Klasa klasa = (Klasa) jComboBoxKlasa.getSelectedItem();
         double cena = Double.parseDouble(jTextFieldCena.getText());
-        MernaJedinica mj = (MernaJedinica)jComboBoxMernaJedinica.getSelectedItem();
+        MernaJedinica mj = (MernaJedinica) jComboBoxMernaJedinica.getSelectedItem();
         String opis = jTextAreaOpis.getText();
-        Proizvod proizvod = new Proizvod(0,tip, vrsta, klasa, opis, cena, mj);
+        Proizvod proizvod = new Proizvod(0, tip, vrsta, klasa, opis, cena, mj);
         boolean uspesno = Controller.getInstance().kreirajProizvod(proizvod);
-         if (uspesno) {
+        if (uspesno) {
             JOptionPane.showMessageDialog(this, "Proizvod uspešno izmenjen", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
             parent.azurirajTabelu();
             this.dispose();
@@ -277,10 +353,27 @@ public class ProizvodDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonKreirajActionPerformed
 
     private void jButtonSacuvajIzmeneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSacuvajIzmeneActionPerformed
-        Tip tip = (Tip)jComboBoxTip.getSelectedItem();
-        Vrsta vrsta = (Vrsta)jComboBoxVrsta.getSelectedItem();
-        Klasa klasa = (Klasa)jComboBoxKlasa.getSelectedItem();
-        MernaJedinica mj = (MernaJedinica)jComboBoxMernaJedinica.getSelectedItem();
+
+        if (jComboBoxTip.getSelectedItem() == null 
+                || jComboBoxVrsta.getSelectedItem() == null 
+                || jComboBoxKlasa.getSelectedItem() == null 
+                || jTextFieldCena.getText().isEmpty() 
+                || !jTextFieldCena.getText().matches("\\d+(\\.\\d+)?") 
+                || jTextAreaOpis.getText().isEmpty() 
+                || jComboBoxMernaJedinica.getSelectedItem() == null) {
+            jLabelTipError.setText(jComboBoxTip.getSelectedItem() == null ? "Unesite tip" : "");
+            jLabelVrstaError.setText(jComboBoxVrsta.getSelectedItem() == null ? "Unesite vrstu" : "");
+            jLabelKlasaError.setText(jComboBoxKlasa.getSelectedItem() == null ? "Unesite klasu" : "");
+            jLabelCenaError.setText(jTextFieldCena.getText().isEmpty() ? "Unesite cenu" : !jTextFieldCena.getText().matches("\\d+(\\.\\d+)?") ? "Unesite broj" : "");
+            jLabelOpisError.setText(jTextAreaOpis.getText().isEmpty() ? "Unesite opis" : "");
+            jLabelMernaJedinicaError.setText(jComboBoxMernaJedinica.getSelectedItem() == null ? "Unesite mernu jedinicu" : "");
+            return;
+        }
+        
+        Tip tip = (Tip) jComboBoxTip.getSelectedItem();
+        Vrsta vrsta = (Vrsta) jComboBoxVrsta.getSelectedItem();
+        Klasa klasa = (Klasa) jComboBoxKlasa.getSelectedItem();
+        MernaJedinica mj = (MernaJedinica) jComboBoxMernaJedinica.getSelectedItem();
         String opis = jTextAreaOpis.getText();
         double cena = Double.parseDouble(jTextFieldCena.getText());
         proizvod.setTip(tip);
@@ -300,16 +393,16 @@ public class ProizvodDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonSacuvajIzmeneActionPerformed
 
     private void jButtonObrisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonObrisiActionPerformed
-        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete proizvod?","Potvrda",JOptionPane.YES_NO_OPTION);
-        if(odgovor == JOptionPane.YES_OPTION){
+        int odgovor = JOptionPane.showConfirmDialog(this, "Da li ste sigurni da želite da obrišete proizvod?", "Potvrda", JOptionPane.YES_NO_OPTION);
+        if (odgovor == JOptionPane.YES_OPTION) {
             boolean uspesno = Controller.getInstance().orbisiProizvod(proizvod);
-        if(!uspesno){
-            JOptionPane.showMessageDialog(this, "Greška prilikom brisanja proizvoda","Greška",JOptionPane.ERROR_MESSAGE);
-        }else{
-            JOptionPane.showMessageDialog(this, "Uspešno obrisan proizvod","Uspešno",JOptionPane.INFORMATION_MESSAGE);
-            parent.azurirajTabelu();
-            this.dispose();
-        }
+            if (!uspesno) {
+                JOptionPane.showMessageDialog(this, "Greška prilikom brisanja proizvoda", "Greška", JOptionPane.ERROR_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(this, "Uspešno obrisan proizvod", "Uspešno", JOptionPane.INFORMATION_MESSAGE);
+                parent.azurirajTabelu();
+                this.dispose();
+            }
         }
         return;
     }//GEN-LAST:event_jButtonObrisiActionPerformed
@@ -372,6 +465,13 @@ public class ProizvodDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabelCenaError;
+    private javax.swing.JLabel jLabelKlasaError;
+    private javax.swing.JLabel jLabelMernaJedinicaError;
+    private javax.swing.JLabel jLabelOpisError;
+    private javax.swing.JLabel jLabelTipError;
+    private javax.swing.JLabel jLabelVrstaError;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -385,6 +485,14 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jButtonSacuvajIzmene.setVisible(false);
         jButtonIzmeni.setVisible(false);
         jButtonObrisi.setVisible(false);
+
+        jLabelTipError.setText("");
+        jLabelVrstaError.setText("");
+        jLabelKlasaError.setText("");
+        jLabelCenaError.setText("");
+        jLabelOpisError.setText("");
+        jLabelMernaJedinicaError.setText("");
+
     }
 
     private void inicijalizuj(Proizvod proizvod) {
@@ -404,20 +512,34 @@ public class ProizvodDialog extends javax.swing.JDialog {
         jTextAreaOpis.setEnabled(false);
         jTextFieldCena.setEnabled(false);
         this.proizvod = proizvod;
+
+        jLabelTipError.setText("");
+        jLabelVrstaError.setText("");
+        jLabelKlasaError.setText("");
+        jLabelCenaError.setText("");
+        jLabelOpisError.setText("");
+        jLabelMernaJedinicaError.setText("");
     }
 
     private void popuniComboBox() {
         for (Tip tip : Tip.values()) {
             jComboBoxTip.addItem(tip);
         }
+        jComboBoxTip.setSelectedItem(null);
         for (Klasa klasa : Klasa.values()) {
             jComboBoxKlasa.addItem(klasa);
         }
+        jComboBoxKlasa.setSelectedItem(null);
+
         for (Vrsta vrsta : Vrsta.values()) {
             jComboBoxVrsta.addItem(vrsta);
         }
+        jComboBoxVrsta.setSelectedItem(null);
+
         for (MernaJedinica mj : MernaJedinica.values()) {
             jComboBoxMernaJedinica.addItem(mj);
         }
+        jComboBoxMernaJedinica.setSelectedItem(null);
+
     }
 }

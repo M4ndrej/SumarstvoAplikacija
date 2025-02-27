@@ -9,10 +9,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import org.jfree.chart.labels.ItemLabelAnchor;
-import org.jfree.chart.labels.ItemLabelPosition;
-import org.jfree.chart.renderer.category.BarRenderer;
-import org.jfree.chart.ui.TextAnchor;
+
 
 public class HistogramExample {
 
@@ -28,8 +25,8 @@ public class HistogramExample {
         JFreeChart chart = ChartFactory.createBarChart(
                 "Otprema po " + (isGodina ? "godinama" : "mesecima"),
                 (isGodina ? "Godine" : "Meseci"),
-                "Vrednost", // Osa Y
-                dataset, // Podaci
+                "Vrednost", 
+                dataset, 
                 PlotOrientation.VERTICAL,
                 true, true, false
         );

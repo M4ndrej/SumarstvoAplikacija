@@ -99,21 +99,18 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jButtonFilter" min="-2" pref="128" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButtonFilterOcistiFilter" max="32767" attributes="0"/>
+                          <Component id="jButtonFilterOcistiFilter" pref="129" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="14" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldOdsekOdeljenje" min="-2" pref="143" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jComboBoxJG" min="-2" pref="143" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jTextFieldOdsekOdeljenje" pref="143" max="32767" attributes="0"/>
+                              <Component id="jComboBoxJG" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -135,9 +132,9 @@
                       <Component id="jTextFieldOdsekOdeljenje" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButtonFilter" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonFilterOcistiFilter" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jButtonFilter" max="32767" attributes="0"/>
+                      <Component id="jButtonFilterOcistiFilter" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>

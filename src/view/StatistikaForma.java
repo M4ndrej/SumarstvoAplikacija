@@ -22,9 +22,6 @@ import model.enumeracija.Klasa;
 import model.enumeracija.Tip;
 import model.enumeracija.Vrsta;
 import tabela_model.StatistikaModelTabele;
-import test.FunctionDiagram;
-import test.HistogramExample;
-import test.StackedDiagram;
 import view.dialog.StatistikaDialog;
 
 /**

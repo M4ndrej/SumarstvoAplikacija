@@ -4,11 +4,16 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Andrej
  */
-public class Privilegija {
+public class Privilegija implements OpstiDomenskiObjekat{
     
     private int id;
     private String naziv;
@@ -39,7 +44,7 @@ public class Privilegija {
 
     @Override
     public String toString() {
-        return "Privilegija:" + naziv;
+        return naziv;
     }
 
     @Override
@@ -62,6 +67,43 @@ public class Privilegija {
         }
         final Privilegija other = (Privilegija) obj;
         return this.id == other.id;
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "privilegija";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.id = rs.getInt("id");
+            this.naziv = rs.getString("naziv");
+        } catch (SQLException ex) {
+            Logger.getLogger(Privilegija.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(id,naziv)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        return "("+this.id+",'"+this.naziv+"')";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "id="+this.getId();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return null;
     }
     
     

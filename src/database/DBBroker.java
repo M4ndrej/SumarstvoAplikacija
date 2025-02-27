@@ -16,8 +16,10 @@ import java.util.Map;
 import model.Kupac;
 import model.Lokalitet;
 import model.Menadzer;
+import model.MenadzerPrivilegija;
 import model.Otpremac;
 import model.Otpremnica;
+import model.Privilegija;
 import model.Proizvod;
 import model.StavkaOtpremnice;
 
@@ -393,5 +395,29 @@ public class DBBroker {
             return false;
         }
         return true;
+    }
+
+    public List<OpstiDomenskiObjekat> readMenadzerPrivilegijaWithPrivilegijaMenadzer(MenadzerPrivilegija menadzerPrivilegija) {
+        List<OpstiDomenskiObjekat> lista = new ArrayList<>();
+        try {
+            String upit = "SELECT * FROM menadzer_privilegija mp JOIN menadzer m ON mp.menadzer = m.jmbgMenadzer "
+                    + "JOIN privilegija p ON mp.privilegija = p.id ";
+            statement = konekcija.getConnection().createStatement();
+            ResultSet rs = statement.executeQuery(upit);
+            while (rs.next()) {
+                Menadzer menadzer = new Menadzer();
+                menadzer.napuni(rs);
+                Privilegija privilegija = new Privilegija();
+                privilegija.napuni(rs);
+                MenadzerPrivilegija mp = new MenadzerPrivilegija();
+                mp.napuni(rs);
+                mp.setMenadzer(menadzer);
+                mp.setPrivilegija(privilegija);
+                lista.add(mp);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(DBBroker.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lista;
     }
 }

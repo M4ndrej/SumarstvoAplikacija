@@ -4,14 +4,18 @@
  */
 package model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Andrej
  */
-public class MenadzerPrivilegija {
+public class MenadzerPrivilegija implements OpstiDomenskiObjekat{
     
     private Menadzer menadzer;
     private Privilegija privilegija;
@@ -74,6 +78,43 @@ public class MenadzerPrivilegija {
             return false;
         }
         return Objects.equals(this.privilegija, other.privilegija);
+    }
+
+    @Override
+    public String vratiImeKlase() {
+        return "menadzer_privilegija";
+    }
+
+    @Override
+    public boolean napuni(ResultSet rs) {
+        try {
+            this.datumSticanja = rs.getDate("datumSticanja");
+        } catch (SQLException ex) {
+            Logger.getLogger(MenadzerPrivilegija.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String vratiNaziveKolona() {
+        return "(menadzer,privilegija,datumSticanja)";
+    }
+
+    @Override
+    public String vratiVrednostiKolona() {
+        java.sql.Date datum = new java.sql.Date(this.datumSticanja.getTime());
+        return "('"+this.menadzer.getJmbg()+"',"+this.privilegija.getId()+","+"'"+datum+"')";
+    }
+
+    @Override
+    public String vratiUslovNadjiSlog() {
+        return "menadzer="+"'"+this.menadzer.getJmbg()+"' AND privilegija="+this.privilegija.getId();
+    }
+
+    @Override
+    public String vratiUslovNadjiSlogove() {
+        return null;
     }
 
     

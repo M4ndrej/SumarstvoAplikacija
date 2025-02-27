@@ -26,6 +26,7 @@ public class KupciForma extends javax.swing.JFrame {
     public KupciForma() {
         initComponents();
         setLocationRelativeTo(null);
+        setResizable(false);
         setTitle("Kupci");
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         inicijalizacija();

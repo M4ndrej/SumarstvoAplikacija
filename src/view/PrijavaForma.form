@@ -38,8 +38,8 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" pref="84" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jButtonRegistracija" min="-2" pref="119" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jButtonRegistracija" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jButtonPrijava" max="32767" attributes="0"/>
               </Group>
@@ -117,7 +117,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nemas nalog?"/>
+        <Property name="text" type="java.lang.String" value="Nema&#x161; nalog?"/>
       </Properties>
     </Component>
   </SubComponents>

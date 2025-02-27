@@ -7,13 +7,14 @@ package controller;
 import database.DBBroker;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import model.Kupac;
 import model.Lokalitet;
 import model.Menadzer;
+import model.MenadzerPrivilegija;
 import model.OpstiDomenskiObjekat;
 import model.Otpremac;
 import model.Otpremnica;
+import model.Privilegija;
 import model.Proizvod;
 import model.StavkaOtpremnice;
 
@@ -27,19 +28,24 @@ public class Controller {
     private List<Menadzer> menadzeri = new ArrayList<>();
     private Menadzer ulogovani;
     private DBBroker dbb = new DBBroker();
+    private Privilegija privilegija;
 
-    private Controller(){
-        
+    private Controller() {
+
     }
-    
-    public Menadzer getUlovovani(){
+
+    public Privilegija getPrivilegija() {
+        return privilegija;
+    }
+
+    public Menadzer getUlovovani() {
         return ulogovani;
     }
 
     public void setUlogovani(Menadzer ulogovani) {
         this.ulogovani = ulogovani;
     }
-    
+
     public static Controller getInstance() {
         if (instance == null) {
             instance = new Controller();
@@ -188,7 +194,7 @@ public class Controller {
 
     public boolean vratiListuSviMenadzer(Menadzer menadzer, List<Menadzer> lista) {
         List<OpstiDomenskiObjekat> listaOdo = dbb.readWithCondition(menadzer);
-        if(listaOdo == null){
+        if (listaOdo == null) {
             return false;
         }
         for (OpstiDomenskiObjekat o : listaOdo) {
@@ -198,7 +204,7 @@ public class Controller {
     }
 
     public boolean vratiListuSviOtpremac(Otpremac otpremac, List<Otpremac> lista) {
-        return dbb.readWithConditionOtpremacLokalitet(otpremac,lista);
+        return dbb.readWithConditionOtpremacLokalitet(otpremac, lista);
     }
 
     public boolean vratiListuSviProizvod(Proizvod proizvod, List<Proizvod> lista) {
@@ -213,7 +219,7 @@ public class Controller {
     }
 
     public boolean vratiListuSviOtpremnica(Otpremnica otpremnica, List<Otpremnica> lista) {
-        return dbb.readWithConditionOtpremnicaKupacOtpremac(otpremnica,lista);
+        return dbb.readWithConditionOtpremnicaKupacOtpremac(otpremnica, lista);
     }
 
     public boolean prijaviMenadzer(String jmbg, String lozinka) {
@@ -224,10 +230,11 @@ public class Controller {
         for (OpstiDomenskiObjekat o : listaOdo) {
             menadzeri.add((Menadzer) o);
         }
-        
-        for(Menadzer m: menadzeri){
-            if(m.getJmbg().equals(jmbg) && m.getLozinka().equals(lozinka)){
+
+        for (Menadzer m : menadzeri) {
+            if (m.getJmbg().equals(jmbg) && m.getLozinka().equals(lozinka)) {
                 ulogovani = m;
+                postaviPrivilegiju();
                 return true;
             }
         }
@@ -243,6 +250,43 @@ public class Controller {
     }
 
     public boolean analiziraj(StavkaOtpremnice so, String prosekUkupno, String cenaKolicina, List<Object[]> lista) {
-        return dbb.analize(so,prosekUkupno,cenaKolicina,lista);
+        return dbb.analize(so, prosekUkupno, cenaKolicina, lista);
+    }
+
+    public boolean vratiListuPrivilegija(List<Privilegija> privilegije) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.read(new Privilegija());
+        if (listaOdo == null) {
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            privilegije.add((Privilegija) o);
+        }
+        return true;
+    }
+
+    public boolean kreirajMenadzerPrivilegija(MenadzerPrivilegija mp) {
+        return dbb.create(mp);
+    }
+
+    public boolean vratiListuMenadzerPrivilegija(List<MenadzerPrivilegija> listaMenadzerPrivilegija) {
+        List<OpstiDomenskiObjekat> listaOdo = dbb.readMenadzerPrivilegijaWithPrivilegijaMenadzer(new MenadzerPrivilegija());
+        if (listaOdo == null) {
+            return false;
+        }
+        for (OpstiDomenskiObjekat o : listaOdo) {
+            listaMenadzerPrivilegija.add((MenadzerPrivilegija) o);
+        }
+        return true;
+    }
+
+    private void postaviPrivilegiju() {
+        List<MenadzerPrivilegija> listaMenadzerPrivilegija = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuMenadzerPrivilegija(listaMenadzerPrivilegija);
+        for (MenadzerPrivilegija mp : listaMenadzerPrivilegija) {
+            if (mp.getMenadzer().equals(ulogovani)) {
+                privilegija = mp.getPrivilegija();
+                return;
+            }
+        }
     }
 }

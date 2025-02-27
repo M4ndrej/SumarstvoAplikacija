@@ -10,12 +10,16 @@ import hashing.Hash;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 import model.Menadzer;
+import model.MenadzerPrivilegija;
+import model.Privilegija;
 
 /**
  *
@@ -37,6 +41,7 @@ public class RegistracijaForma extends javax.swing.JFrame {
                 new PrijavaForma().setVisible(true);
             }
         });
+        inicijalizacija();
     }
 
     /**
@@ -59,6 +64,8 @@ public class RegistracijaForma extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextFieldKontakt = new javax.swing.JTextField();
         jButtonRegistracija = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxUloga = new javax.swing.JComboBox<>();
 
         jLabel4.setText("Email");
 
@@ -79,38 +86,45 @@ public class RegistracijaForma extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Uloga");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonRegistracija)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonRegistracija, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(48, 48, 48))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(48, 48, 48))
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(48, 48, 48)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jTextFieldKontakt)
                             .addComponent(jTextFieldEmail)
                             .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                            .addComponent(jTextFieldImePrezime, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxUloga, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(118, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jTextFieldJMBG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -125,7 +139,11 @@ public class RegistracijaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTextFieldKontakt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jComboBoxUloga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(jButtonRegistracija)
                 .addGap(25, 25, 25))
         );
@@ -156,13 +174,18 @@ public class RegistracijaForma extends javax.swing.JFrame {
         }
 
         Menadzer menadzer = new Menadzer(jmbg, imePrezime, kontakt, kriptovana, email,true);
-        boolean uspesno = Controller.getInstance().kreirajMenadzer(menadzer);
+        Privilegija privilegija = (Privilegija)jComboBoxUloga.getSelectedItem();
+        java.util.Date datumSticanja = new java.util.Date();
+        MenadzerPrivilegija mp = new MenadzerPrivilegija(menadzer,privilegija,datumSticanja);
+        boolean uspesno = Controller.getInstance().kreirajMenadzer(menadzer) && Controller.getInstance().kreirajMenadzerPrivilegija(mp);
         if (uspesno) {
             JOptionPane.showMessageDialog(this, "Dobili ste jednokratnu lozinku na mail "+email, "Uspešno", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Greška prilikom registracije na sistem", "Greška", JOptionPane.ERROR_MESSAGE);
         }
+        
+        
     }//GEN-LAST:event_jButtonRegistracijaActionPerformed
 
     /**
@@ -202,15 +225,34 @@ public class RegistracijaForma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRegistracija;
+    private javax.swing.JComboBox<Privilegija> jComboBoxUloga;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField jTextFieldEmail;
     private javax.swing.JTextField jTextFieldImePrezime;
     private javax.swing.JTextField jTextFieldJMBG;
     private javax.swing.JTextField jTextFieldJMBG3;
     private javax.swing.JTextField jTextFieldKontakt;
     // End of variables declaration//GEN-END:variables
+
+    private void inicijalizacija() {
+        popuniComboBox();
+    }
+
+    private void popuniComboBox() {
+        List<Privilegija> privilegije = new ArrayList<>();
+        boolean uspesno = Controller.getInstance().vratiListuPrivilegija(privilegije);
+        if(!uspesno){
+            JOptionPane.showMessageDialog(this, "Greška prilikom učitavanja privilegija","Greška",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        for(Privilegija p: privilegije){
+            jComboBoxUloga.addItem(p);
+        }
+        jComboBoxUloga.setSelectedItem(null);
+    }
 }

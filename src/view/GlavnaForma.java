@@ -4,8 +4,13 @@
  */
 package view;
 
+import controller.Controller;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+import model.Menadzer;
+import model.MenadzerPrivilegija;
 
 /**
  *
@@ -13,12 +18,12 @@ import java.awt.event.WindowEvent;
  */
 public class GlavnaForma extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GlavnaForma
-     */
+    private Menadzer menadzer;
+    private List<MenadzerPrivilegija> listaMenadzerPrivilegija = new ArrayList<>();
+
     public GlavnaForma() {
         initComponents();
-        setSize(600,300);
+        setSize(600, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(GlavnaForma.DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -27,6 +32,7 @@ public class GlavnaForma extends javax.swing.JFrame {
                 new PrijavaForma().setVisible(true);
             }
         });
+        inicijalizacija();
     }
 
     /**
@@ -284,7 +290,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     private void jMenuItemMojNalogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMojNalogActionPerformed
         NalogForma nf = new NalogForma();
         nf.setVisible(true);
-        
+
     }//GEN-LAST:event_jMenuItemMojNalogActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -294,7 +300,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButtonStatistikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatistikaActionPerformed
-        StatistikaForma sf  = new StatistikaForma();
+        StatistikaForma sf = new StatistikaForma();
         sf.setVisible(true);
     }//GEN-LAST:event_jButtonStatistikaActionPerformed
 
@@ -386,4 +392,9 @@ public class GlavnaForma extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     // End of variables declaration//GEN-END:variables
+
+    private void inicijalizacija() {
+        jButtonStatistika.setEnabled(Controller.getInstance().getPrivilegija().getNaziv().equals("ADMINISTRATOR"));
+
+    }
 }

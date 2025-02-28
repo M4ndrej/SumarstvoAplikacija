@@ -17,12 +17,12 @@ import model.Otpremnica;
 import model.Privilegija;
 import model.Proizvod;
 import model.StavkaOtpremnice;
+import test.Statistika;
 
 /**
  *
  * @author Andrej
- */
-public class Controller {
+ */public class Controller {
 
     private static Controller instance;
     private List<Menadzer> menadzeri = new ArrayList<>();
@@ -126,8 +126,17 @@ public class Controller {
         return dbb.create(proizvod);
     }
 
-    public boolean kreirajOtpremnicu(Otpremnica otpremnica) {
-        return dbb.create(otpremnica);
+    public boolean kreirajOtpremnicu(Otpremnica otpremnica, List<StavkaOtpremnice> listaStavki) {
+        if(dbb.create(otpremnica)){
+            for (StavkaOtpremnice stavkaOtpremnice : listaStavki) {
+                stavkaOtpremnice.setOtpremnica(otpremnica);
+                boolean uspesno = Controller.getInstance().kreirajStavkuOtpremnice(stavkaOtpremnice);
+                if(!uspesno){
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public boolean kreirajStavkuOtpremnice(StavkaOtpremnice stavkaOtpremnice) {
@@ -250,7 +259,8 @@ public class Controller {
     }
 
     public boolean analiziraj(StavkaOtpremnice so, String prosekUkupno, String cenaKolicina, List<Object[]> lista) {
-        return dbb.analize(so, prosekUkupno, cenaKolicina, lista);
+        Statistika statistika = new Statistika();
+        return statistika.analize(so, prosekUkupno, cenaKolicina, lista);
     }
 
     public boolean vratiListuPrivilegija(List<Privilegija> privilegije) {
@@ -288,5 +298,13 @@ public class Controller {
                 return;
             }
         }
+    }
+
+    public boolean obrisiStavkuOtpremnice(StavkaOtpremnice so) {
+        return dbb.delete(so);
+    }
+
+    public boolean azurirajOtpremnicu(Otpremnica otpremnica) {
+        return dbb.update(otpremnica);
     }
 }

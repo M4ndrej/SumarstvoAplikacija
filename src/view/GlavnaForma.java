@@ -23,7 +23,6 @@ public class GlavnaForma extends javax.swing.JFrame {
 
     public GlavnaForma() {
         initComponents();
-        setSize(600, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(GlavnaForma.DISPOSE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
@@ -126,6 +125,7 @@ public class GlavnaForma extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jButtonOtpremnice.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButtonOtpremnice.setText("Otpremnice");
         jButtonOtpremnice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,19 +139,20 @@ public class GlavnaForma extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButtonOtpremnice, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                .addComponent(jButtonOtpremnice, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonOtpremnice, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jButtonOtpremnice)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jButtonKupci.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButtonKupci.setText("Kupci");
         jButtonKupci.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,14 +171,15 @@ public class GlavnaForma extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonKupci, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jButtonKupci)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jButtonStatistika.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jButtonStatistika.setText("Statistika");
         jButtonStatistika.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,10 +198,10 @@ public class GlavnaForma extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonStatistika, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jButtonStatistika)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jMenuOdjava.setText("Nalozi");
@@ -275,13 +277,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -299,11 +301,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButtonStatistikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatistikaActionPerformed
-        StatistikaForma sf = new StatistikaForma();
-        sf.setVisible(true);
-    }//GEN-LAST:event_jButtonStatistikaActionPerformed
-
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         ZaposleniForma zf = new ZaposleniForma();
         zf.setVisible(true);
@@ -319,11 +316,6 @@ public class GlavnaForma extends javax.swing.JFrame {
         of.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jButtonOtpremniceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOtpremniceActionPerformed
-        OtpremniceForma of = new OtpremniceForma();
-        of.setVisible(true);
-    }//GEN-LAST:event_jButtonOtpremniceActionPerformed
-
     private void jMenuItemLokalitetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLokalitetActionPerformed
         LokalitetiForma lf = new LokalitetiForma();
         lf.setVisible(true);
@@ -333,6 +325,16 @@ public class GlavnaForma extends javax.swing.JFrame {
         KupciForma kf = new KupciForma();
         kf.setVisible(true);
     }//GEN-LAST:event_jButtonKupciActionPerformed
+
+    private void jButtonStatistikaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStatistikaActionPerformed
+        StatistikaForma sf = new StatistikaForma();
+        sf.setVisible(true);
+    }//GEN-LAST:event_jButtonStatistikaActionPerformed
+
+    private void jButtonOtpremniceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOtpremniceActionPerformed
+        OtpremniceForma of = new OtpremniceForma();
+        of.setVisible(true);
+    }//GEN-LAST:event_jButtonOtpremniceActionPerformed
 
     /**
      * @param args the command line arguments
@@ -394,7 +396,7 @@ public class GlavnaForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void inicijalizacija() {
-        jButtonStatistika.setEnabled(Controller.getInstance().getPrivilegija().getNaziv().equals("ADMINISTRATOR"));
+        jButtonKupci.setEnabled(Controller.getInstance().getPrivilegija().getNaziv().equals("ADMINISTRATOR"));
 
     }
 }

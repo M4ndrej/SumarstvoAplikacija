@@ -92,7 +92,7 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabelImeVlasnikaError" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="24" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -179,6 +179,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jButtonIzmeni">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Izmeni"/>
           </Properties>
           <Events>
@@ -187,6 +190,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSacuvajIzmene">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sa&#x10d;uvaj izmene"/>
           </Properties>
           <Events>
@@ -195,6 +201,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonKreiraj">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Kreiraj"/>
           </Properties>
           <Events>
@@ -203,6 +212,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonObrisi">
           <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Obri&#x161;i"/>
           </Properties>
           <Events>

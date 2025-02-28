@@ -22,16 +22,18 @@ public class Otpremnica implements OpstiDomenskiObjekat{
     private Otpremac otpremac;
     private int brojOtpremnice;
     private java.util.Date datumOtpremnice;
+    private boolean zavrsena;
 
     public Otpremnica() {
     }
 
-    public Otpremnica(Kupac kupac, Menadzer menadzer, Otpremac otpremac, int brojOtpremnice, Date datumOtpremnice) {
+    public Otpremnica(Kupac kupac, Menadzer menadzer, Otpremac otpremac, int brojOtpremnice, Date datumOtpremnice, boolean zavrsena) {
         this.kupac = kupac;
         this.menadzer = menadzer;
         this.otpremac = otpremac;
         this.brojOtpremnice = brojOtpremnice;
         this.datumOtpremnice = datumOtpremnice;
+        this.zavrsena = zavrsena;
     }
 
     public Kupac getKupac() {
@@ -74,6 +76,14 @@ public class Otpremnica implements OpstiDomenskiObjekat{
         this.datumOtpremnice = datumOtpremnice;
     }
 
+    public boolean isZavrsena() {
+        return zavrsena;
+    }
+
+    public void setZavrsena(boolean zavrsena) {
+        this.zavrsena = zavrsena;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -106,6 +116,7 @@ public class Otpremnica implements OpstiDomenskiObjekat{
         try {
             this.brojOtpremnice = rs.getInt("brojOtpremnice");
             this.datumOtpremnice = rs.getDate("datumOtpremnice");
+            this.zavrsena = rs.getBoolean("zavrsena");
         } catch (SQLException ex) {
             Logger.getLogger(Otpremnica.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -115,13 +126,13 @@ public class Otpremnica implements OpstiDomenskiObjekat{
 
     @Override
     public String vratiNaziveKolona() {
-        return "(brojOtpremnice,menadzer,otpremac,datumOtpremnice,kupac)";
+        return "(brojOtpremnice,menadzer,otpremac,datumOtpremnice,kupac,zavrsena)";
     }
 
     @Override
     public String vratiVrednostiKolona() {
         java.sql.Date datum = new java.sql.Date(this.getDatumOtpremnice().getTime());
-        return "("+this.brojOtpremnice+",'"+this.menadzer.getJmbg()+"','"+this.otpremac.getJmbg()+"','"+datum+"',"+this.kupac.getId()+")";
+        return "("+this.brojOtpremnice+",'"+this.menadzer.getJmbg()+"','"+this.otpremac.getJmbg()+"','"+datum+"',"+this.kupac.getId()+","+this.zavrsena+")";
     }
 
     @Override

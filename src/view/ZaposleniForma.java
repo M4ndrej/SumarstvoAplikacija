@@ -71,6 +71,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
             }
         });
 
+        jButtonFilter.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonFilter.setText("Filtriraj");
         jButtonFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +79,7 @@ public class ZaposleniForma extends javax.swing.JFrame {
             }
         });
 
+        jButtonOčistiFilter.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButtonOčistiFilter.setText("Očisti filter");
         jButtonOčistiFilter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

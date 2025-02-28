@@ -3,16 +3,33 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/ProizvodDialog.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/Menadzer.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/GlavnaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/OtpremniceForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/controller/Controller.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/StackedDiagram.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/enumeracija/JedinicaGazdinstva.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/tabela_model/OtpremnicaModelTabele.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/ProizvodDialog.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/OtpremniceDialog.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/PrijavaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/Kupac.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/RegistracijaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/AppStyles.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/main.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/OtpremaciForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/Privilegija.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/ZaposleniForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/StatistikaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/KupciForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/MenadzerPrivilegija.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/hashing/Hash.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/database/Konekcija.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/email/Email.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/GlavnaForma.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/tabela_model/KupacModelTabele.java</file>
+            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/test/HistogramExample.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/dialog/StatistikaDialog.java</file>
             <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/database/DBBroker.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/view/KupciForma.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/Privilegija.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/model/MenadzerPrivilegija.java</file>
-            <file>file:/C:/Users/Andrej/Documents/NetBeansProjects/FaksProjekatDemo/src/controller/Controller.java</file>
         </group>
     </open-files>
 </project-private>

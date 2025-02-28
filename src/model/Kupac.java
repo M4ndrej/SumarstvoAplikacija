@@ -54,7 +54,7 @@ public class Kupac implements OpstiDomenskiObjekat{
 
     @Override
     public String toString() {
-        return imeVlasnika;
+        return naziv;
     }
 
     @Override

@@ -17,7 +17,7 @@ import model.Proizvod;
  */
 public class OtpremnicaModelTabele extends AbstractTableModel{
     
-    private String[] kolone = {"Broj otpremnice","Menadzer", "Otpremač", "Kupac", "Datum otpremnice"};
+    private String[] kolone = {"Broj otpremnice","Menadzer", "Otpremač", "Kupac", "Datum otpremnice", "Završena"};
     private List<Otpremnica> listaOtprmenica = new ArrayList<>();
 
     public OtpremnicaModelTabele(List<Otpremnica> lista) {
@@ -48,9 +48,23 @@ public class OtpremnicaModelTabele extends AbstractTableModel{
             return otpremnica.getKupac().getNaziv();
         case 4:
             return otpremnica.getDatumOtpremnice();
+        case 5:
+            return otpremnica.isZavrsena();
         default:
             return "";
         }
+    }
+
+    @Override
+    public Class<?> getColumnClass(int columnIndex) {
+        if(columnIndex == 5){
+            return Boolean.class;
+        }
+        return String.class;
+    }
+    
+    public List<Otpremnica> getList(){
+        return listaOtprmenica;
     }
 
     @Override
